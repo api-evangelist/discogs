@@ -1,0 +1,52 @@
+{
+    "name": "Discogs",
+    "description": "<p>Discogs, short for discographies, is a website and crowdsourced database of information about audio recordings, including commercial releases, promotional releases, and bootleg or off-label releases. The Discogs servers, currently hosted under the domain name discogs.com, are owned by Zink Media, Inc., and are located in Portland, Oregon, US. While the site lists releases in all genres and on all formats, it is especially known as the largest online database of electronic music releases, and of releases on vinyl media. Discogs currently contains over 6 million releases, by 3.9 million artists, across over 743,000 labels, contributed from nearly 238,000 contributor user accounts &ndash; with these figures constantly growing as users continually add previously unlisted releases to the site over time<\/p>",
+    "image": "",
+    "tags": [
+        "api provider",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/discogs\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Discogs",
+            "description": null,
+            "image": "",
+            "humanURL": "https:\/\/www.discogs.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/discogs-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/discogs-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "https:\/\/blog.discogs.com\/"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/discogs"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/discogs"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.discogs.com\/"
+        }
+    ]
+}
