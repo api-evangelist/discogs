@@ -1,0 +1,32 @@
+aid: discogs
+name: Discogs
+description: "Music"
+url: https://www.discogs.com/developers/
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Music"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Music
+  - Public APIs
+apis:
+  - name: Discogs
+    description: "Music"
+    humanURL: https://www.discogs.com/developers/
+    baseURL: https://www.discogs.com/developers/
+    tags:
+      - Music
+    properties:
+      - type: Documentation
+        url: https://www.discogs.com/developers/
+common:
+  - type: Website
+    url: https://www.discogs.com/developers/
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
