@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-pagination-structure.json",
+  "name": "Pagination",
+  "description": "Details for paginated results.",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "int32"
+    },
+    "pages": {
+      "type": "int32"
+    },
+    "per_page": {
+      "type": "int32"
+    },
+    "items": {
+      "type": "int32"
+    },
+    "urls": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "uri",
+          "nullable": true
+        },
+        "prev": {
+          "type": "uri",
+          "nullable": true
+        },
+        "next": {
+          "type": "uri",
+          "nullable": true
+        },
+        "last": {
+          "type": "uri",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discogs API — User Lists
+  description: 'Discogs — User Lists. 2 operations. Lead operation: Discogs Get List. Self-contained Naftiko capability covering one Discogs business surface.'
+  tags:
+  - Discogs
+  - Music
+  - User Lists
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+- namespace: env
+  keys:
+    DISCOGS_TOKEN: DISCOGS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: discogs-user-lists
+    baseUri: https://api.discogs.com
+    description: Discogs API — User Lists business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Discogs token={{env.DISCOGS_TOKEN}}
+      placement: header
+    resources:
+    - name: lists-list-id
+      path: /lists/{list_id}
+      operations:
+      - name: getlist
+        method: GET
+        description: Discogs Get List
+        inputParameters:
+        - name: list_id
+          in: path
+          type: integer
+          required: true
+          description: List ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-username-lists
+      path: /users/{username}/lists
+      operations:
+      - name: getuserlists
+        method: GET
+        description: Discogs Get User Lists
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Discogs username.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number.
+        - name: per_page
+          in: query
+          type: integer
+          required: false
+          description: Items per page.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discogs-user-lists-rest
+    port: 8080
+    description: REST adapter for Discogs API — User Lists. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/lists/{list-id}
+      name: lists-list-id
+      description: REST surface for Discogs Get List.
+      operations:
+      - method: GET
+        name: getlist
+        description: Discogs Get List
+        call: discogs-user-lists.getlist
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          list_id: rest.list_id
+    - path: /v1/users/{username}/lists
+      name: users-username-lists
+      description: REST surface for Discogs Get User Lists.
+      operations:
+      - method: GET
+        name: getuserlists
+        description: Discogs Get User Lists
+        call: discogs-user-lists.getuserlists
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          username: rest.username
+          page: rest.page
+          per_page: rest.per_page
+  - type: mcp
+    namespace: discogs-user-lists-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discogs API — User Lists. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-list
+      description: Discogs Get List
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-user-lists.getlist
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        list_id: tools.list_id
+    - name: list-user-lists
+      description: Discogs Get User Lists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-user-lists.getuserlists
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        username: tools.username
+        page: tools.page
+        per_page: tools.per_page

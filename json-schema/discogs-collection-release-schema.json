@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-collection-release-schema.json",
+  "title": "CollectionRelease",
+  "description": "CollectionRelease schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "instance_id": {
+      "type": "integer"
+    },
+    "folder_id": {
+      "type": "integer"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "date_added": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "basic_information": {
+      "$ref": "#/components/schemas/ReleaseSummary"
+    }
+  }
+}

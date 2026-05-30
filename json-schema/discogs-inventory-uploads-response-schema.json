@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-inventory-uploads-response-schema.json",
+  "title": "InventoryUploadsResponse",
+  "description": "InventoryUploadsResponse schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InventoryUpload"
+      }
+    }
+  }
+}

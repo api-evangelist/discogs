@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-media-condition-structure.json",
+  "name": "MediaCondition",
+  "description": "MediaCondition schema from Discogs API",
+  "type": "string",
+  "enum": [
+    "Mint (M)",
+    "Near Mint (NM or M-)",
+    "Very Good Plus (VG+)",
+    "Very Good (VG)",
+    "Good Plus (G+)",
+    "Good (G)",
+    "Fair (F)",
+    "Poor (P)"
+  ]
+}

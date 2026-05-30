@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-search-result-release-schema.json",
+  "title": "SearchResultRelease",
+  "description": "SearchResultRelease schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "release"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "cover_image": {
+      "type": "string",
+      "format": "uri"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "uri": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "format": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "label": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "catno": {
+      "type": "string"
+    },
+    "genre": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "style": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "barcode": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

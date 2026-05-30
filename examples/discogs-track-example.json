@@ -1,0 +1,17 @@
+{
+  "position": "string-value",
+  "type_": "string-value",
+  "title": "Kind Of Blue",
+  "duration": "string-value",
+  "extraartists": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "anv": {},
+      "join": {},
+      "role": {},
+      "tracks": {}
+    }
+  ]
+}

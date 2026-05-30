@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-search-result-master-structure.json",
+  "name": "SearchResultMaster",
+  "description": "SearchResultMaster schema from Discogs API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/SearchResultRelease"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "master"
+          ]
+        },
+        "main_release": {
+          "type": "int32"
+        }
+      }
+    }
+  ]
+}

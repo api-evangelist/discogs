@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-listing-schema.json",
+  "title": "Listing",
+  "description": "A Marketplace listing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "readOnly": true
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "For Sale",
+        "Sold",
+        "Draft",
+        "Expired"
+      ]
+    },
+    "price": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "allow_offers": {
+      "type": "boolean"
+    },
+    "sleeve_condition": {
+      "$ref": "#/components/schemas/SleeveCondition"
+    },
+    "condition": {
+      "$ref": "#/components/schemas/MediaCondition"
+    },
+    "posted": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ships_from": {
+      "type": "string"
+    },
+    "comments": {
+      "type": "string"
+    },
+    "seller": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "release": {
+      "$ref": "#/components/schemas/ListingRelease"
+    },
+    "audio": {
+      "type": "boolean"
+    },
+    "weight": {
+      "type": "integer",
+      "description": "The weight of the item in grams."
+    },
+    "format_quantity": {
+      "type": "integer",
+      "description": "How many units this item counts as for shipping."
+    },
+    "external_id": {
+      "type": "string",
+      "nullable": true,
+      "description": "Private comments for the seller."
+    },
+    "location": {
+      "type": "string",
+      "nullable": true,
+      "description": "Physical location of the item."
+    }
+  }
+}

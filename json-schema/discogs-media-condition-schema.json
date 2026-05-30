@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-media-condition-schema.json",
+  "title": "MediaCondition",
+  "description": "MediaCondition schema from Discogs API",
+  "type": "string",
+  "enum": [
+    "Mint (M)",
+    "Near Mint (NM or M-)",
+    "Very Good Plus (VG+)",
+    "Very Good (VG)",
+    "Good Plus (G+)",
+    "Good (G)",
+    "Fair (F)",
+    "Poor (P)"
+  ]
+}

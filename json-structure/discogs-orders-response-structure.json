@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-orders-response-structure.json",
+  "name": "OrdersResponse",
+  "description": "Paginated marketplace orders for the authenticated seller.",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Order"
+      }
+    }
+  }
+}

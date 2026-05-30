@@ -1,0 +1,37 @@
+{
+  "id": 249504,
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "uri": "https://api.discogs.com/releases/249504",
+  "status": "For Sale",
+  "price": {
+    "currency": "string-value",
+    "value": 19.99
+  },
+  "allow_offers": true,
+  "sleeve_condition": "Mint (M)",
+  "condition": "Mint (M)",
+  "posted": "2026-03-15T14:30:00Z",
+  "ships_from": "string-value",
+  "comments": "string-value",
+  "seller": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  },
+  "release": {
+    "id": 249504,
+    "resource_url": "https://api.discogs.com/releases/249504",
+    "description": "string-value",
+    "thumbnail": "https://api.discogs.com/releases/249504",
+    "artist": "string-value",
+    "title": "Kind Of Blue",
+    "year": 1959,
+    "format": "string-value",
+    "catalog_number": "string-value"
+  },
+  "audio": true,
+  "weight": 1,
+  "format_quantity": 1,
+  "external_id": "string-value",
+  "location": "string-value"
+}

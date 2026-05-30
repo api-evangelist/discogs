@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-listing-release-schema.json",
+  "title": "ListingRelease",
+  "description": "Summary of a release within a listing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "description": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "string",
+      "format": "uri"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "format": {
+      "type": "string"
+    },
+    "catalog_number": {
+      "type": "string"
+    }
+  }
+}

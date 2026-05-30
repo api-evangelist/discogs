@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-release-rating-structure.json",
+  "name": "ReleaseRating",
+  "description": "Aggregate community rating for a release.",
+  "type": "object",
+  "properties": {
+    "release_id": {
+      "type": "int32",
+      "example": 249504
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "int32"
+        },
+        "average": {
+          "type": "double"
+        }
+      }
+    }
+  }
+}

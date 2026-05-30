@@ -1,0 +1,27 @@
+{
+  "id": 12345,
+  "name": "Best Jazz Albums of 1960s",
+  "description": "My personal favorites.",
+  "public": true,
+  "date_added": "2026-05-29T12:00:00Z",
+  "date_changed": "2026-05-29T12:00:00Z",
+  "uri": "https://www.discogs.com/lists/12345",
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "image_url": "https://api.discogs.com/releases/249504",
+  "user": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  },
+  "items": [
+    {
+      "id": {},
+      "type": {},
+      "display_title": {},
+      "uri": {},
+      "comment": {},
+      "image_url": {},
+      "resource_url": {}
+    }
+  ]
+}

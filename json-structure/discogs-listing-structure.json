@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-listing-structure.json",
+  "name": "Listing",
+  "description": "A Marketplace listing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "readOnly": true
+    },
+    "resource_url": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "For Sale",
+        "Sold",
+        "Draft",
+        "Expired"
+      ]
+    },
+    "price": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "allow_offers": {
+      "type": "boolean"
+    },
+    "sleeve_condition": {
+      "$ref": "#/components/schemas/SleeveCondition"
+    },
+    "condition": {
+      "$ref": "#/components/schemas/MediaCondition"
+    },
+    "posted": {
+      "type": "datetime"
+    },
+    "ships_from": {
+      "type": "string"
+    },
+    "comments": {
+      "type": "string"
+    },
+    "seller": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "release": {
+      "$ref": "#/components/schemas/ListingRelease"
+    },
+    "audio": {
+      "type": "boolean"
+    },
+    "weight": {
+      "type": "int32",
+      "description": "The weight of the item in grams."
+    },
+    "format_quantity": {
+      "type": "int32",
+      "description": "How many units this item counts as for shipping."
+    },
+    "external_id": {
+      "type": "string",
+      "nullable": true,
+      "description": "Private comments for the seller."
+    },
+    "location": {
+      "type": "string",
+      "nullable": true,
+      "description": "Physical location of the item."
+    }
+  }
+}

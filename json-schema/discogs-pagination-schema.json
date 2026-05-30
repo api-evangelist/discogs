@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-pagination-schema.json",
+  "title": "Pagination",
+  "description": "Details for paginated results.",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "integer"
+    },
+    "pages": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "integer"
+    },
+    "urls": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "format": "uri",
+          "nullable": true
+        },
+        "prev": {
+          "type": "string",
+          "format": "uri",
+          "nullable": true
+        },
+        "next": {
+          "type": "string",
+          "format": "uri",
+          "nullable": true
+        },
+        "last": {
+          "type": "string",
+          "format": "uri",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

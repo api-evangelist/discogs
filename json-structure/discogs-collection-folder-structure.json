@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-collection-folder-structure.json",
+  "name": "CollectionFolder",
+  "description": "CollectionFolder schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "count": {
+      "type": "int32"
+    },
+    "resource_url": {
+      "type": "uri"
+    }
+  }
+}

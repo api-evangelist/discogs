@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-search-result-artist-schema.json",
+  "title": "SearchResultArtist",
+  "description": "SearchResultArtist schema from Discogs API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/SearchResultRelease"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "artist"
+          ]
+        }
+      }
+    }
+  ]
+}

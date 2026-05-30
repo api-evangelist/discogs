@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discogs API — User Wantlist
+  description: 'Discogs — User Wantlist. 3 operations. Lead operation: Get user wantlist. Self-contained Naftiko capability covering one Discogs business surface.'
+  tags:
+  - Discogs
+  - Music
+  - User Wantlist
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+- namespace: env
+  keys:
+    DISCOGS_TOKEN: DISCOGS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: discogs-user-wantlist
+    baseUri: https://api.discogs.com
+    description: Discogs API — User Wantlist business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Discogs token={{env.DISCOGS_TOKEN}}
+      placement: header
+    resources:
+    - name: users-username-wants
+      path: /users/{username}/wants
+      operations:
+      - name: getuserwantlist
+        method: GET
+        description: Get user wantlist
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's Discogs username.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: integer
+          required: false
+          description: The number of items to return per page.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-username-wants-release-id
+      path: /users/{username}/wants/{release_id}
+      operations:
+      - name: addreleasetowantlist
+        method: PUT
+        description: Add release to wantlist
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's Discogs username.
+        - name: release_id
+          in: path
+          type: integer
+          required: true
+          description: The ID of the release.
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request body (JSON).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletereleasefromwantlist
+        method: DELETE
+        description: Delete release from wantlist
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's Discogs username.
+        - name: release_id
+          in: path
+          type: integer
+          required: true
+          description: The ID of the release.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discogs-user-wantlist-rest
+    port: 8080
+    description: REST adapter for Discogs API — User Wantlist. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/users/{username}/wants
+      name: users-username-wants
+      description: REST surface for Get user wantlist.
+      operations:
+      - method: GET
+        name: getuserwantlist
+        description: Get user wantlist
+        call: discogs-user-wantlist.getuserwantlist
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          username: rest.username
+          page: rest.page
+          per_page: rest.per_page
+    - path: /v1/users/{username}/wants/{release-id}
+      name: users-username-wants-release-id
+      description: REST surface for Add release to wantlist.
+      operations:
+      - method: PUT
+        name: addreleasetowantlist
+        description: Add release to wantlist
+        call: discogs-user-wantlist.addreleasetowantlist
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          username: rest.username
+          release_id: rest.release_id
+          body: rest.body
+    - path: /v1/users/{username}/wants/{release-id}
+      name: users-username-wants-release-id
+      description: REST surface for Delete release from wantlist.
+      operations:
+      - method: DELETE
+        name: deletereleasefromwantlist
+        description: Delete release from wantlist
+        call: discogs-user-wantlist.deletereleasefromwantlist
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          username: rest.username
+          release_id: rest.release_id
+  - type: mcp
+    namespace: discogs-user-wantlist-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discogs API — User Wantlist. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: getuserwantlist
+      description: Get user wantlist
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-user-wantlist.getuserwantlist
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        username: tools.username
+        page: tools.page
+        per_page: tools.per_page
+    - name: addreleasetowantlist
+      description: Add release to wantlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discogs-user-wantlist.addreleasetowantlist
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        username: tools.username
+        release_id: tools.release_id
+        body: tools.body
+    - name: deletereleasefromwantlist
+      description: Delete release from wantlist
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discogs-user-wantlist.deletereleasefromwantlist
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        username: tools.username
+        release_id: tools.release_id

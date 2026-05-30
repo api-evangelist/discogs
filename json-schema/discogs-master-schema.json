@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-master-schema.json",
+  "title": "Master",
+  "description": "Represents a set of similar Releases.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Release"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "main_release": {
+          "type": "integer",
+          "description": "The ID of the main release for this master."
+        },
+        "main_release_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "versions_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  ]
+}

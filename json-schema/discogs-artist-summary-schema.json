@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-artist-summary-schema.json",
+  "title": "ArtistSummary",
+  "description": "ArtistSummary schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "anv": {
+      "type": "string",
+      "nullable": true
+    },
+    "join": {
+      "type": "string",
+      "nullable": true
+    },
+    "role": {
+      "type": "string",
+      "nullable": true
+    },
+    "tracks": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

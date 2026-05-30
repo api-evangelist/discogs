@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-inventory-exports-response-structure.json",
+  "name": "InventoryExportsResponse",
+  "description": "InventoryExportsResponse schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InventoryExport"
+      }
+    }
+  }
+}

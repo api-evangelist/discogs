@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-order-message-structure.json",
+  "name": "OrderMessage",
+  "description": "A message attached to a marketplace order.",
+  "type": "object",
+  "properties": {
+    "refund": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "double"
+        },
+        "order": {
+          "type": "object"
+        }
+      }
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "message": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "message",
+        "status",
+        "shipping"
+      ]
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "resource_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "subject": {
+      "type": "string"
+    },
+    "from": {
+      "$ref": "#/components/schemas/UserSummary"
+    }
+  }
+}

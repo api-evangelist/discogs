@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-master-structure.json",
+  "name": "Master",
+  "description": "Represents a set of similar Releases.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Release"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "main_release": {
+          "type": "int32",
+          "description": "The ID of the main release for this master."
+        },
+        "main_release_url": {
+          "type": "uri"
+        },
+        "versions_url": {
+          "type": "uri"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-image-schema.json",
+  "title": "Image",
+  "description": "Image schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "primary",
+        "secondary"
+      ]
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "uri150": {
+      "type": "string",
+      "format": "uri"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    }
+  }
+}

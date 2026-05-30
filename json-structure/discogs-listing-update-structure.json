@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-listing-update-structure.json",
+  "name": "ListingUpdate",
+  "description": "Data for updating a listing.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ListingNew"
+    }
+  ]
+}

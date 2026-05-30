@@ -1,0 +1,21 @@
+{
+  "id": 249504,
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "status": "string-value",
+  "thumb": "https://api.discogs.com/releases/249504",
+  "format": "string-value",
+  "country": "string-value",
+  "title": "Kind Of Blue",
+  "label": "string-value",
+  "released": "string-value",
+  "major_formats": [
+    "string-value"
+  ],
+  "catno": "string-value",
+  "stats": {
+    "community": {
+      "in_collection": 1,
+      "in_wantlist": 1
+    }
+  }
+}

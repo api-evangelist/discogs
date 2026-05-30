@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-price-schema.json",
+  "title": "Price",
+  "description": "Price schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "type": "string"
+    },
+    "value": {
+      "type": "number",
+      "format": "float"
+    }
+  }
+}

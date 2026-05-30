@@ -1,0 +1,11 @@
+{
+  "id": 249504,
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "description": "string-value",
+  "thumbnail": "https://api.discogs.com/releases/249504",
+  "artist": "string-value",
+  "title": "Kind Of Blue",
+  "year": 1959,
+  "format": "string-value",
+  "catalog_number": "string-value"
+}

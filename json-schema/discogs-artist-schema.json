@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-artist-schema.json",
+  "title": "Artist",
+  "description": "Represents a person or group in the Discogs database.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "realname": {
+      "type": "string",
+      "nullable": true
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "releases_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "profile": {
+      "type": "string",
+      "nullable": true
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "namevariations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ArtistSummary"
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Image"
+      }
+    },
+    "data_quality": {
+      "type": "string"
+    }
+  }
+}

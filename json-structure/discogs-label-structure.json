@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-label-structure.json",
+  "name": "Label",
+  "description": "Represents a label, company, recording studio, etc.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "releases_url": {
+      "type": "uri"
+    },
+    "profile": {
+      "type": "string",
+      "nullable": true
+    },
+    "contact_info": {
+      "type": "string",
+      "nullable": true
+    },
+    "parent_label": {
+      "$ref": "#/components/schemas/LabelSummary",
+      "nullable": true
+    },
+    "sublabels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LabelSummary"
+      }
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Image"
+      }
+    },
+    "data_quality": {
+      "type": "string"
+    }
+  }
+}

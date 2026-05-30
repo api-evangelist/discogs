@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-inventory-export-structure.json",
+  "name": "InventoryExport",
+  "description": "A marketplace inventory CSV export job.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in progress",
+        "success",
+        "failure"
+      ]
+    },
+    "created_ts": {
+      "type": "datetime"
+    },
+    "url": {
+      "type": "uri"
+    },
+    "finished_ts": {
+      "type": "datetime"
+    },
+    "download_url": {
+      "type": "uri"
+    },
+    "filename": {
+      "type": "string",
+      "example": "inventory-export.csv"
+    },
+    "id": {
+      "type": "int32",
+      "example": 599
+    },
+    "type": {
+      "type": "string",
+      "example": "export"
+    }
+  }
+}

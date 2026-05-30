@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-profile-structure.json",
+  "name": "Profile",
+  "description": "Profile schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "readOnly": true
+    },
+    "username": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "uri",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "home_page": {
+      "type": "uri",
+      "nullable": true
+    },
+    "location": {
+      "type": "string",
+      "nullable": true
+    },
+    "profile": {
+      "type": "string",
+      "nullable": true
+    },
+    "registered": {
+      "type": "datetime"
+    },
+    "rank": {
+      "type": "float"
+    },
+    "num_pending": {
+      "type": "int32"
+    },
+    "num_for_sale": {
+      "type": "int32"
+    },
+    "num_collection": {
+      "type": "int32"
+    },
+    "num_wantlist": {
+      "type": "int32"
+    },
+    "num_lists": {
+      "type": "int32"
+    },
+    "releases_contributed": {
+      "type": "int32"
+    },
+    "releases_rated": {
+      "type": "int32"
+    },
+    "rating_avg": {
+      "type": "float"
+    },
+    "inventory_url": {
+      "type": "uri"
+    },
+    "collection_folders_url": {
+      "type": "uri"
+    },
+    "collection_fields_url": {
+      "type": "uri"
+    },
+    "wantlist_url": {
+      "type": "uri"
+    },
+    "avatar_url": {
+      "type": "uri"
+    },
+    "banner_url": {
+      "type": "uri",
+      "nullable": true
+    },
+    "curr_abbr": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "seller_rating": {
+      "type": "float"
+    },
+    "seller_num_ratings": {
+      "type": "int32"
+    },
+    "buyer_rating": {
+      "type": "float"
+    },
+    "buyer_num_ratings": {
+      "type": "int32"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    }
+  }
+}

@@ -1,0 +1,712 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "discogs": "https://discogs.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Release": "discogs:Release",
+    "Artist": "discogs:Artist",
+    "Label": "discogs:Label",
+    "Master": "discogs:Master",
+    "ReleaseVersion": "discogs:ReleaseVersion",
+    "ArtistRelease": "discogs:ArtistRelease",
+    "LabelRelease": "discogs:LabelRelease",
+    "Listing": "discogs:Listing",
+    "ListingNew": "discogs:ListingNew",
+    "ListingUpdate": "discogs:ListingUpdate",
+    "ListingRelease": "discogs:ListingRelease",
+    "Pagination": "discogs:Pagination",
+    "Identity": "discogs:Identity",
+    "Profile": "discogs:Profile",
+    "CollectionFolder": "discogs:CollectionFolder",
+    "CollectionRelease": "discogs:CollectionRelease",
+    "Want": "discogs:Want",
+    "ArtistSummary": "discogs:ArtistSummary",
+    "LabelSummary": "discogs:LabelSummary",
+    "UserSummary": "discogs:UserSummary",
+    "ReleaseSummary": "discogs:ReleaseSummary",
+    "ReleaseFormat": "discogs:ReleaseFormat",
+    "Community": "discogs:Community",
+    "Image": "discogs:Image",
+    "Video": "discogs:Video",
+    "Track": "discogs:Track",
+    "Identifier": "discogs:Identifier",
+    "Price": "discogs:Price",
+    "SearchResultRelease": "discogs:SearchResultRelease",
+    "List": "discogs:List",
+    "ListItem": "discogs:ListItem",
+    "ListsResponse": "discogs:ListsResponse",
+    "Submission": "discogs:Submission",
+    "Contribution": "discogs:Contribution",
+    "Order": "discogs:Order",
+    "OrdersResponse": "discogs:OrdersResponse",
+    "OrderMessage": "discogs:OrderMessage",
+    "OrderMessagesResponse": "discogs:OrderMessagesResponse",
+    "Fee": "discogs:Fee",
+    "PriceSuggestion": "discogs:PriceSuggestion",
+    "PriceSuggestionsResponse": "discogs:PriceSuggestionsResponse",
+    "ReleaseStats": "discogs:ReleaseStats",
+    "ReleaseRating": "discogs:ReleaseRating",
+    "UserReleaseRating": "discogs:UserReleaseRating",
+    "ProfileUpdate": "discogs:ProfileUpdate",
+    "InventoryExport": "discogs:InventoryExport",
+    "InventoryExportsResponse": "discogs:InventoryExportsResponse",
+    "InventoryUpload": "discogs:InventoryUpload",
+    "InventoryUploadsResponse": "discogs:InventoryUploadsResponse",
+    "id": {
+      "@id": "discogs:id",
+      "@type": "xsd:integer"
+    },
+    "title": {
+      "@id": "discogs:title",
+      "@type": "xsd:string"
+    },
+    "resourceUrl": {
+      "@id": "discogs:resource_url",
+      "@type": "@id"
+    },
+    "uri": {
+      "@id": "discogs:uri",
+      "@type": "@id"
+    },
+    "status": {
+      "@id": "discogs:status",
+      "@type": "xsd:string"
+    },
+    "dataQuality": {
+      "@id": "discogs:data_quality",
+      "@type": "xsd:string"
+    },
+    "thumb": {
+      "@id": "discogs:thumb",
+      "@type": "@id"
+    },
+    "country": {
+      "@id": "discogs:country",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "discogs:year",
+      "@type": "xsd:integer"
+    },
+    "notes": {
+      "@id": "discogs:notes",
+      "@type": "xsd:string"
+    },
+    "released": {
+      "@id": "discogs:released",
+      "@type": "xsd:string"
+    },
+    "releasedFormatted": {
+      "@id": "discogs:released_formatted",
+      "@type": "xsd:string"
+    },
+    "dateAdded": {
+      "@id": "schema:dateCreated"
+    },
+    "dateChanged": {
+      "@id": "schema:dateModified"
+    },
+    "lowestPrice": {
+      "@id": "discogs:lowest_price",
+      "@type": "@id"
+    },
+    "numForSale": {
+      "@id": "discogs:num_for_sale",
+      "@type": "xsd:integer"
+    },
+    "estimatedWeight": {
+      "@id": "discogs:estimated_weight",
+      "@type": "xsd:integer"
+    },
+    "formatQuantity": {
+      "@id": "discogs:format_quantity",
+      "@type": "xsd:integer"
+    },
+    "masterId": {
+      "@id": "discogs:master_id",
+      "@type": "xsd:integer"
+    },
+    "masterUrl": {
+      "@id": "discogs:master_url",
+      "@type": "@id"
+    },
+    "artists": {
+      "@id": "discogs:artists",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "labels": {
+      "@id": "discogs:labels",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "extraartists": {
+      "@id": "discogs:extraartists",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "formats": {
+      "@id": "discogs:formats",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "genres": {
+      "@id": "discogs:genres",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "styles": {
+      "@id": "discogs:styles",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "community": {
+      "@id": "discogs:community",
+      "@type": "@id"
+    },
+    "companies": {
+      "@id": "discogs:companies",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "tracklist": {
+      "@id": "discogs:tracklist",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "videos": {
+      "@id": "discogs:videos",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "identifiers": {
+      "@id": "discogs:identifiers",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "realname": {
+      "@id": "discogs:realname",
+      "@type": "xsd:string"
+    },
+    "releasesUrl": {
+      "@id": "discogs:releases_url",
+      "@type": "@id"
+    },
+    "profile": {
+      "@id": "discogs:profile",
+      "@type": "xsd:string"
+    },
+    "urls": {
+      "@id": "discogs:urls",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "namevariations": {
+      "@id": "discogs:namevariations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "members": {
+      "@id": "discogs:members",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "images": {
+      "@id": "discogs:images",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "contactInfo": {
+      "@id": "discogs:contact_info",
+      "@type": "xsd:string"
+    },
+    "parentLabel": {
+      "@id": "discogs:parent_label",
+      "@type": "@id"
+    },
+    "sublabels": {
+      "@id": "discogs:sublabels",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "format": {
+      "@id": "discogs:format",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "discogs:label",
+      "@type": "xsd:string"
+    },
+    "majorFormats": {
+      "@id": "discogs:major_formats",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "catno": {
+      "@id": "discogs:catno",
+      "@type": "xsd:string"
+    },
+    "stats": {
+      "@id": "discogs:stats",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "discogs:type",
+      "@type": "xsd:string"
+    },
+    "artist": {
+      "@id": "discogs:artist",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "discogs:role",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "discogs:price",
+      "@type": "@id"
+    },
+    "allowOffers": {
+      "@id": "discogs:allow_offers",
+      "@type": "xsd:boolean"
+    },
+    "sleeveCondition": {
+      "@id": "discogs:sleeve_condition",
+      "@type": "@id"
+    },
+    "condition": {
+      "@id": "discogs:condition",
+      "@type": "@id"
+    },
+    "posted": {
+      "@id": "discogs:posted",
+      "@type": "xsd:dateTime"
+    },
+    "shipsFrom": {
+      "@id": "discogs:ships_from",
+      "@type": "xsd:string"
+    },
+    "comments": {
+      "@id": "discogs:comments",
+      "@type": "xsd:string"
+    },
+    "seller": {
+      "@id": "discogs:seller",
+      "@type": "@id"
+    },
+    "release": {
+      "@id": "discogs:release",
+      "@type": "@id"
+    },
+    "audio": {
+      "@id": "discogs:audio",
+      "@type": "xsd:boolean"
+    },
+    "weight": {
+      "@id": "discogs:weight",
+      "@type": "xsd:integer"
+    },
+    "externalId": {
+      "@id": "discogs:external_id",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "discogs:location",
+      "@type": "xsd:string"
+    },
+    "releaseId": {
+      "@id": "discogs:release_id",
+      "@type": "xsd:integer"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "thumbnail": {
+      "@id": "discogs:thumbnail",
+      "@type": "@id"
+    },
+    "catalogNumber": {
+      "@id": "discogs:catalog_number",
+      "@type": "xsd:string"
+    },
+    "page": {
+      "@id": "discogs:page",
+      "@type": "xsd:integer"
+    },
+    "pages": {
+      "@id": "discogs:pages",
+      "@type": "xsd:integer"
+    },
+    "perPage": {
+      "@id": "discogs:per_page",
+      "@type": "xsd:integer"
+    },
+    "items": {
+      "@id": "discogs:items",
+      "@type": "xsd:integer"
+    },
+    "username": {
+      "@id": "discogs:username",
+      "@type": "xsd:string"
+    },
+    "consumerName": {
+      "@id": "discogs:consumer_name",
+      "@type": "xsd:string"
+    },
+    "homePage": {
+      "@id": "discogs:home_page",
+      "@type": "xsd:string"
+    },
+    "registered": {
+      "@id": "discogs:registered",
+      "@type": "xsd:dateTime"
+    },
+    "rank": {
+      "@id": "discogs:rank",
+      "@type": "xsd:float"
+    },
+    "numPending": {
+      "@id": "discogs:num_pending",
+      "@type": "xsd:integer"
+    },
+    "numCollection": {
+      "@id": "discogs:num_collection",
+      "@type": "xsd:integer"
+    },
+    "numWantlist": {
+      "@id": "discogs:num_wantlist",
+      "@type": "xsd:integer"
+    },
+    "numLists": {
+      "@id": "discogs:num_lists",
+      "@type": "xsd:integer"
+    },
+    "releasesContributed": {
+      "@id": "discogs:releases_contributed",
+      "@type": "xsd:integer"
+    },
+    "releasesRated": {
+      "@id": "discogs:releases_rated",
+      "@type": "xsd:integer"
+    },
+    "ratingAvg": {
+      "@id": "discogs:rating_avg",
+      "@type": "xsd:float"
+    },
+    "inventoryUrl": {
+      "@id": "discogs:inventory_url",
+      "@type": "@id"
+    },
+    "collectionFoldersUrl": {
+      "@id": "discogs:collection_folders_url",
+      "@type": "@id"
+    },
+    "collectionFieldsUrl": {
+      "@id": "discogs:collection_fields_url",
+      "@type": "@id"
+    },
+    "wantlistUrl": {
+      "@id": "discogs:wantlist_url",
+      "@type": "@id"
+    },
+    "avatarUrl": {
+      "@id": "discogs:avatar_url",
+      "@type": "@id"
+    },
+    "bannerUrl": {
+      "@id": "discogs:banner_url",
+      "@type": "@id"
+    },
+    "currAbbr": {
+      "@id": "discogs:curr_abbr",
+      "@type": "xsd:string"
+    },
+    "sellerRating": {
+      "@id": "discogs:seller_rating",
+      "@type": "xsd:float"
+    },
+    "sellerNumRatings": {
+      "@id": "discogs:seller_num_ratings",
+      "@type": "xsd:integer"
+    },
+    "buyerRating": {
+      "@id": "discogs:buyer_rating",
+      "@type": "xsd:float"
+    },
+    "buyerNumRatings": {
+      "@id": "discogs:buyer_num_ratings",
+      "@type": "xsd:integer"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "count": {
+      "@id": "discogs:count",
+      "@type": "xsd:integer"
+    },
+    "instanceId": {
+      "@id": "discogs:instance_id",
+      "@type": "xsd:integer"
+    },
+    "folderId": {
+      "@id": "discogs:folder_id",
+      "@type": "xsd:integer"
+    },
+    "rating": {
+      "@id": "discogs:rating",
+      "@type": "xsd:integer"
+    },
+    "basicInformation": {
+      "@id": "discogs:basic_information",
+      "@type": "@id"
+    },
+    "anv": {
+      "@id": "discogs:anv",
+      "@type": "xsd:string"
+    },
+    "join": {
+      "@id": "discogs:join",
+      "@type": "xsd:string"
+    },
+    "tracks": {
+      "@id": "discogs:tracks",
+      "@type": "xsd:string"
+    },
+    "entityType": {
+      "@id": "discogs:entity_type",
+      "@type": "xsd:string"
+    },
+    "coverImage": {
+      "@id": "discogs:cover_image",
+      "@type": "@id"
+    },
+    "qty": {
+      "@id": "discogs:qty",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "discogs:text",
+      "@type": "xsd:string"
+    },
+    "descriptions": {
+      "@id": "discogs:descriptions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "have": {
+      "@id": "discogs:have",
+      "@type": "xsd:integer"
+    },
+    "want": {
+      "@id": "discogs:want",
+      "@type": "xsd:integer"
+    },
+    "submitter": {
+      "@id": "discogs:submitter",
+      "@type": "@id"
+    },
+    "contributors": {
+      "@id": "discogs:contributors",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "uri150": {
+      "@id": "discogs:uri150",
+      "@type": "@id"
+    },
+    "width": {
+      "@id": "discogs:width",
+      "@type": "xsd:integer"
+    },
+    "height": {
+      "@id": "discogs:height",
+      "@type": "xsd:integer"
+    },
+    "duration": {
+      "@id": "discogs:duration",
+      "@type": "xsd:integer"
+    },
+    "embed": {
+      "@id": "discogs:embed",
+      "@type": "xsd:boolean"
+    },
+    "position": {
+      "@id": "discogs:position",
+      "@type": "xsd:string"
+    },
+    "type_": {
+      "@id": "discogs:type_",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "discogs:value",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "discogs:currency",
+      "@type": "xsd:string"
+    },
+    "genre": {
+      "@id": "discogs:genre",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "style": {
+      "@id": "discogs:style",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "barcode": {
+      "@id": "discogs:barcode",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "public": {
+      "@id": "discogs:public",
+      "@type": "xsd:boolean"
+    },
+    "imageUrl": {
+      "@id": "discogs:image_url",
+      "@type": "@id"
+    },
+    "user": {
+      "@id": "discogs:user",
+      "@type": "@id"
+    },
+    "displayTitle": {
+      "@id": "discogs:display_title",
+      "@type": "xsd:string"
+    },
+    "comment": {
+      "@id": "discogs:comment",
+      "@type": "xsd:string"
+    },
+    "pagination": {
+      "@id": "discogs:pagination",
+      "@type": "@id"
+    },
+    "lists": {
+      "@id": "discogs:lists",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "submissions": {
+      "@id": "discogs:submissions",
+      "@type": "@id"
+    },
+    "contributions": {
+      "@id": "discogs:contributions",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "nextStatus": {
+      "@id": "discogs:next_status",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "fee": {
+      "@id": "discogs:fee",
+      "@type": "@id"
+    },
+    "created": {
+      "@id": "schema:dateCreated"
+    },
+    "shipping": {
+      "@id": "discogs:shipping",
+      "@type": "@id"
+    },
+    "shippingAddress": {
+      "@id": "discogs:shipping_address",
+      "@type": "xsd:string"
+    },
+    "additionalInstructions": {
+      "@id": "discogs:additional_instructions",
+      "@type": "xsd:string"
+    },
+    "archived": {
+      "@id": "discogs:archived",
+      "@type": "xsd:boolean"
+    },
+    "buyer": {
+      "@id": "discogs:buyer",
+      "@type": "@id"
+    },
+    "total": {
+      "@id": "discogs:total",
+      "@type": "@id"
+    },
+    "messagesUrl": {
+      "@id": "discogs:messages_url",
+      "@type": "@id"
+    },
+    "lastActivity": {
+      "@id": "schema:dateModified"
+    },
+    "orders": {
+      "@id": "discogs:orders",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "refund": {
+      "@id": "discogs:refund",
+      "@type": "@id"
+    },
+    "timestamp": {
+      "@id": "discogs:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "message": {
+      "@id": "discogs:message",
+      "@type": "xsd:string"
+    },
+    "order": {
+      "@id": "discogs:order",
+      "@type": "@id"
+    },
+    "subject": {
+      "@id": "discogs:subject",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "discogs:from",
+      "@type": "@id"
+    },
+    "messages": {
+      "@id": "discogs:messages",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "blockedFromSale": {
+      "@id": "discogs:blocked_from_sale",
+      "@type": "xsd:boolean"
+    },
+    "createdTs": {
+      "@id": "discogs:created_ts",
+      "@type": "xsd:dateTime"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "finishedTs": {
+      "@id": "discogs:finished_ts",
+      "@type": "xsd:dateTime"
+    },
+    "downloadUrl": {
+      "@id": "discogs:download_url",
+      "@type": "@id"
+    },
+    "filename": {
+      "@id": "discogs:filename",
+      "@type": "xsd:string"
+    },
+    "resultsUrl": {
+      "@id": "discogs:results_url",
+      "@type": "@id"
+    }
+  }
+}

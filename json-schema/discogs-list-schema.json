@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-list-schema.json",
+  "title": "List",
+  "description": "A user-created list of releases, masters, artists, or labels.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "example": 12345
+    },
+    "name": {
+      "type": "string",
+      "example": "Best Jazz Albums of 1960s"
+    },
+    "description": {
+      "type": "string",
+      "example": "My personal favorites."
+    },
+    "public": {
+      "type": "boolean",
+      "example": true
+    },
+    "date_added": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-05-29T12:00:00Z"
+    },
+    "date_changed": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-05-29T12:00:00Z"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "example": "https://www.discogs.com/lists/12345"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ListItem"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-order-messages-response-schema.json",
+  "title": "OrderMessagesResponse",
+  "description": "OrderMessagesResponse schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OrderMessage"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 1,
+    "per_page": 1,
+    "items": 1,
+    "urls": {
+      "first": {},
+      "prev": {},
+      "next": {},
+      "last": {}
+    }
+  },
+  "orders": [
+    {
+      "id": {},
+      "resource_url": {},
+      "status": {},
+      "next_status": {},
+      "fee": {},
+      "created": {},
+      "items": {},
+      "shipping": {},
+      "shipping_address": {},
+      "additional_instructions": {},
+      "archived": {},
+      "seller": {},
+      "buyer": {},
+      "total": {},
+      "messages_url": {},
+      "uri": {},
+      "last_activity": {}
+    }
+  ]
+}

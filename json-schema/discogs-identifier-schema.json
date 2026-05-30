@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-identifier-schema.json",
+  "title": "Identifier",
+  "description": "Identifier schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

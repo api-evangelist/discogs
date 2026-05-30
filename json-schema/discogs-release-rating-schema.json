@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-release-rating-schema.json",
+  "title": "ReleaseRating",
+  "description": "Aggregate community rating for a release.",
+  "type": "object",
+  "properties": {
+    "release_id": {
+      "type": "integer",
+      "example": 249504
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "average": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

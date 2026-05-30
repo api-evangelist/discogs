@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-order-structure.json",
+  "name": "Order",
+  "description": "A marketplace order.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "1-1"
+    },
+    "resource_url": {
+      "type": "uri"
+    },
+    "status": {
+      "type": "string",
+      "example": "Payment Received"
+    },
+    "next_status": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fee": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "created": {
+      "type": "datetime"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Listing"
+      }
+    },
+    "shipping": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "shipping_address": {
+      "type": "string"
+    },
+    "additional_instructions": {
+      "type": "string"
+    },
+    "archived": {
+      "type": "boolean"
+    },
+    "seller": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "buyer": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "total": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "messages_url": {
+      "type": "uri"
+    },
+    "uri": {
+      "type": "uri"
+    },
+    "last_activity": {
+      "type": "datetime"
+    }
+  }
+}

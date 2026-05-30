@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-inventory-upload-schema.json",
+  "title": "InventoryUpload",
+  "description": "A CSV inventory upload job.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "success",
+        "failure",
+        "partial_success"
+      ]
+    },
+    "created_ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_activity": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "add",
+        "change",
+        "delete"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "results_url": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

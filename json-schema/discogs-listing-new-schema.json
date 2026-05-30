@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-listing-new-schema.json",
+  "title": "ListingNew",
+  "description": "Data for creating a new listing.",
+  "type": "object",
+  "properties": {
+    "release_id": {
+      "type": "integer",
+      "description": "The ID of the release."
+    },
+    "condition": {
+      "$ref": "#/components/schemas/MediaCondition"
+    },
+    "sleeve_condition": {
+      "$ref": "#/components/schemas/SleeveCondition"
+    },
+    "price": {
+      "type": "number",
+      "format": "float",
+      "description": "The price of the item in the seller's currency."
+    },
+    "comments": {
+      "type": "string",
+      "description": "Any remarks about the item."
+    },
+    "allow_offers": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the listing.",
+      "enum": [
+        "For Sale",
+        "Draft"
+      ],
+      "default": "For Sale"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "Private comments for the seller."
+    },
+    "location": {
+      "type": "string",
+      "description": "Physical location of the item."
+    },
+    "weight": {
+      "type": "integer",
+      "description": "The weight in grams."
+    },
+    "format_quantity": {
+      "type": "integer",
+      "description": "How many units this item counts as for shipping."
+    }
+  },
+  "required": [
+    "release_id",
+    "condition",
+    "price",
+    "status"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-user-release-rating-structure.json",
+  "name": "UserReleaseRating",
+  "description": "A user's own rating for a release.",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "example": "jsmith"
+    },
+    "release": {
+      "type": "int32",
+      "example": 249504
+    },
+    "rating": {
+      "type": "int32",
+      "minimum": 0,
+      "maximum": 5,
+      "example": 5
+    }
+  }
+}

@@ -1,32 +1,194 @@
 aid: discogs
 name: Discogs
-description: "Music"
+description: 'Discogs is a community-built music database and marketplace for physical music releases (vinyl, CD, cassette, and more). The Discogs API gives developers programmatic
+
+  read/write access to artists, releases, masters, labels, search, user collections and wantlists, marketplace listings, orders, and inventory management — using Discogs
+
+  Auth tokens, key+secret credentials, or full OAuth 1.0a on behalf of other users.
+
+  '
 url: https://www.discogs.com/developers/
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-29'
 x-source: public-apis/public-apis
-x-category: "Music"
-x-tier: 3
-x-tier-reason: bulk-registered-from-public-apis
+x-category: Music
+x-tier: 2
+x-tier-reason: Catalog + marketplace platform with a public REST API, OAuth1, well-documented endpoints, multiple community SDKs, and an active MCP ecosystem.
 tags:
-  - Music
-  - Public APIs
+- Music
+- Marketplace
+- Catalog
+- Community
+- Vinyl
+- Public APIs
 apis:
-  - name: Discogs
-    description: "Music"
-    humanURL: https://www.discogs.com/developers/
-    baseURL: https://www.discogs.com/developers/
-    tags:
-      - Music
-    properties:
-      - type: Documentation
-        url: https://www.discogs.com/developers/
+- aid: discogs:discogs-api
+  name: Discogs API
+  description: 'RESTful API to the Discogs music catalog and marketplace. Covers the Database (artist, release, master, label, search), authenticated User surfaces
+
+    (identity, profile, collection, wantlist, lists, contributions, submissions, ratings), Marketplace (inventory, orders, listings, fees, price suggestions,
+
+    release stats), bulk Inventory Management (CSV export/upload), and OAuth-signed Image retrieval.
+
+    '
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - Database
+  - Marketplace
+  - User Identity
+  - User Collection
+  - User Wantlist
+  - User Lists
+  - Inventory Management
+  - Image
+  properties:
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: OpenAPI
+    url: openapi/discogs-openapi-original.yml
+  - type: SDK
+    title: Python SDK (Joalla Community Continuation)
+    url: https://github.com/joalla/discogs_client
+  - type: SDK
+    title: Python SDK (Modern Reimplementation)
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDK
+    title: Java SDK (Community)
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDK
+    title: Swift Service (Community)
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDK
+    title: PHP SDK (Discogs Client - Deprecated Official)
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+    title: Monthly XML Data Dumps
+  - type: NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
 common:
-  - type: Website
-    url: https://www.discogs.com/developers/
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
+- type: Website
+  url: https://www.discogs.com
+- type: Documentation
+  url: https://www.discogs.com/developers
+- type: APIReference
+  url: https://www.discogs.com/developers
+- type: TermsOfService
+  url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+- type: Authentication
+  url: https://www.discogs.com/developers#page:authentication
+- type: Support
+  url: https://support.discogs.com
+- type: Forum
+  url: https://www.discogs.com/forum/topic/1082
+- type: Status
+  url: https://status.discogs.com
+- type: Blog
+  url: https://blog.discogs.com
+- type: Plans
+  url: plans/discogs-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/discogs-rate-limits.yml
+- type: GitHubOrganization
+  url: https://github.com/discogs
+- type: PublicAPIsListing
+  url: https://github.com/public-apis/public-apis
+- type: BulkData
+  title: Monthly XML Data Dumps
+  url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+- type: Tools
+  title: MCP Server (cswkim)
+  url: https://github.com/cswkim/discogs-mcp-server
+- type: Tools
+  title: MCP Server (rianvdm OAuth)
+  url: https://github.com/rianvdm/discogs-mcp
+- type: Tools
+  title: MCP Server (pipeworx-io)
+  url: https://github.com/pipeworx-io/mcp-discogs
+- type: Tools
+  title: MCP Server (andylobban Self-hostable)
+  url: https://github.com/andylobban/discogs-mcp-server
+- type: Tools
+  title: MCP Server (leosakharoff)
+  url: https://github.com/leosakharoff/discogs-mcp
+- type: Vocabulary
+  url: vocabulary/discogs-vocabulary.yml
+- type: SpectralRuleset
+  url: rules/discogs-rules.yml
+- type: JSONLDContext
+  url: json-ld/discogs-context.jsonld
+features:
+- name: Database Search
+  description: Free-text search across releases, masters, artists, and labels with rich filters (year, country, format, label, genre, style, barcode, catno).
+- name: Release Catalog
+  description: Detailed release records including tracks, formats, labels, artists, videos, identifiers, community stats, and marketplace stats.
+- name: User Collection Management
+  description: Read and modify user record collections, organized into custom folders with notes and rating per copy.
+- name: User Wantlist
+  description: Track wanted releases, with notes and ratings; add and remove releases programmatically.
+- name: Marketplace Listings
+  description: List, update, and delete records for sale; query inventory by username; integrate with checkout flows via the Listing endpoints.
+- name: Marketplace Orders
+  description: Inspect, update, and message on orders the authenticated seller has received.
+- name: Price Suggestions
+  description: Get Discogs-calculated suggested marketplace prices by release and media condition.
+- name: Bulk Inventory Management
+  description: CSV-driven bulk add, change, and delete of inventory listings via asynchronous upload jobs; full inventory export to CSV.
+- name: OAuth 1.0a
+  description: Three-legged OAuth 1.0a flow for building third-party apps that act on behalf of other Discogs users.
+- name: Monthly XML Data Dumps
+  description: Discogs publishes a monthly snapshot of the full database (artists, labels, masters, releases) as XML on S3 for bulk analysis.
+useCases:
+- name: Music Discovery Apps
+  description: Build apps that surface release metadata, cover art, video links, community ratings, and label discographies.
+- name: Vinyl Reseller Tools
+  description: Power inventory management, pricing, and order workflows for vinyl resellers selling on the Discogs Marketplace.
+- name: Collection Trackers
+  description: Mobile and desktop apps that sync a collector's Discogs collection and wantlist offline.
+- name: Catalog Enrichment
+  description: Enrich third-party music libraries (DJ tools, archive systems, streaming metadata) with Discogs identifiers, formats, and release dates.
+- name: AI Music Agents
+  description: Power LLM-driven shopping, discovery, and collection-management agents via the Discogs MCP server ecosystem.
+- name: Research and Analytics
+  description: Use the monthly XML data dumps for population-level analysis of pressing variants, label catalogs, and marketplace pricing.
+integrations:
+- name: OAuth 1.0a
+  description: Standards-compliant OAuth 1.0a for delegated user authorization.
+- name: CSV
+  description: Bulk inventory imports and exports use CSV files.
+- name: Microcks
+  description: OpenAPI spec is annotated with x-microcks-operation extensions for mock-server compatibility.
+- name: Model Context Protocol
+  description: Five plus community MCP servers expose Discogs surfaces (search, collection, wantlist, marketplace) as MCP tools for LLM agents.
+solutions:
+- name: Marketplace Storefront Sync
+  description: Combine inventory upload, order management, and price suggestions to operate a multi-channel record store with Discogs as inventory of record.
+- name: Collector Mobile Companion
+  description: Combine identity, collection, wantlist, and search to build a fully-featured mobile companion for record collectors.
+- name: Catalog Resolution Service
+  description: Use search and release endpoints to resolve fuzzy track metadata into canonical Discogs IDs and master release versions.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

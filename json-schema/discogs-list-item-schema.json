@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-list-item-schema.json",
+  "title": "ListItem",
+  "description": "A single item inside a user list.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "example": 4567
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "release",
+        "master",
+        "artist",
+        "label"
+      ],
+      "example": "release"
+    },
+    "display_title": {
+      "type": "string",
+      "example": "Miles Davis \u2014 Kind Of Blue"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-price-structure.json",
+  "name": "Price",
+  "description": "Price schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "type": "string"
+    },
+    "value": {
+      "type": "float"
+    }
+  }
+}

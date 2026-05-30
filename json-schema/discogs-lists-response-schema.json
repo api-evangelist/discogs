@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-lists-response-schema.json",
+  "title": "ListsResponse",
+  "description": "Paginated response of a user's lists.",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "lists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/List"
+      }
+    }
+  }
+}

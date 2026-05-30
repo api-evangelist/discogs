@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-user-release-rating-schema.json",
+  "title": "UserReleaseRating",
+  "description": "A user's own rating for a release.",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "example": "jsmith"
+    },
+    "release": {
+      "type": "integer",
+      "example": 249504
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5,
+      "example": 5
+    }
+  }
+}

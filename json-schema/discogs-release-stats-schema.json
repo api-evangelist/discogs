@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-release-stats-schema.json",
+  "title": "ReleaseStats",
+  "description": "Marketplace statistics for a release.",
+  "type": "object",
+  "properties": {
+    "lowest_price": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "num_for_sale": {
+      "type": "integer",
+      "example": 47
+    },
+    "blocked_from_sale": {
+      "type": "boolean",
+      "example": false
+    }
+  }
+}

@@ -1,0 +1,604 @@
+vocabulary: 1.0.0
+info:
+  provider: Discogs
+  description: Discogs API vocabulary mapping operational endpoints (OpenAPI) to capability workflows (Naftiko).
+  created: '2026-05-29'
+  modified: '2026-05-29'
+operational:
+  apis:
+  - name: Discogs API
+    namespace: discogs
+    version: v2.0
+    baseUrl: https://api.discogs.com
+    status: active
+  resources:
+  - name: database
+    tag: Database
+    api: discogs
+    paths:
+    - /artists/{artist_id}
+    - /artists/{artist_id}/releases
+    - /database/search
+    - /labels/{label_id}
+    - /labels/{label_id}/releases
+    - /masters/{master_id}
+    - /masters/{master_id}/versions
+    - /releases/{release_id}
+    - /releases/{release_id}/rating
+    - /releases/{release_id}/rating/{username}
+    actions: &id001
+    - deleteReleaseRatingByUser
+    - getArtist
+    - getArtistReleases
+    - getLabel
+    - getLabelReleases
+    - getMasterRelease
+    - getMasterReleaseVersions
+    - getRelease
+    - getReleaseCommunityRating
+    - getReleaseRatingByUser
+    - searchDatabase
+    - updateReleaseRatingByUser
+  - name: image
+    tag: Image
+    api: discogs
+    paths:
+    - /images/{filename}
+    actions: &id002
+    - getImage
+  - name: inventory-management
+    tag: Inventory Management
+    api: discogs
+    paths:
+    - /inventory/export
+    - /inventory/export/{export_id}
+    - /inventory/export/{export_id}/download
+    - /inventory/upload
+    - /inventory/upload/add
+    - /inventory/upload/change
+    - /inventory/upload/delete
+    - /inventory/upload/{upload_id}
+    actions: &id003
+    - addInventoryUpload
+    - changeInventoryUpload
+    - deleteInventoryUpload
+    - downloadInventoryExport
+    - getInventoryExport
+    - getInventoryUpload
+    - listInventoryExports
+    - listInventoryUploads
+    - requestInventoryExport
+  - name: user-lists
+    tag: User Lists
+    api: discogs
+    paths:
+    - /lists/{list_id}
+    - /users/{username}/lists
+    actions: &id004
+    - getList
+    - getUserLists
+  - name: marketplace
+    tag: Marketplace
+    api: discogs
+    paths:
+    - /marketplace/fee/{price}
+    - /marketplace/fee/{price}/{currency}
+    - /marketplace/listings
+    - /marketplace/listings/{listing_id}
+    - /marketplace/orders
+    - /marketplace/orders/{order_id}
+    - /marketplace/orders/{order_id}/messages
+    - /marketplace/price_suggestions/{release_id}
+    - /releases/{release_id}/stats
+    - /users/{username}/inventory
+    actions: &id005
+    - addOrderMessage
+    - createListing
+    - deleteListing
+    - editListing
+    - getListing
+    - getMarketplaceFee
+    - getMarketplaceFeeWithCurrency
+    - getOrder
+    - getPriceSuggestions
+    - getReleaseStats
+    - getUserInventory
+    - listOrderMessages
+    - listOrders
+    - updateOrder
+  - name: user-identity
+    tag: User Identity
+    api: discogs
+    paths:
+    - /oauth/identity
+    - /users/{username}
+    - /users/{username}/contributions
+    - /users/{username}/submissions
+    actions: &id006
+    - getUserContributions
+    - getUserIdentity
+    - getUserProfile
+    - getUserSubmissions
+    - updateUserProfile
+  - name: user-collection
+    tag: User Collection
+    api: discogs
+    paths:
+    - /users/{username}/collection/folders
+    - /users/{username}/collection/folders/{folder_id}/releases
+    - /users/{username}/collection/folders/{folder_id}/releases/{release_id}
+    actions: &id007
+    - addReleaseToCollectionFolder
+    - createCollectionFolder
+    - getCollectionFolders
+    - getCollectionItemsByFolder
+  - name: user-wantlist
+    tag: User Wantlist
+    api: discogs
+    paths:
+    - /users/{username}/wants
+    - /users/{username}/wants/{release_id}
+    actions: &id008
+    - addReleaseToWantlist
+    - deleteReleaseFromWantlist
+    - getUserWantlist
+  actions:
+  - verb: get
+    http_methods:
+    - GET
+    pattern: read
+  - verb: search
+    http_methods:
+    - GET
+    pattern: read
+  - verb: list
+    http_methods:
+    - GET
+    pattern: read
+  - verb: request
+    http_methods:
+    - POST
+    pattern: write
+  - verb: download
+    http_methods:
+    - GET
+    pattern: read
+  - verb: add
+    http_methods:
+    - POST
+    - PUT
+    pattern: write
+  - verb: change
+    http_methods:
+    - POST
+    pattern: write
+  - verb: delete
+    http_methods:
+    - DELETE
+    - POST
+    pattern: write
+  - verb: create
+    http_methods:
+    - POST
+    pattern: write
+  - verb: post
+    http_methods:
+    - POST
+    pattern: write
+  - verb: update
+    http_methods:
+    - POST
+    - PUT
+    pattern: write
+  schemas:
+    database:
+    - Artist
+    - Release
+    - Master
+    - Label
+    - Track
+    - Video
+    - Image
+    - Identifier
+    - Community
+    - ReleaseFormat
+    - ReleaseVersion
+    - ArtistRelease
+    - LabelRelease
+    - ArtistSummary
+    - LabelSummary
+    - ReleaseSummary
+    marketplace:
+    - Listing
+    - ListingNew
+    - ListingUpdate
+    - Order
+    - OrdersResponse
+    - OrderMessage
+    - OrderMessagesResponse
+    - Fee
+    - PriceSuggestion
+    - PriceSuggestionsResponse
+    - ReleaseStats
+    - Price
+    - Currency
+    - MediaCondition
+    - SleeveCondition
+    user:
+    - Identity
+    - Profile
+    - ProfileUpdate
+    - UserSummary
+    - CollectionFolder
+    - CollectionRelease
+    - Want
+    - List
+    - ListItem
+    - ListsResponse
+    - Submission
+    - Contribution
+    - UserReleaseRating
+    - ReleaseRating
+    inventory:
+    - InventoryExport
+    - InventoryExportsResponse
+    - InventoryUpload
+    - InventoryUploadsResponse
+    search:
+    - SearchResultArtist
+    - SearchResultLabel
+    - SearchResultMaster
+    - SearchResultRelease
+    - Pagination
+  parameters:
+    pagination:
+    - page
+    - per_page
+    identifiers:
+    - release_id
+    - master_id
+    - artist_id
+    - label_id
+    - listing_id
+    - order_id
+    - folder_id
+    - username
+    - filename
+    - export_id
+    - upload_id
+    - list_id
+    filters:
+    - status
+    - sort
+    - sort_order
+    - created_after
+    - created_before
+    - archived
+    search:
+    - query
+    - type
+    - title
+    - release_title
+    - credit
+    - artist
+    - anv
+    - label
+    - genre
+    - style
+    - country
+    - year
+    - format
+    - catno
+    - barcode
+    - track
+  enums:
+    currencies:
+    - USD
+    - GBP
+    - EUR
+    - CAD
+    - AUD
+    - JPY
+    - CHF
+    - MXN
+    - BRL
+    - NZD
+    - SEK
+    - ZAR
+    media_conditions:
+    - Mint (M)
+    - Near Mint (NM or M-)
+    - Very Good Plus (VG+)
+    - Very Good (VG)
+    - Good Plus (G+)
+    - Good (G)
+    - Fair (F)
+    - Poor (P)
+    order_statuses:
+    - New Order
+    - Buyer Contacted
+    - Invoice Sent
+    - Payment Pending
+    - Payment Received
+    - In Progress
+    - Shipped
+    - Refund Sent
+    - Cancelled
+    list_item_types:
+    - release
+    - master
+    - artist
+    - label
+  authentication:
+    schemes:
+    - name: DiscogsToken
+      type: apiKey
+      scope: authenticated user
+    - name: DiscogsKeySecret
+      type: apiKey
+      scope: application-only read
+    - name: OAuth1
+      type: oauth2
+      scope: delegated write
+capability:
+  workflows:
+  - name: discogs-database
+    file: capabilities/discogs-database.yaml
+    apis:
+    - discogs
+    tool_count: 12
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-image
+    file: capabilities/discogs-image.yaml
+    apis:
+    - discogs
+    tool_count: 1
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-inventory-management
+    file: capabilities/discogs-inventory-management.yaml
+    apis:
+    - discogs
+    tool_count: 9
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-user-lists
+    file: capabilities/discogs-user-lists.yaml
+    apis:
+    - discogs
+    tool_count: 2
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-marketplace
+    file: capabilities/discogs-marketplace.yaml
+    apis:
+    - discogs
+    tool_count: 14
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-user-identity
+    file: capabilities/discogs-user-identity.yaml
+    apis:
+    - discogs
+    tool_count: 5
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-user-collection
+    file: capabilities/discogs-user-collection.yaml
+    apis:
+    - discogs
+    tool_count: 4
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  - name: discogs-user-wantlist
+    file: capabilities/discogs-user-wantlist.yaml
+    apis:
+    - discogs
+    tool_count: 3
+    personas:
+    - Music Catalog Engineer
+    - Marketplace Operator
+    - LLM Music Agent
+    domains:
+    - Music
+    - Marketplace
+  personas:
+  - id: music-catalog-engineer
+    name: Music Catalog Engineer
+    description: Builds catalog enrichment pipelines that resolve fuzzy track metadata to Discogs IDs.
+    workflows:
+    - discogs-database
+    - discogs-image
+  - id: marketplace-operator
+    name: Marketplace Operator
+    description: Manages a vinyl reseller storefront on Discogs (inventory, pricing, orders).
+    workflows:
+    - discogs-inventory-management
+    - discogs-marketplace
+  - id: record-collector
+    name: Record Collector
+    description: Maintains personal collection, wantlist, and user-created lists.
+    workflows:
+    - discogs-user-lists
+    - discogs-user-collection
+    - discogs-user-wantlist
+  - id: llm-music-agent
+    name: LLM Music Agent
+    description: Conversational agent that helps users discover, evaluate, and acquire music via Discogs MCP servers.
+    workflows:
+    - discogs-database
+    - discogs-image
+    - discogs-inventory-management
+    - discogs-user-lists
+    - discogs-marketplace
+    - discogs-user-identity
+    - discogs-user-collection
+    - discogs-user-wantlist
+  domains:
+  - name: Music
+    resources:
+    - database
+    - image
+  - name: Marketplace
+    resources:
+    - marketplace
+    - inventory-management
+  - name: Community
+    resources:
+    - user-identity
+    - user-collection
+    - user-wantlist
+    - user-lists
+  namespaces:
+  - consumes: discogs-database
+    rest: discogs-database-rest
+    mcp: discogs-database-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-image
+    rest: discogs-image-rest
+    mcp: discogs-image-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-inventory-management
+    rest: discogs-inventory-management-rest
+    mcp: discogs-inventory-management-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-user-lists
+    rest: discogs-user-lists-rest
+    mcp: discogs-user-lists-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-marketplace
+    rest: discogs-marketplace-rest
+    mcp: discogs-marketplace-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-user-identity
+    rest: discogs-user-identity-rest
+    mcp: discogs-user-identity-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-user-collection
+    rest: discogs-user-collection-rest
+    mcp: discogs-user-collection-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  - consumes: discogs-user-wantlist
+    rest: discogs-user-wantlist-rest
+    mcp: discogs-user-wantlist-mcp
+    rest_port: 8080
+    mcp_port: 9090
+  binds:
+  - env: DISCOGS_TOKEN
+    used_by:
+    - discogs-database
+    - discogs-image
+    - discogs-inventory-management
+    - discogs-user-lists
+    - discogs-marketplace
+    - discogs-user-identity
+    - discogs-user-collection
+    - discogs-user-wantlist
+crossReference:
+- resource: database
+  operations: *id001
+  workflow: discogs-database
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: image
+  operations: *id002
+  workflow: discogs-image
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: inventory-management
+  operations: *id003
+  workflow: discogs-inventory-management
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: user-lists
+  operations: *id004
+  workflow: discogs-user-lists
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: marketplace
+  operations: *id005
+  workflow: discogs-marketplace
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: user-identity
+  operations: *id006
+  workflow: discogs-user-identity
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: user-collection
+  operations: *id007
+  workflow: discogs-user-collection
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent
+- resource: user-wantlist
+  operations: *id008
+  workflow: discogs-user-wantlist
+  personas:
+  - music-catalog-engineer
+  - marketplace-operator
+  - record-collector
+  - llm-music-agent

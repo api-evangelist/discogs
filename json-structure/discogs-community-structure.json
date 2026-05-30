@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-community-structure.json",
+  "name": "Community",
+  "description": "Community schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "have": {
+      "type": "int32"
+    },
+    "want": {
+      "type": "int32"
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "int32"
+        },
+        "average": {
+          "type": "float"
+        }
+      }
+    },
+    "submitter": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserSummary"
+      }
+    },
+    "data_quality": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

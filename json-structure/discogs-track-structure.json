@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-track-structure.json",
+  "name": "Track",
+  "description": "Track schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "position": {
+      "type": "string"
+    },
+    "type_": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "extraartists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ArtistSummary"
+      }
+    }
+  }
+}

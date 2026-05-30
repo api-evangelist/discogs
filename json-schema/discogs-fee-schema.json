@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-fee-schema.json",
+  "title": "Fee",
+  "description": "Calculated Discogs marketplace fee for a transaction.",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "number",
+      "example": 0.42
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    }
+  }
+}

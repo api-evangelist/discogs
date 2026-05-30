@@ -1,0 +1,10 @@
+{
+  "status": "pending",
+  "created_ts": "2026-03-15T14:30:00Z",
+  "url": "https://api.discogs.com/releases/249504",
+  "finished_ts": "2026-03-15T14:30:00Z",
+  "download_url": "https://api.discogs.com/releases/249504",
+  "filename": "inventory-export.csv",
+  "id": 599,
+  "type": "export"
+}

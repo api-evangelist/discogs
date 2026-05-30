@@ -1,0 +1,264 @@
+extends:
+- - spectral:oas
+  - recommended
+rules:
+  info-discogs-title:
+    description: Info title should match Discogs naming pattern.
+    message: Info title should start with "Discogs"
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Discogs
+  info-description-required:
+    description: Info description is required.
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-version-required:
+    description: Info version is required.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  info-contact-required:
+    description: Info should declare contact.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  info-license-required:
+    description: Info should declare license.
+    severity: warn
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  openapi-version-3:
+    description: OpenAPI version must be 3.x.
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: ^3\.
+  server-https-required:
+    description: Servers must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  server-discogs-host:
+    description: Server URL must be on api.discogs.com.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: api\.discogs\.com
+  paths-snake-case:
+    description: Path segments use snake_case (Discogs convention).
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: ^(/(\{[a-z_]+\}|[a-z_]+))+$
+  paths-no-trailing-slash:
+    description: No trailing slashes on paths.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: .+/$
+  operation-operationid-required:
+    description: Operations must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  operation-operationid-camelcase:
+    description: operationId must be camelCase.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-zA-Z0-9]*$
+  operation-summary-required:
+    description: Operations must have a summary.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  operation-summary-discogs-prefix:
+    description: Operation summary should start with "Discogs".
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Discogs '
+  operation-description-required:
+    description: Operations must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  operation-tags-required:
+    description: Operations must declare tags.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+  tags-global-defined:
+    description: Global tags array must be defined.
+    severity: warn
+    given: $
+    then:
+      field: tags
+      function: truthy
+  tags-title-case:
+    description: Tag names should be Title Case.
+    severity: warn
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$
+  parameter-description-required:
+    description: Parameters must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+  parameter-snake-case:
+    description: Parameter names should be snake_case.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in!="path")].name
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-z0-9_]*$
+  parameter-pagination-page-perpage:
+    description: Use page + per_page for pagination (Discogs convention).
+    severity: info
+    given: $.paths[*][get].parameters[?(@.in=="query")].name
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ^(offset|limit|cursor)$
+  request-body-json:
+    description: Request bodies must use application/json.
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody.content
+    then:
+      field: application/json
+      function: truthy
+  response-success-required:
+    description: Operations must define a 2xx response.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: truthy
+  response-401-on-secured:
+    description: Secured operations should declare a 401 response.
+    severity: info
+    given: $.paths[*][post,put,patch,delete].responses
+    then:
+      field: '401'
+      function: truthy
+  response-json-content:
+    description: Responses should be application/json.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses[2,3]??.content
+    then:
+      field: application/json
+      function: truthy
+  schema-property-snake-case:
+    description: Schema property names should be snake_case (Discogs convention).
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-z0-9_]*$
+  schema-type-required:
+    description: Schemas must declare a type.
+    severity: warn
+    given: $.components.schemas[?(!@.oneOf && !@.anyOf && !@.allOf && !@.$ref)]
+    then:
+      field: type
+      function: truthy
+  schema-description-encouraged:
+    description: Top-level schemas should have a description.
+    severity: info
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes must be declared in components.
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  security-global-required:
+    description: Global security should be declared.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+  http-get-no-body:
+    description: GET operations must not have a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+  http-delete-no-body:
+    description: DELETE operations should not have a request body.
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+  operation-x-microcks-required:
+    description: Operations should declare x-microcks-operation for mock-server compatibility.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy
+  operation-rate-limit-documented:
+    description: Document the 60 req/min (auth) / 25 req/min (unauth) Discogs rate limits in info.description.
+    severity: info
+    given: $.info.description
+    then:
+      function: pattern
+      functionOptions:
+        match: Rate Limiting
+  operation-user-agent-required:
+    description: Document the mandatory unique User-Agent requirement in info.description.
+    severity: warn
+    given: $.info.description
+    then:
+      function: pattern
+      functionOptions:
+        match: User-Agent

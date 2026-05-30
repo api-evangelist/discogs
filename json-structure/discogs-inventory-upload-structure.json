@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-inventory-upload-structure.json",
+  "name": "InventoryUpload",
+  "description": "A CSV inventory upload job.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "success",
+        "failure",
+        "partial_success"
+      ]
+    },
+    "created_ts": {
+      "type": "datetime"
+    },
+    "last_activity": {
+      "type": "datetime"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "add",
+        "change",
+        "delete"
+      ]
+    },
+    "id": {
+      "type": "int32"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "results_url": {
+      "type": "uri"
+    }
+  }
+}

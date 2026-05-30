@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-artist-release-schema.json",
+  "title": "ArtistRelease",
+  "description": "ArtistRelease schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "release",
+        "master"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer",
+      "nullable": true
+    },
+    "format": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

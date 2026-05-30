@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-price-suggestion-schema.json",
+  "title": "PriceSuggestion",
+  "description": "Suggested marketplace price for a release at a given media condition.",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "value": {
+      "type": "number",
+      "example": 19.99
+    }
+  }
+}

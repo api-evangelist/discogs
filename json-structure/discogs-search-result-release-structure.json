@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-search-result-release-structure.json",
+  "name": "SearchResultRelease",
+  "description": "SearchResultRelease schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "release"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "thumb": {
+      "type": "uri"
+    },
+    "cover_image": {
+      "type": "uri"
+    },
+    "resource_url": {
+      "type": "uri"
+    },
+    "uri": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "format": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "label": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "catno": {
+      "type": "string"
+    },
+    "genre": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "style": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "barcode": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

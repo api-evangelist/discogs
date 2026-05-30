@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-price-suggestion-structure.json",
+  "name": "PriceSuggestion",
+  "description": "Suggested marketplace price for a release at a given media condition.",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "value": {
+      "type": "double",
+      "example": 19.99
+    }
+  }
+}

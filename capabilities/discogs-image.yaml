@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discogs API — Image
+  description: 'Discogs — Image. 1 operations. Lead operation: Discogs Get Image. Self-contained Naftiko capability covering one Discogs business surface.'
+  tags:
+  - Discogs
+  - Music
+  - Image
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+- namespace: env
+  keys:
+    DISCOGS_TOKEN: DISCOGS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: discogs-image
+    baseUri: https://api.discogs.com
+    description: Discogs API — Image business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Discogs token={{env.DISCOGS_TOKEN}}
+      placement: header
+    resources:
+    - name: images-filename
+      path: /images/{filename}
+      operations:
+      - name: getimage
+        method: GET
+        description: Discogs Get Image
+        inputParameters:
+        - name: filename
+          in: path
+          type: string
+          required: true
+          description: Image filename, as returned by other endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discogs-image-rest
+    port: 8080
+    description: REST adapter for Discogs API — Image. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/images/{filename}
+      name: images-filename
+      description: REST surface for Discogs Get Image.
+      operations:
+      - method: GET
+        name: getimage
+        description: Discogs Get Image
+        call: discogs-image.getimage
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          filename: rest.filename
+  - type: mcp
+    namespace: discogs-image-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discogs API — Image. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-image
+      description: Discogs Get Image
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-image.getimage
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        filename: tools.filename

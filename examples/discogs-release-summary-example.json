@@ -1,0 +1,42 @@
+{
+  "id": 249504,
+  "title": "Kind Of Blue",
+  "year": 1959,
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "thumb": "https://api.discogs.com/releases/249504",
+  "cover_image": "https://api.discogs.com/releases/249504",
+  "formats": [
+    {
+      "name": {},
+      "qty": {},
+      "text": {},
+      "descriptions": {}
+    }
+  ],
+  "labels": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "catno": {},
+      "entity_type": {}
+    }
+  ],
+  "artists": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "anv": {},
+      "join": {},
+      "role": {},
+      "tracks": {}
+    }
+  ],
+  "genres": [
+    "string-value"
+  ],
+  "styles": [
+    "string-value"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-community-schema.json",
+  "title": "Community",
+  "description": "Community schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "have": {
+      "type": "integer"
+    },
+    "want": {
+      "type": "integer"
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "average": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "submitter": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserSummary"
+      }
+    },
+    "data_quality": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

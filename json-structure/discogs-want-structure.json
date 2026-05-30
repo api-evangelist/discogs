@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-want-structure.json",
+  "name": "Want",
+  "description": "Want schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "resource_url": {
+      "type": "uri"
+    },
+    "rating": {
+      "type": "int32"
+    },
+    "notes": {
+      "type": "string",
+      "nullable": true
+    },
+    "basic_information": {
+      "$ref": "#/components/schemas/ReleaseSummary"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "have": 1,
+  "want": 1,
+  "rating": {
+    "count": 42,
+    "average": 4.32
+  },
+  "submitter": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  },
+  "contributors": [
+    {
+      "id": {},
+      "username": {},
+      "resource_url": {}
+    }
+  ],
+  "data_quality": "string-value",
+  "status": "string-value"
+}

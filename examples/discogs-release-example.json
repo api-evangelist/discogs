@@ -1,0 +1,115 @@
+{
+  "id": 249504,
+  "title": "Kind Of Blue",
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "uri": "https://api.discogs.com/releases/249504",
+  "status": "string-value",
+  "data_quality": "string-value",
+  "thumb": "https://api.discogs.com/releases/249504",
+  "country": "string-value",
+  "year": 1959,
+  "notes": "string-value",
+  "released": "string-value",
+  "released_formatted": "string-value",
+  "date_added": "2026-03-15T14:30:00Z",
+  "date_changed": "2026-03-15T14:30:00Z",
+  "lowest_price": 19.99,
+  "num_for_sale": 1,
+  "estimated_weight": 1,
+  "format_quantity": 1,
+  "master_id": 249504,
+  "master_url": "https://api.discogs.com/releases/249504",
+  "artists": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "anv": {},
+      "join": {},
+      "role": {},
+      "tracks": {}
+    }
+  ],
+  "labels": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "catno": {},
+      "entity_type": {}
+    }
+  ],
+  "extraartists": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "anv": {},
+      "join": {},
+      "role": {},
+      "tracks": {}
+    }
+  ],
+  "formats": [
+    {
+      "name": {},
+      "qty": {},
+      "text": {},
+      "descriptions": {}
+    }
+  ],
+  "genres": [
+    "string-value"
+  ],
+  "styles": [
+    "string-value"
+  ],
+  "community": {
+    "have": 1,
+    "want": 1,
+    "rating": {
+      "count": {},
+      "average": {}
+    },
+    "submitter": {},
+    "contributors": [
+      {}
+    ],
+    "data_quality": "string-value",
+    "status": "string-value"
+  },
+  "companies": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "catno": {},
+      "entity_type": {}
+    }
+  ],
+  "tracklist": [
+    {
+      "position": {},
+      "type_": {},
+      "title": {},
+      "duration": {},
+      "extraartists": {}
+    }
+  ],
+  "videos": [
+    {
+      "uri": {},
+      "duration": {},
+      "title": {},
+      "description": {},
+      "embed": {}
+    }
+  ],
+  "identifiers": [
+    {
+      "type": {},
+      "value": {},
+      "description": {}
+    }
+  ]
+}

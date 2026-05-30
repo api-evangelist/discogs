@@ -1,0 +1,101 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Discogs
+providerId: discogs
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - Music
+  - Marketplace
+  - Catalog
+  - Vinyl
+  - Community
+description: |
+  The Discogs API is offered free of charge to all registered Discogs users. There is no
+  metered pricing for API access — instead, Discogs enforces a tiered request-rate cap
+  based on authentication mode (60 req/min authenticated, 25 req/min unauthenticated).
+  Commercial monetization happens on the Discogs Marketplace, where Discogs takes an
+  8% transaction fee (capped at $150) plus payment-processor fees on each completed sale.
+  These marketplace fees are reflected here as a usage-based "Marketplace Sales" plan
+  because they meter actual money flow through the API.
+sources:
+  - https://www.discogs.com/developers
+  - https://support.discogs.com/hc/articles/360001431534-How-Do-Discogs-Marketplace-Fees-Work
+  - https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+plans:
+  - id: discogs-api-free
+    name: API Access (Free)
+    type: freemium
+    description: Free unlimited access to the Discogs REST API with rate-limit-based tiering.
+    entries:
+      - label: Authenticated API calls
+        name: api_calls_authenticated
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: '1'
+        price: '$0.00'
+      - label: Unauthenticated API calls
+        name: api_calls_unauthenticated
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: '1'
+        price: '$0.00'
+      - label: Bulk XML data dumps
+        name: bulk_data_dumps
+        type: flat
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: '1'
+        price: '$0.00'
+    elements:
+      - name: Discogs Auth (personal access token)
+      - name: Discogs Auth (consumer key + secret)
+      - name: OAuth 1.0a (delegated user authorization)
+      - name: Database read (artists, releases, masters, labels, search)
+      - name: User read (identity, profile, collection, wantlist, lists, contributions, submissions)
+      - name: Marketplace read (listings, fees, price suggestions, release stats)
+      - name: Marketplace write (orders, inventory CSV upload, listing CRUD)
+      - name: Image proxy retrieval (OAuth-signed)
+      - name: Monthly XML data dumps (artists, labels, masters, releases)
+  - id: discogs-marketplace-sales
+    name: Marketplace Sales
+    type: usage-based
+    description: |
+      Transaction fees Discogs takes from sellers on completed Marketplace orders. Returned
+      programmatically via the /marketplace/fee endpoint. These are operational costs the
+      API exposes, not access fees for the API itself.
+    entries:
+      - label: Discogs seller fee
+        name: marketplace_seller_fee
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: '1'
+        price: '8% of sale price, capped at $150 per order'
+      - label: Payment processor fee (Discogs Pay)
+        name: payment_processor_fee
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: '1'
+        price: '3.5% + $0.40 (US); varies by region — see Discogs Pay documentation'
+    elements:
+      - name: Order management API
+      - name: Inventory listings API
+      - name: Bulk inventory upload (add/change/delete)
+      - name: Price-suggestions API
+      - name: Inventory export to CSV

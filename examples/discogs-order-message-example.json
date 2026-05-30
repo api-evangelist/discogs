@@ -1,0 +1,19 @@
+{
+  "refund": {
+    "amount": 1.0,
+    "order": {}
+  },
+  "timestamp": "2026-03-15T14:30:00Z",
+  "message": "string-value",
+  "type": "message",
+  "order": {
+    "resource_url": "https://api.discogs.com/releases/249504",
+    "id": "string-value"
+  },
+  "subject": "string-value",
+  "from": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  }
+}

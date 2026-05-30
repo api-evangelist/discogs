@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-release-format-schema.json",
+  "title": "ReleaseFormat",
+  "description": "ReleaseFormat schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "qty": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string",
+      "nullable": true
+    },
+    "descriptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Discogs
+providerId: discogs
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Music
+  - Marketplace
+  - Catalog
+description: |
+  Discogs throttles requests by source IP address and authentication mode. Authenticated
+  callers (Discogs token, key+secret, or OAuth 1.0a) get a higher per-minute window than
+  unauthenticated callers. Every response includes X-Discogs-Ratelimit headers so clients
+  can self-pace. Discogs also requires every request to carry a unique User-Agent string;
+  generic UAs (curl, Python urllib) are blocked. Limits are not configurable via dashboard —
+  contact api@discogs.com to negotiate a higher cap for high-volume integrations.
+sources:
+  - https://www.discogs.com/developers
+  - https://www.discogs.com/developers#page:home,header:home-rate-limiting
+headers:
+  rateLimit: X-Discogs-Ratelimit
+  rateLimitUsed: X-Discogs-Ratelimit-Used
+  rateLimitRemaining: X-Discogs-Ratelimit-Remaining
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+  forbidden: 403
+limits:
+  - name: Authenticated requests (Discogs token, key+secret, or OAuth 1.0a)
+    scope: account/IP
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+    notes: Applies across all endpoints; high-volume callers can request a raise from api@discogs.com.
+  - name: Unauthenticated requests
+    scope: IP
+    metric: requests_per_minute
+    limit: 25
+    timeFrame: minute
+    notes: Strongly discouraged for production use; use a Discogs token for the higher cap.
+  - name: Image asset retrieval (OAuth-signed)
+    scope: account
+    metric: requests_per_minute
+    limit: 1000
+    timeFrame: day
+    notes: Soft cap; images are proxied through the API and intended for in-app display, not bulk scraping.
+policies:
+  - name: User-Agent required
+    description: Every request must carry a unique, descriptive User-Agent (e.g. 'MyDiscogsApp/1.0 +https://example.com'). Default UAs from common HTTP libraries are blocked.
+  - name: Rate-limit headers
+    description: Each response returns X-Discogs-Ratelimit (cap), X-Discogs-Ratelimit-Used (current count), and X-Discogs-Ratelimit-Remaining (remaining). Use these to self-throttle.
+  - name: Backoff on 429
+    description: On HTTP 429, honor the Retry-After header (when present) and back off exponentially. Do not retry tight loops.
+  - name: Bulk data via XML dumps
+    description: For population-level analysis, use the monthly XML data dumps on S3 rather than crawling the API.
+  - name: Raise via support
+    description: High-volume commercial integrations can request a higher rate cap by emailing api@discogs.com with the application name, expected throughput, and use case.
+  - name: OAuth + image retrieval
+    description: Image URLs returned by other endpoints must be fetched with an OAuth-signed request to /images/{filename}; unauthenticated image fetches will be blocked.

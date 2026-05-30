@@ -1,0 +1,59 @@
+{
+  "id": "1-1",
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "status": "Payment Received",
+  "next_status": [
+    "string-value"
+  ],
+  "fee": {
+    "currency": "string-value",
+    "value": 19.99
+  },
+  "created": "2026-03-15T14:30:00Z",
+  "items": [
+    {
+      "id": {},
+      "resource_url": {},
+      "uri": {},
+      "status": {},
+      "price": {},
+      "allow_offers": {},
+      "sleeve_condition": {},
+      "condition": {},
+      "posted": {},
+      "ships_from": {},
+      "comments": {},
+      "seller": {},
+      "release": {},
+      "audio": {},
+      "weight": {},
+      "format_quantity": {},
+      "external_id": {},
+      "location": {}
+    }
+  ],
+  "shipping": {
+    "currency": "string-value",
+    "value": 19.99
+  },
+  "shipping_address": "string-value",
+  "additional_instructions": "string-value",
+  "archived": true,
+  "seller": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  },
+  "buyer": {
+    "id": 249504,
+    "username": "rodneyfool",
+    "resource_url": "https://api.discogs.com/releases/249504"
+  },
+  "total": {
+    "currency": "string-value",
+    "value": 19.99
+  },
+  "messages_url": "https://api.discogs.com/releases/249504",
+  "uri": "https://api.discogs.com/releases/249504",
+  "last_activity": "2026-03-15T14:30:00Z"
+}

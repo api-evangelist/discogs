@@ -1,0 +1,37 @@
+{
+  "id": 249504,
+  "name": "Kind Of Blue",
+  "realname": "Kind Of Blue",
+  "resource_url": "https://api.discogs.com/releases/249504",
+  "uri": "https://api.discogs.com/releases/249504",
+  "releases_url": "https://api.discogs.com/releases/249504",
+  "profile": "string-value",
+  "urls": [
+    "https://api.discogs.com/releases/249504"
+  ],
+  "namevariations": [
+    "Kind Of Blue"
+  ],
+  "members": [
+    {
+      "id": {},
+      "name": {},
+      "resource_url": {},
+      "anv": {},
+      "join": {},
+      "role": {},
+      "tracks": {}
+    }
+  ],
+  "images": [
+    {
+      "type": {},
+      "uri": {},
+      "resource_url": {},
+      "uri150": {},
+      "width": {},
+      "height": {}
+    }
+  ],
+  "data_quality": "string-value"
+}

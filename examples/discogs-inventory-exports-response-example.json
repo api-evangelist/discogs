@@ -1,0 +1,26 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 1,
+    "per_page": 1,
+    "items": 1,
+    "urls": {
+      "first": {},
+      "prev": {},
+      "next": {},
+      "last": {}
+    }
+  },
+  "items": [
+    {
+      "status": {},
+      "created_ts": {},
+      "url": {},
+      "finished_ts": {},
+      "download_url": {},
+      "filename": {},
+      "id": {},
+      "type": {}
+    }
+  ]
+}

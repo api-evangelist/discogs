@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-profile-update-structure.json",
+  "name": "ProfileUpdate",
+  "description": "Editable profile fields.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "home_page": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "curr_abbr": {
+      "type": "string",
+      "enum": [
+        "USD",
+        "GBP",
+        "EUR",
+        "CAD",
+        "AUD",
+        "JPY",
+        "CHF",
+        "MXN",
+        "BRL",
+        "NZD",
+        "SEK",
+        "ZAR"
+      ]
+    }
+  }
+}

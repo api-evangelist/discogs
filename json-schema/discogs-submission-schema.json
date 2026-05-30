@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-submission-schema.json",
+  "title": "Submission",
+  "description": "A submission (release/artist/label edit) made by a user.",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "submissions": {
+      "type": "object",
+      "properties": {
+        "artists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ArtistSummary"
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/LabelSummary"
+          }
+        },
+        "releases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ReleaseSummary"
+          }
+        }
+      }
+    }
+  }
+}

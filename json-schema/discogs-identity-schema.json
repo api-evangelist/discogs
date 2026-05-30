@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-identity-schema.json",
+  "title": "Identity",
+  "description": "Identity schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "username": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "consumer_name": {
+      "type": "string"
+    }
+  }
+}

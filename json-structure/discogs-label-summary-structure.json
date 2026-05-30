@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-label-summary-structure.json",
+  "name": "LabelSummary",
+  "description": "LabelSummary schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "uri"
+    },
+    "catno": {
+      "type": "string",
+      "nullable": true
+    },
+    "entity_type": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

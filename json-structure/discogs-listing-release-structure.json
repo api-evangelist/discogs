@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-structure/discogs-listing-release-structure.json",
+  "name": "ListingRelease",
+  "description": "Summary of a release within a listing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "resource_url": {
+      "type": "uri"
+    },
+    "description": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "uri"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "int32"
+    },
+    "format": {
+      "type": "string"
+    },
+    "catalog_number": {
+      "type": "string"
+    }
+  }
+}

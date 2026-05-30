@@ -1,0 +1,733 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discogs API — Marketplace
+  description: 'Discogs — Marketplace. 14 operations. Lead operation: Discogs Get Marketplace Fee. Self-contained Naftiko capability covering one Discogs business surface.'
+  tags:
+  - Discogs
+  - Music
+  - Marketplace
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+- namespace: env
+  keys:
+    DISCOGS_TOKEN: DISCOGS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: discogs-marketplace
+    baseUri: https://api.discogs.com
+    description: Discogs API — Marketplace business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Discogs token={{env.DISCOGS_TOKEN}}
+      placement: header
+    resources:
+    - name: marketplace-fee-price
+      path: /marketplace/fee/{price}
+      operations:
+      - name: getmarketplacefee
+        method: GET
+        description: Discogs Get Marketplace Fee
+        inputParameters:
+        - name: price
+          in: path
+          type: number
+          required: true
+          description: Transaction price in USD.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-fee-price-currency
+      path: /marketplace/fee/{price}/{currency}
+      operations:
+      - name: getmarketplacefeewithcurrency
+        method: GET
+        description: Discogs Get Marketplace Fee With Currency
+        inputParameters:
+        - name: price
+          in: path
+          type: number
+          required: true
+          description: Transaction price.
+        - name: currency
+          in: path
+          type: string
+          required: true
+          description: ISO currency code.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-listings
+      path: /marketplace/listings
+      operations:
+      - name: createlisting
+        method: POST
+        description: Create a new listing
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body (JSON).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-listings-listing-id
+      path: /marketplace/listings/{listing_id}
+      operations:
+      - name: getlisting
+        method: GET
+        description: Get a listing
+        inputParameters:
+        - name: listing_id
+          in: path
+          type: integer
+          required: true
+          description: The ID of the marketplace listing.
+        - name: curr_abbr
+          in: query
+          type: string
+          required: false
+          description: Currency for marketplace data.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editlisting
+        method: POST
+        description: Edit a listing
+        inputParameters:
+        - name: listing_id
+          in: path
+          type: integer
+          required: true
+          description: The ID of the marketplace listing.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body (JSON).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletelisting
+        method: DELETE
+        description: Delete a listing
+        inputParameters:
+        - name: listing_id
+          in: path
+          type: integer
+          required: true
+          description: The ID of the marketplace listing.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-orders
+      path: /marketplace/orders
+      operations:
+      - name: listorders
+        method: GET
+        description: Discogs List Orders
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by order status.
+        - name: created_after
+          in: query
+          type: string
+          required: false
+          description: Return orders created after this ISO 8601 datetime.
+        - name: created_before
+          in: query
+          type: string
+          required: false
+          description: Return orders created before this ISO 8601 datetime.
+        - name: archived
+          in: query
+          type: boolean
+          required: false
+          description: Whether to include archived orders.
+        - name: sort
+          in: query
+          type: string
+          required: false
+          description: Sort field.
+        - name: sort_order
+          in: query
+          type: string
+          required: false
+          description: Sort order.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number.
+        - name: per_page
+          in: query
+          type: integer
+          required: false
+          description: Items per page.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-orders-order-id
+      path: /marketplace/orders/{order_id}
+      operations:
+      - name: getorder
+        method: GET
+        description: Discogs Get Order
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          required: true
+          description: Order ID (e.g. 1-1).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateorder
+        method: POST
+        description: Discogs Update Order
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          required: true
+          description: Order ID.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body (JSON).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-orders-order-id-messages
+      path: /marketplace/orders/{order_id}/messages
+      operations:
+      - name: listordermessages
+        method: GET
+        description: Discogs List Order Messages
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          required: true
+          description: Order ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addordermessage
+        method: POST
+        description: Discogs Add Order Message
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          required: true
+          description: Order ID.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body (JSON).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: marketplace-price-suggestions-release-id
+      path: /marketplace/price_suggestions/{release_id}
+      operations:
+      - name: getpricesuggestions
+        method: GET
+        description: Discogs Get Price Suggestions
+        inputParameters:
+        - name: release_id
+          in: path
+          type: integer
+          required: true
+          description: Release ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: releases-release-id-stats
+      path: /releases/{release_id}/stats
+      operations:
+      - name: getreleasestats
+        method: GET
+        description: Discogs Get Release Marketplace Stats
+        inputParameters:
+        - name: release_id
+          in: path
+          type: integer
+          required: true
+          description: Release ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-username-inventory
+      path: /users/{username}/inventory
+      operations:
+      - name: getuserinventory
+        method: GET
+        description: Get user inventory
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's Discogs username.
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Only show items with this status.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: integer
+          required: false
+          description: The number of items to return per page.
+        - name: sort
+          in: query
+          type: string
+          required: false
+          description: Sort items by this field.
+        - name: sort_order
+          in: query
+          type: string
+          required: false
+          description: The order to sort the results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discogs-marketplace-rest
+    port: 8080
+    description: REST adapter for Discogs API — Marketplace. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/marketplace/fee/{price}
+      name: marketplace-fee-price
+      description: REST surface for Discogs Get Marketplace Fee.
+      operations:
+      - method: GET
+        name: getmarketplacefee
+        description: Discogs Get Marketplace Fee
+        call: discogs-marketplace.getmarketplacefee
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          price: rest.price
+    - path: /v1/marketplace/fee/{price}/{currency}
+      name: marketplace-fee-price-currency
+      description: REST surface for Discogs Get Marketplace Fee With Currency.
+      operations:
+      - method: GET
+        name: getmarketplacefeewithcurrency
+        description: Discogs Get Marketplace Fee With Currency
+        call: discogs-marketplace.getmarketplacefeewithcurrency
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          price: rest.price
+          currency: rest.currency
+    - path: /v1/marketplace/listings
+      name: marketplace-listings
+      description: REST surface for Create a new listing.
+      operations:
+      - method: POST
+        name: createlisting
+        description: Create a new listing
+        call: discogs-marketplace.createlisting
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          body: rest.body
+    - path: /v1/marketplace/listings/{listing-id}
+      name: marketplace-listings-listing-id
+      description: REST surface for Get a listing.
+      operations:
+      - method: GET
+        name: getlisting
+        description: Get a listing
+        call: discogs-marketplace.getlisting
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          listing_id: rest.listing_id
+          curr_abbr: rest.curr_abbr
+    - path: /v1/marketplace/listings/{listing-id}
+      name: marketplace-listings-listing-id
+      description: REST surface for Edit a listing.
+      operations:
+      - method: POST
+        name: editlisting
+        description: Edit a listing
+        call: discogs-marketplace.editlisting
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          listing_id: rest.listing_id
+          body: rest.body
+    - path: /v1/marketplace/listings/{listing-id}
+      name: marketplace-listings-listing-id
+      description: REST surface for Delete a listing.
+      operations:
+      - method: DELETE
+        name: deletelisting
+        description: Delete a listing
+        call: discogs-marketplace.deletelisting
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          listing_id: rest.listing_id
+    - path: /v1/marketplace/orders
+      name: marketplace-orders
+      description: REST surface for Discogs List Orders.
+      operations:
+      - method: GET
+        name: listorders
+        description: Discogs List Orders
+        call: discogs-marketplace.listorders
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          status: rest.status
+          created_after: rest.created_after
+          created_before: rest.created_before
+          archived: rest.archived
+          sort: rest.sort
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+    - path: /v1/marketplace/orders/{order-id}
+      name: marketplace-orders-order-id
+      description: REST surface for Discogs Get Order.
+      operations:
+      - method: GET
+        name: getorder
+        description: Discogs Get Order
+        call: discogs-marketplace.getorder
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          order_id: rest.order_id
+    - path: /v1/marketplace/orders/{order-id}
+      name: marketplace-orders-order-id
+      description: REST surface for Discogs Update Order.
+      operations:
+      - method: POST
+        name: updateorder
+        description: Discogs Update Order
+        call: discogs-marketplace.updateorder
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          order_id: rest.order_id
+          body: rest.body
+    - path: /v1/marketplace/orders/{order-id}/messages
+      name: marketplace-orders-order-id-messages
+      description: REST surface for Discogs List Order Messages.
+      operations:
+      - method: GET
+        name: listordermessages
+        description: Discogs List Order Messages
+        call: discogs-marketplace.listordermessages
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          order_id: rest.order_id
+    - path: /v1/marketplace/orders/{order-id}/messages
+      name: marketplace-orders-order-id-messages
+      description: REST surface for Discogs Add Order Message.
+      operations:
+      - method: POST
+        name: addordermessage
+        description: Discogs Add Order Message
+        call: discogs-marketplace.addordermessage
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          order_id: rest.order_id
+          body: rest.body
+    - path: /v1/marketplace/price-suggestions/{release-id}
+      name: marketplace-price-suggestions-release-id
+      description: REST surface for Discogs Get Price Suggestions.
+      operations:
+      - method: GET
+        name: getpricesuggestions
+        description: Discogs Get Price Suggestions
+        call: discogs-marketplace.getpricesuggestions
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          release_id: rest.release_id
+    - path: /v1/releases/{release-id}/stats
+      name: releases-release-id-stats
+      description: REST surface for Discogs Get Release Marketplace Stats.
+      operations:
+      - method: GET
+        name: getreleasestats
+        description: Discogs Get Release Marketplace Stats
+        call: discogs-marketplace.getreleasestats
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          release_id: rest.release_id
+    - path: /v1/users/{username}/inventory
+      name: users-username-inventory
+      description: REST surface for Get user inventory.
+      operations:
+      - method: GET
+        name: getuserinventory
+        description: Get user inventory
+        call: discogs-marketplace.getuserinventory
+        outputParameters:
+        - type: object
+          mapping: $.
+        with:
+          username: rest.username
+          status: rest.status
+          page: rest.page
+          per_page: rest.per_page
+          sort: rest.sort
+          sort_order: rest.sort_order
+  - type: mcp
+    namespace: discogs-marketplace-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discogs API — Marketplace. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-marketplace-fee
+      description: Discogs Get Marketplace Fee
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getmarketplacefee
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        price: tools.price
+    - name: get-marketplace-fee-currency
+      description: Discogs Get Marketplace Fee With Currency
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getmarketplacefeewithcurrency
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        price: tools.price
+        currency: tools.currency
+    - name: createlisting
+      description: Create a new listing
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: discogs-marketplace.createlisting
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        body: tools.body
+    - name: getlisting
+      description: Get a listing
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getlisting
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        listing_id: tools.listing_id
+        curr_abbr: tools.curr_abbr
+    - name: editlisting
+      description: Edit a listing
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: discogs-marketplace.editlisting
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        listing_id: tools.listing_id
+        body: tools.body
+    - name: deletelisting
+      description: Delete a listing
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discogs-marketplace.deletelisting
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        listing_id: tools.listing_id
+    - name: list-orders
+      description: Discogs List Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.listorders
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        status: tools.status
+        created_after: tools.created_after
+        created_before: tools.created_before
+        archived: tools.archived
+        sort: tools.sort
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+    - name: get-order
+      description: Discogs Get Order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getorder
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        order_id: tools.order_id
+    - name: update-order
+      description: Discogs Update Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discogs-marketplace.updateorder
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        order_id: tools.order_id
+        body: tools.body
+    - name: list-order-messages
+      description: Discogs List Order Messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.listordermessages
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        order_id: tools.order_id
+    - name: add-order-message
+      description: Discogs Add Order Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discogs-marketplace.addordermessage
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        order_id: tools.order_id
+        body: tools.body
+    - name: get-price-suggestions
+      description: Discogs Get Price Suggestions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getpricesuggestions
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        release_id: tools.release_id
+    - name: get-release-stats
+      description: Discogs Get Release Marketplace Stats
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getreleasestats
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        release_id: tools.release_id
+    - name: list-inventory
+      description: Get user inventory
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discogs-marketplace.getuserinventory
+      outputParameters:
+      - type: object
+        mapping: $.
+      with:
+        username: tools.username
+        status: tools.status
+        page: tools.page
+        per_page: tools.per_page
+        sort: tools.sort
+        sort_order: tools.sort_order

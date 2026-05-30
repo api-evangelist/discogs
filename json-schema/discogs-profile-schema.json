@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-profile-schema.json",
+  "title": "Profile",
+  "description": "Profile schema from Discogs API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "readOnly": true
+    },
+    "username": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "home_page": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true
+    },
+    "location": {
+      "type": "string",
+      "nullable": true
+    },
+    "profile": {
+      "type": "string",
+      "nullable": true
+    },
+    "registered": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rank": {
+      "type": "number",
+      "format": "float"
+    },
+    "num_pending": {
+      "type": "integer"
+    },
+    "num_for_sale": {
+      "type": "integer"
+    },
+    "num_collection": {
+      "type": "integer"
+    },
+    "num_wantlist": {
+      "type": "integer"
+    },
+    "num_lists": {
+      "type": "integer"
+    },
+    "releases_contributed": {
+      "type": "integer"
+    },
+    "releases_rated": {
+      "type": "integer"
+    },
+    "rating_avg": {
+      "type": "number",
+      "format": "float"
+    },
+    "inventory_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "collection_folders_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "collection_fields_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "wantlist_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "banner_url": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true
+    },
+    "curr_abbr": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "seller_rating": {
+      "type": "number",
+      "format": "float"
+    },
+    "seller_num_ratings": {
+      "type": "integer"
+    },
+    "buyer_rating": {
+      "type": "number",
+      "format": "float"
+    },
+    "buyer_num_ratings": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/discogs/refs/heads/main/json-schema/discogs-release-schema.json",
+  "title": "Release",
+  "description": "Represents a particular physical or digital object released by one or more Artists.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "readOnly": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string"
+    },
+    "data_quality": {
+      "type": "string"
+    },
+    "thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "country": {
+      "type": "string",
+      "nullable": true
+    },
+    "year": {
+      "type": "integer",
+      "nullable": true
+    },
+    "notes": {
+      "type": "string",
+      "nullable": true
+    },
+    "released": {
+      "type": "string",
+      "description": "Release date in a free-text format."
+    },
+    "released_formatted": {
+      "type": "string",
+      "description": "Formatted release date."
+    },
+    "date_added": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date_changed": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lowest_price": {
+      "type": "number",
+      "format": "float",
+      "nullable": true
+    },
+    "num_for_sale": {
+      "type": "integer",
+      "nullable": true
+    },
+    "estimated_weight": {
+      "type": "integer",
+      "nullable": true
+    },
+    "format_quantity": {
+      "type": "integer"
+    },
+    "master_id": {
+      "type": "integer",
+      "nullable": true
+    },
+    "master_url": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true
+    },
+    "artists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ArtistSummary"
+      }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LabelSummary"
+      }
+    },
+    "extraartists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ArtistSummary"
+      }
+    },
+    "formats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ReleaseFormat"
+      }
+    },
+    "genres": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "styles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "community": {
+      "$ref": "#/components/schemas/Community"
+    },
+    "companies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LabelSummary"
+      }
+    },
+    "tracklist": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Track"
+      }
+    },
+    "videos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Video"
+      }
+    },
+    "identifiers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identifier"
+      }
+    }
+  }
+}
