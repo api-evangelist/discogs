@@ -1,0 +1,935 @@
+"""
+Discogs GraphQL Schema
+Conceptual schema mapping the Discogs REST API to GraphQL types.
+REST API: https://www.discogs.com/developers
+Base URL: https://api.discogs.com
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar URL
+scalar JSON
+
+# ---------------------------------------------------------------------------
+# Pagination
+# ---------------------------------------------------------------------------
+
+"""Pagination metadata returned on list queries."""
+type PageInfo {
+  page: Int!
+  pages: Int!
+  perPage: Int!
+  items: Int!
+  urls: PageUrls
+}
+
+"""Navigation URLs for paginated results."""
+type PageUrls {
+  first: URL
+  last: URL
+  prev: URL
+  next: URL
+}
+
+# ---------------------------------------------------------------------------
+# Authentication
+# ---------------------------------------------------------------------------
+
+"""A Discogs personal access token for API authentication."""
+type Token {
+  value: String!
+  createdAt: DateTime
+}
+
+"""Application-level API key and secret credentials."""
+type APIKey {
+  key: String!
+  secret: String!
+}
+
+# ---------------------------------------------------------------------------
+# Image
+# ---------------------------------------------------------------------------
+
+"""Category of image (primary cover, secondary, etc.)."""
+enum ImageType {
+  PRIMARY
+  SECONDARY
+}
+
+"""Metadata about a single image asset."""
+type ImageDetails {
+  type: ImageType
+  uri: URL
+  uri150: URL
+  width: Int
+  height: Int
+  resourceUrl: URL
+}
+
+"""Image reference attached to a release, artist, or label."""
+type Image {
+  type: ImageType
+  uri: URL
+  uri150: URL
+  width: Int
+  height: Int
+}
+
+# ---------------------------------------------------------------------------
+# Identifier
+# ---------------------------------------------------------------------------
+
+"""Category of physical release identifier."""
+enum IdentifierType {
+  BARCODE
+  MATRIX_RUNOUT
+  LABEL_CODE
+  RIGHTS_SOCIETY
+  ASIN
+  CATALOG_NUMBER
+  SPARS_CODE
+  OTHER
+}
+
+"""A unique identifier attached to a release (barcode, matrix, etc.)."""
+type Identifier {
+  type: IdentifierType
+  value: String
+  description: String
+}
+
+# ---------------------------------------------------------------------------
+# Format
+# ---------------------------------------------------------------------------
+
+"""The broad media category of a release format."""
+enum FormatType {
+  VINYL
+  CD
+  CASSETTE
+  DVD
+  BOX_SET
+  FILE
+  FLEXI_DISC
+  LATHE_CUT
+  OTHER
+}
+
+"""A textual description qualifier for a format (e.g. 'Album', 'Single')."""
+type FormatDescription {
+  value: String!
+}
+
+"""The physical format specification of a release."""
+type Format {
+  name: String!
+  qty: String
+  text: String
+  descriptions: [FormatDescription!]
+}
+
+"""Named format type with description."""
+type FormatDetails {
+  type: FormatType!
+  label: String!
+  description: String
+}
+
+# ---------------------------------------------------------------------------
+# Genre & Style
+# ---------------------------------------------------------------------------
+
+"""A top-level music genre classification."""
+type Genre {
+  name: String!
+}
+
+"""Extended genre type with description and example releases."""
+type GenreDetails {
+  name: String!
+  description: String
+  releaseCount: Int
+}
+
+"""A musical style sub-classification within a genre."""
+type Style {
+  name: String!
+}
+
+"""Extended style type with description."""
+type StyleDetails {
+  name: String!
+  description: String
+  parentGenre: String
+  releaseCount: Int
+}
+
+# ---------------------------------------------------------------------------
+# Video
+# ---------------------------------------------------------------------------
+
+"""A video (typically YouTube) linked to a release."""
+type Video {
+  uri: URL!
+  title: String
+  description: String
+  duration: Int
+  embed: Boolean
+}
+
+"""Full video details."""
+type VideoDetails {
+  uri: URL!
+  title: String
+  description: String
+  duration: Int
+  embed: Boolean
+  resourceUrl: URL
+}
+
+# ---------------------------------------------------------------------------
+# Track
+# ---------------------------------------------------------------------------
+
+"""Position indicator for a track on a release."""
+type TrackPosition {
+  value: String!
+  side: String
+  number: Int
+}
+
+"""An artist credit on an individual track."""
+type TrackArtist {
+  id: ID!
+  name: String!
+  anv: String
+  join: String
+  role: String
+  tracks: String
+  resourceUrl: URL
+}
+
+"""Basic track listing entry."""
+type Track {
+  position: String
+  type: String
+  title: String!
+  duration: String
+  artists: [TrackArtist!]
+  extraArtists: [TrackArtist!]
+}
+
+"""Extended track details including sub-tracks."""
+type TrackDetails {
+  position: TrackPosition
+  type: String
+  title: String!
+  duration: String
+  artists: [TrackArtist!]
+  extraArtists: [TrackArtist!]
+  subTracks: [Track!]
+}
+
+# ---------------------------------------------------------------------------
+# Label
+# ---------------------------------------------------------------------------
+
+"""A label credit on a release (release ↔ label join)."""
+type ReleaseLabel {
+  id: ID!
+  name: String!
+  catno: String
+  entityType: String
+  entityTypeName: String
+  resourceUrl: URL
+}
+
+"""An image associated with a label."""
+type LabelImage {
+  type: ImageType
+  uri: URL
+  uri150: URL
+  width: Int
+  height: Int
+}
+
+"""Contact details for a label."""
+type LabelContact {
+  phone: String
+  email: String
+  address: String
+  website: URL
+}
+
+"""A sublabel (child label) reference."""
+type LabelSublabel {
+  id: ID!
+  name: String!
+  resourceUrl: URL
+}
+
+"""Summary label reference (used in search results)."""
+type Label {
+  id: ID!
+  name: String!
+  catno: String
+  resourceUrl: URL
+  uri: URL
+}
+
+"""Full label record from the Discogs database."""
+type LabelDetails {
+  id: ID!
+  name: String!
+  profile: String
+  releasesUrl: URL
+  uri: URL
+  resourceUrl: URL
+  images: [LabelImage!]
+  contactInfo: LabelContact
+  parentLabel: Label
+  sublabels: [LabelSublabel!]
+  urls: [URL!]
+  dataQuality: String
+}
+
+# ---------------------------------------------------------------------------
+# Artist
+# ---------------------------------------------------------------------------
+
+"""A role an artist played on a release or track."""
+type ArtistRole {
+  name: String!
+  tracks: String
+}
+
+"""An alternative name (alias) for an artist."""
+type ArtistAlias {
+  id: ID!
+  name: String!
+  resourceUrl: URL
+}
+
+"""A current or former band member reference."""
+type ArtistMembers {
+  id: ID!
+  name: String!
+  active: Boolean
+  resourceUrl: URL
+}
+
+"""An image associated with an artist."""
+type ArtistImage {
+  type: ImageType
+  uri: URL
+  uri150: URL
+  width: Int
+  height: Int
+}
+
+"""Summary artist reference used in release credits and search."""
+type Artist {
+  id: ID!
+  name: String!
+  anv: String
+  join: String
+  role: String
+  tracks: String
+  resourceUrl: URL
+  thumbnailUrl: URL
+}
+
+"""Full artist record from the Discogs database."""
+type ArtistDetails {
+  id: ID!
+  name: String!
+  realname: String
+  namevariations: [String!]
+  profile: String
+  releasesUrl: URL
+  uri: URL
+  resourceUrl: URL
+  images: [ArtistImage!]
+  members: [ArtistMembers!]
+  aliases: [ArtistAlias!]
+  groups: [ArtistAlias!]
+  urls: [URL!]
+  dataQuality: String
+}
+
+# ---------------------------------------------------------------------------
+# Release
+# ---------------------------------------------------------------------------
+
+"""Year information for a release."""
+type ReleaseYear {
+  released: String
+  releasedFormatted: String
+  year: Int
+}
+
+"""A genre assigned to a release."""
+type ReleaseGenre {
+  name: String!
+}
+
+"""A style assigned to a release."""
+type ReleaseStyle {
+  name: String!
+}
+
+"""Summary release reference used in master versions and search."""
+type Release {
+  id: ID!
+  title: String!
+  year: Int
+  country: String
+  thumb: URL
+  coverImage: URL
+  resourceUrl: URL
+  uri: URL
+  formats: [Format!]
+  labels: [ReleaseLabel!]
+  artists: [Artist!]
+  genres: [String!]
+  styles: [String!]
+}
+
+"""Community statistics attached to a release."""
+type Community {
+  have: Int!
+  want: Int!
+  rating: Rating
+  submitter: CommunitySubmitter
+  contributors: [CommunityContributor!]
+  dataQuality: String
+  status: String
+}
+
+"""Number of Discogs members who own a release."""
+type CommunityHave {
+  count: Int!
+}
+
+"""Number of Discogs members who want a release."""
+type CommunityWant {
+  count: Int!
+}
+
+"""User who originally submitted a release to Discogs."""
+type CommunitySubmitter {
+  username: String!
+  resourceUrl: URL
+}
+
+"""A contributor to a release's database entry."""
+type CommunityContributor {
+  username: String!
+  resourceUrl: URL
+}
+
+"""Aggregate rating for a release."""
+type Rating {
+  count: Int!
+  average: Float!
+}
+
+"""Full release record from the Discogs database."""
+type ReleaseDetails {
+  id: ID!
+  title: String!
+  year: Int
+  country: String
+  notes: String
+  released: String
+  releasedFormatted: String
+  status: String
+  thumb: URL
+  coverImage: URL
+  resourceUrl: URL
+  uri: URL
+  masterId: ID
+  masterUrl: URL
+  images: [Image!]
+  artists: [Artist!]
+  extraArtists: [Artist!]
+  labels: [ReleaseLabel!]
+  companies: [ReleaseLabel!]
+  formats: [Format!]
+  genres: [ReleaseGenre!]
+  styles: [ReleaseStyle!]
+  tracklist: [Track!]
+  identifiers: [Identifier!]
+  videos: [Video!]
+  community: Community
+  dataQuality: String
+  estimatedWeight: Int
+  formatQuantity: Int
+  lowestPrice: Float
+  numForSale: Int
+}
+
+# ---------------------------------------------------------------------------
+# Master
+# ---------------------------------------------------------------------------
+
+"""Summary master release reference."""
+type Master {
+  id: ID!
+  title: String!
+  year: Int
+  thumb: URL
+  coverImage: URL
+  resourceUrl: URL
+  uri: URL
+  artists: [Artist!]
+  genres: [String!]
+  styles: [String!]
+}
+
+"""A paginated list of release versions under a master."""
+type MasterVersions {
+  versions: [Release!]!
+  pageInfo: PageInfo!
+}
+
+"""Full master release record."""
+type MasterDetails {
+  id: ID!
+  title: String!
+  year: Int
+  mainRelease: ID
+  mainReleaseUrl: URL
+  mostRecentRelease: ID
+  mostRecentReleaseUrl: URL
+  resourceUrl: URL
+  uri: URL
+  versionsUrl: URL
+  images: [Image!]
+  artists: [Artist!]
+  genres: [ReleaseGenre!]
+  styles: [ReleaseStyle!]
+  tracklist: [Track!]
+  videos: [Video!]
+  numForSale: Int
+  lowestPrice: Float
+  dataQuality: String
+}
+
+# ---------------------------------------------------------------------------
+# Collection
+# ---------------------------------------------------------------------------
+
+"""A user-defined folder within a Discogs collection."""
+type CollectionFolder {
+  id: ID!
+  name: String!
+  count: Int!
+  resourceUrl: URL
+}
+
+"""A single copy of a release within a user's collection."""
+type CollectionItem {
+  id: ID!
+  instanceId: ID!
+  folderId: ID!
+  rating: Int
+  notes: [CollectionNote!]
+  release: Release
+  dateAdded: DateTime
+}
+
+"""A user note on a collection item."""
+type CollectionNote {
+  fieldId: Int!
+  value: String
+}
+
+"""A user's Discogs record collection."""
+type Collection {
+  username: String!
+  folders: [CollectionFolder!]!
+  items(folderId: ID, page: Int, perPage: Int): [CollectionItem!]
+  pageInfo: PageInfo
+}
+
+# ---------------------------------------------------------------------------
+# Wantlist
+# ---------------------------------------------------------------------------
+
+"""A release in a user's wantlist."""
+type WantlistItem {
+  id: ID!
+  rating: Int
+  notes: String
+  release: Release
+  dateAdded: DateTime
+  resourceUrl: URL
+}
+
+"""A user's Discogs wantlist."""
+type Wantlist {
+  username: String!
+  pagination: PageInfo
+  wants: [WantlistItem!]!
+}
+
+# ---------------------------------------------------------------------------
+# Marketplace — Listing
+# ---------------------------------------------------------------------------
+
+"""Media/sleeve condition grade used on Discogs listings."""
+enum ListingCondition {
+  MINT
+  NEAR_MINT
+  VERY_GOOD_PLUS
+  VERY_GOOD
+  GOOD_PLUS
+  GOOD
+  FAIR
+  POOR
+}
+
+"""Summary marketplace listing."""
+type Listing {
+  id: ID!
+  status: String
+  price: Price
+  condition: ListingCondition
+  sleeveCondition: ListingCondition
+  ships_from: String
+  uri: URL
+  resourceUrl: URL
+}
+
+"""Monetary amount with currency."""
+type Price {
+  value: Float!
+  currency: String!
+}
+
+"""Full marketplace listing details."""
+type ListingDetails {
+  id: ID!
+  status: String
+  allowOffers: Boolean
+  condition: ListingCondition
+  sleeveCondition: ListingCondition
+  comments: String
+  privateComments: String
+  shipsFrom: String
+  posted: DateTime
+  price: Price
+  originalPrice: Price
+  audioCassette: Boolean
+  release: Release
+  seller: Seller
+  location: String
+  weight: Float
+  formatQuantity: Int
+  externalId: String
+  uri: URL
+  resourceUrl: URL
+}
+
+# ---------------------------------------------------------------------------
+# Marketplace — Inventory
+# ---------------------------------------------------------------------------
+
+"""A seller's complete marketplace inventory."""
+type Inventory {
+  username: String!
+  listings: [Listing!]!
+  pageInfo: PageInfo
+}
+
+"""An item in a seller's inventory with extended fields."""
+type InventoryItem {
+  listing: ListingDetails!
+  seller: Seller!
+  release: Release!
+}
+
+# ---------------------------------------------------------------------------
+# Marketplace — Seller
+# ---------------------------------------------------------------------------
+
+"""Seller rating statistics."""
+type SellerRating {
+  average: Float
+  count: Int
+  stars: Float
+  totalRating: Float
+}
+
+"""Summary seller reference."""
+type Seller {
+  id: ID!
+  username: String!
+  avatarUrl: URL
+  resourceUrl: URL
+}
+
+"""Full seller profile."""
+type SellerDetails {
+  id: ID!
+  username: String!
+  name: String
+  email: String
+  location: String
+  profile: String
+  homePage: URL
+  avatarUrl: URL
+  bannerUrl: URL
+  shippingPolicySummary: String
+  stats: SellerRating
+  registered: DateTime
+  numForSale: Int
+  numPending: Int
+  resourceUrl: URL
+  uri: URL
+}
+
+# ---------------------------------------------------------------------------
+# Marketplace — Order
+# ---------------------------------------------------------------------------
+
+"""Current status of a marketplace order."""
+enum OrderStatus {
+  NEW_ORDER
+  BUYER_CONTACTED
+  INVOICE_SENT
+  PAYMENT_PENDING
+  PAYMENT_RECEIVED
+  IN_PROGRESS
+  SHIPPED
+  MERGED
+  ORDER_CHANGED
+  REFUND_SENT
+  CANCELLED_NON_PAYING
+  CANCELLED_PER_BUYER_REQUEST
+  CANCELLED_PER_SELLER_REQUEST
+}
+
+"""A single line item within an order."""
+type OrderItem {
+  release: Release
+  price: Price
+  mediaCondition: ListingCondition
+  sleeveCondition: ListingCondition
+  id: ID
+  description: String
+}
+
+"""Summary order reference."""
+type Order {
+  id: ID!
+  status: OrderStatus
+  buyerUsername: String
+  sellerUsername: String
+  total: Price
+  createdAt: DateTime
+  lastActivity: DateTime
+  resourceUrl: URL
+  uri: URL
+}
+
+"""Full order details."""
+type OrderDetails {
+  id: ID!
+  status: OrderStatus
+  buyer: Seller
+  seller: Seller
+  total: Price
+  shippingAddress: String
+  additionalInstructions: String
+  archived: Boolean
+  items: [OrderItem!]
+  shipping: Price
+  fee: Price
+  createdAt: DateTime
+  lastActivity: DateTime
+  messages: [OrderMessage!]
+  resourceUrl: URL
+  uri: URL
+}
+
+"""A message in an order's message thread."""
+type OrderMessage {
+  timestamp: DateTime
+  message: String
+  from: Seller
+  refund: Price
+  order: Order
+  type: String
+}
+
+# ---------------------------------------------------------------------------
+# Search
+# ---------------------------------------------------------------------------
+
+"""Input filters for the Discogs search endpoint."""
+input SearchFilters {
+  type: String
+  title: String
+  release_title: String
+  credit: String
+  artist: String
+  anv: String
+  label: String
+  genre: String
+  style: String
+  country: String
+  year: String
+  format: String
+  catno: String
+  barcode: String
+  track: String
+  submitter: String
+  contributor: String
+}
+
+"""A single result item returned from search."""
+type SearchResult {
+  id: ID!
+  type: String!
+  title: String!
+  thumb: URL
+  coverImage: URL
+  year: String
+  country: String
+  formats: [String!]
+  genres: [String!]
+  styles: [String!]
+  label: [String!]
+  catno: String
+  barcode: [String!]
+  resourceUrl: URL
+  uri: URL
+  masterUrl: URL
+  masterId: ID
+  userData: SearchUserData
+}
+
+"""Authenticated user's relationship to a search result."""
+type SearchUserData {
+  inWantlist: Boolean
+  inCollection: Boolean
+}
+
+"""Paginated search results container."""
+type SearchResults {
+  results: [SearchResult!]!
+  pageInfo: PageInfo!
+}
+
+# ---------------------------------------------------------------------------
+# Root Types
+# ---------------------------------------------------------------------------
+
+type Query {
+  """Fetch a full release record by Discogs release ID."""
+  release(id: ID!): ReleaseDetails
+
+  """Fetch a master release by ID."""
+  master(id: ID!): MasterDetails
+
+  """List all known versions of a master release."""
+  masterVersions(masterId: ID!, page: Int, perPage: Int): MasterVersions
+
+  """Fetch an artist by Discogs artist ID."""
+  artist(id: ID!): ArtistDetails
+
+  """Fetch a label by Discogs label ID."""
+  label(id: ID!): LabelDetails
+
+  """Search the Discogs database."""
+  search(query: String!, filters: SearchFilters, page: Int, perPage: Int): SearchResults
+
+  """Fetch a user's collection."""
+  collection(username: String!): Collection
+
+  """Fetch a user's wantlist."""
+  wantlist(username: String!, page: Int, perPage: Int): Wantlist
+
+  """Fetch a seller's inventory."""
+  inventory(username: String!, status: String, page: Int, perPage: Int): Inventory
+
+  """Fetch a single marketplace listing by ID."""
+  listing(id: ID!): ListingDetails
+
+  """Fetch a single marketplace order by ID."""
+  order(id: ID!): OrderDetails
+
+  """Fetch marketplace price suggestions for a release."""
+  priceSuggestions(releaseId: ID!): JSON
+
+  """Fetch release marketplace statistics."""
+  releaseStats(releaseId: ID!): JSON
+}
+
+input CollectionItemInput {
+  folderId: ID
+  rating: Int
+  notes: String
+}
+
+input WantlistItemInput {
+  rating: Int
+  notes: String
+}
+
+input ListingInput {
+  releaseId: ID!
+  condition: ListingCondition!
+  sleeveCondition: ListingCondition
+  price: Float!
+  comments: String
+  allowOffers: Boolean
+  status: String
+  externalId: String
+  location: String
+  weight: Float
+  formatQuantity: Int
+}
+
+input OrderInput {
+  status: OrderStatus
+  shipping: Float
+}
+
+type Mutation {
+  """Add a release to the authenticated user's collection."""
+  addToCollection(username: String!, releaseId: ID!, input: CollectionItemInput): CollectionItem
+
+  """Remove a release instance from the authenticated user's collection."""
+  removeFromCollection(username: String!, releaseId: ID!, instanceId: ID!): Boolean
+
+  """Update notes/rating on a collection instance."""
+  updateCollectionItem(username: String!, releaseId: ID!, instanceId: ID!, input: CollectionItemInput!): CollectionItem
+
+  """Add a release to the authenticated user's wantlist."""
+  addToWantlist(username: String!, releaseId: ID!, input: WantlistItemInput): WantlistItem
+
+  """Remove a release from the authenticated user's wantlist."""
+  removeFromWantlist(username: String!, releaseId: ID!): Boolean
+
+  """Create a marketplace listing."""
+  createListing(input: ListingInput!): Listing
+
+  """Update an existing marketplace listing."""
+  updateListing(id: ID!, input: ListingInput!): Listing
+
+  """Delete a marketplace listing."""
+  deleteListing(id: ID!): Boolean
+
+  """Update the status or shipping cost on an order."""
+  updateOrder(id: ID!, input: OrderInput!): Order
+
+  """Send a message on an order thread."""
+  sendOrderMessage(orderId: ID!, message: String!, type: String): OrderMessage
+}
