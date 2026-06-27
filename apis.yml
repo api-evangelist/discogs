@@ -61,39 +61,39 @@ apis:
     url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
   - type: OpenAPI
     url: openapi/discogs-openapi-original.yml
-  - type: SDK
+  - type: SDKs
     title: Python SDK (Joalla Community Continuation)
     url: https://github.com/joalla/discogs_client
-  - type: SDK
+  - type: SDKs
     title: Python SDK (Modern Reimplementation)
     url: https://github.com/jmfontaine/discogs-sdk
-  - type: SDK
+  - type: SDKs
     title: Java SDK (Community)
     url: https://github.com/andy-miles/discogs-java-client
-  - type: SDK
+  - type: SDKs
     title: Swift Service (Community)
     url: https://github.com/rock-n-code/discogs-service
-  - type: SDK
+  - type: SDKs
     title: PHP SDK (Discogs Client - Deprecated Official)
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
     title: Monthly XML Data Dumps
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-database.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-image.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-inventory-management.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-marketplace.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-user-collection.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-user-identity.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-user-lists.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/discogs-user-wantlist.yaml
   - url: graphql/discogs-graphql.md
     type: GraphQL
@@ -110,7 +110,7 @@ common:
   url: https://www.discogs.com/developers#page:authentication
 - type: Support
   url: https://support.discogs.com
-- type: Forum
+- type: Forums
   url: https://www.discogs.com/forum/topic/1082
 - type: Status
   url: https://status.discogs.com
