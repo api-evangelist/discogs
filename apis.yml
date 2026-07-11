@@ -98,6 +98,8 @@ apis:
   - url: graphql/discogs-graphql.md
     type: GraphQL
 common:
+- type: OAuthScopes
+  url: scopes/discogs-scopes.yml
 - type: Website
   url: https://www.discogs.com
 - type: Documentation

@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/discogs-openapi-original.yml
+schemes:
+- name: OAuth1
+  source: openapi/discogs-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://discogs.com/oauth/authorize
+    tokenUrl: https://api.discogs.com/oauth/access_token
+  description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on
+    behalf of other users.
+scopes:
+- scope: read
+  description: Read user data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/discogs-openapi-original.yml
+- scope: write
+  description: Write/update user resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/discogs-openapi-original.yml
