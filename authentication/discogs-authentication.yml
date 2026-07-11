@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/discogs-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: DiscogsToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+  sources:
+  - openapi/discogs-openapi-original.yml
+- name: OAuth1
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://discogs.com/oauth/authorize
+    tokenUrl: https://api.discogs.com/oauth/access_token
+    scopes: 2
+  description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on
+    behalf of other users.
+  sources:
+  - openapi/discogs-openapi-original.yml
