@@ -98,6 +98,8 @@ apis:
   - url: graphql/discogs-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/discogs-agentic-access.yml
 - type: DomainSecurity
   url: security/discogs-domain-security.yml
 - type: Authentication
