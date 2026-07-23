@@ -1,0 +1,1094 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database Marketplace API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: Marketplace
+  description: Marketplace listings, orders, fees, price suggestions, and release stats.
+paths:
+  /marketplace/fee/{price}:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get Marketplace Fee
+      operationId: getMarketplaceFee
+      description: Return the Discogs marketplace fee for a transaction at a given price in USD.
+      parameters:
+      - name: price
+        in: path
+        required: true
+        description: Transaction price in USD.
+        schema:
+          type: number
+        example: 10.0
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fee'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/fee/{price}/{currency}:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get Marketplace Fee with Currency
+      operationId: getMarketplaceFeeWithCurrency
+      description: Return the Discogs marketplace fee for a transaction at a given price and currency.
+      parameters:
+      - name: price
+        in: path
+        required: true
+        description: Transaction price.
+        schema:
+          type: number
+        example: 10.0
+      - name: currency
+        in: path
+        required: true
+        description: ISO currency code.
+        schema:
+          type: string
+          enum:
+          - USD
+          - GBP
+          - EUR
+          - CAD
+          - AUD
+          - JPY
+          - CHF
+          - MXN
+          - BRL
+          - NZD
+          - SEK
+          - ZAR
+        example: EUR
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fee'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/listings:
+    post:
+      tags:
+      - Marketplace
+      summary: Discogs Create a New Listing
+      operationId: createListing
+      description: Create a new Marketplace listing. The listing will be added to the authenticated user’s inventory.
+      security:
+      - DiscogsOAuth: []
+        DiscogsTokenAuth: []
+      requestBody:
+        description: Details for the new listing.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingNew'
+      responses:
+        '201':
+          description: Listing successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  listing_id:
+                    type: integer
+                    description: The ID of the newly created listing.
+                    example: 41578241
+                  resource_url:
+                    type: string
+                    format: uri
+                    description: The URL to the newly created listing resource.
+                    example: https://api.discogs.com/marketplace/listings/41578241
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/listings/{listing_id}:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get a Listing
+      operationId: getListing
+      description: View the data associated with a Marketplace listing.
+      security:
+      - DiscogsAuth: []
+      parameters:
+      - $ref: '#/components/parameters/ListingId'
+      - name: curr_abbr
+        in: query
+        description: Currency for marketplace data.
+        schema:
+          $ref: '#/components/schemas/Currency'
+      responses:
+        '200':
+          description: Successfully retrieved listing details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Marketplace
+      summary: Discogs Edit a Listing
+      operationId: editListing
+      description: 'Edit the data associated with a listing.
+
+        Authentication as the listing owner is required.
+
+        If the listing’s status is not `For Sale`, `Draft`, or `Expired`, it cannot be modified.
+
+        '
+      security:
+      - DiscogsOAuth: []
+        DiscogsTokenAuth: []
+      parameters:
+      - $ref: '#/components/parameters/ListingId'
+      requestBody:
+        description: Listing data to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingUpdate'
+      responses:
+        '204':
+          description: Listing was successfully updated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Marketplace
+      summary: Discogs Delete a Listing
+      operationId: deleteListing
+      description: Permanently remove a listing from the Marketplace. Authentication as the listing owner is required.
+      security:
+      - DiscogsOAuth: []
+        DiscogsTokenAuth: []
+      parameters:
+      - $ref: '#/components/parameters/ListingId'
+      responses:
+        '204':
+          description: Listing was successfully deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/orders:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs List Orders
+      operationId: listOrders
+      description: List marketplace orders for the authenticated seller.
+      parameters:
+      - name: status
+        in: query
+        description: Filter by order status.
+        schema:
+          type: string
+          enum:
+          - All
+          - New Order
+          - Buyer Contacted
+          - Invoice Sent
+          - Payment Pending
+          - Payment Received
+          - In Progress
+          - Shipped
+          - Refund Sent
+          - Cancelled
+      - name: created_after
+        in: query
+        description: Return orders created after this ISO 8601 datetime.
+        schema:
+          type: string
+          format: date-time
+      - name: created_before
+        in: query
+        description: Return orders created before this ISO 8601 datetime.
+        schema:
+          type: string
+          format: date-time
+      - name: archived
+        in: query
+        description: Whether to include archived orders.
+        schema:
+          type: boolean
+      - name: sort
+        in: query
+        description: Sort field.
+        schema:
+          type: string
+          enum:
+          - id
+          - buyer
+          - created
+          - status
+          - last_activity
+      - name: sort_order
+        in: query
+        description: Sort order.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: page
+        in: query
+        description: Page number.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Items per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrdersResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/orders/{order_id}:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get Order
+      operationId: getOrder
+      description: Return a single marketplace order.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        description: Order ID (e.g. 1-1).
+        schema:
+          type: string
+        example: 1-1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Marketplace
+      summary: Discogs Update Order
+      operationId: updateOrder
+      description: Update marketplace order fields (status, shipping).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        description: Order ID.
+        schema:
+          type: string
+        example: 1-1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: Shipped
+                shipping:
+                  type: number
+                  example: 5.0
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/orders/{order_id}/messages:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs List Order Messages
+      operationId: listOrderMessages
+      description: List messages exchanged on a marketplace order.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        description: Order ID.
+        schema:
+          type: string
+        example: 1-1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMessagesResponse'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Marketplace
+      summary: Discogs Add Order Message
+      operationId: addOrderMessage
+      description: Post a new message on a marketplace order.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        description: Order ID.
+        schema:
+          type: string
+        example: 1-1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: Your order has shipped.
+                status:
+                  type: string
+                  example: Shipped
+      responses:
+        '201':
+          description: Message added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMessage'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /marketplace/price_suggestions/{release_id}:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get Price Suggestions
+      operationId: getPriceSuggestions
+      description: Return suggested marketplace prices for a release across all media conditions.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceSuggestionsResponse'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /releases/{release_id}/stats:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get Release Marketplace Stats
+      operationId: getReleaseStats
+      description: Return marketplace statistics (lowest price, copies for sale) for a release.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseStats'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{username}/inventory:
+    get:
+      tags:
+      - Marketplace
+      summary: Discogs Get User Inventory
+      operationId: getUserInventory
+      description: 'Returns the list of listings in a user’s inventory. Supports pagination.
+
+        If you are not authenticated as the inventory owner, only items that have a status of "For Sale" will be visible.
+
+        '
+      security:
+      - DiscogsAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Username'
+      - name: status
+        in: query
+        description: Only show items with this status.
+        schema:
+          type: string
+          enum:
+          - For Sale
+          - All
+          - Draft
+          - Expired
+          - Sold
+          - Violation
+          - Suspended
+          - Deleted
+          default: For Sale
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - name: sort
+        in: query
+        description: Sort items by this field.
+        schema:
+          type: string
+          enum:
+          - listed
+          - price
+          - item
+          - artist
+          - label
+          - catno
+          - audio
+          - status
+          - location
+          default: listed
+      - $ref: '#/components/parameters/SortOrder'
+      responses:
+        '200':
+          description: A paginated list of inventory listings.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  listings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Listing'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Listing:
+      type: object
+      description: A Marketplace listing.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        status:
+          type: string
+          enum:
+          - For Sale
+          - Sold
+          - Draft
+          - Expired
+        price:
+          $ref: '#/components/schemas/Price'
+        allow_offers:
+          type: boolean
+        sleeve_condition:
+          $ref: '#/components/schemas/SleeveCondition'
+        condition:
+          $ref: '#/components/schemas/MediaCondition'
+        posted:
+          type: string
+          format: date-time
+        ships_from:
+          type: string
+        comments:
+          type: string
+        seller:
+          $ref: '#/components/schemas/UserSummary'
+        release:
+          $ref: '#/components/schemas/ListingRelease'
+        audio:
+          type: boolean
+        weight:
+          type: integer
+          description: The weight of the item in grams.
+        format_quantity:
+          type: integer
+          description: How many units this item counts as for shipping.
+        external_id:
+          type: string
+          nullable: true
+          description: Private comments for the seller.
+        location:
+          type: string
+          nullable: true
+          description: Physical location of the item.
+    ListingUpdate:
+      type: object
+      description: Data for updating a listing.
+      allOf:
+      - $ref: '#/components/schemas/ListingNew'
+    ListingNew:
+      type: object
+      description: Data for creating a new listing.
+      required:
+      - release_id
+      - condition
+      - price
+      - status
+      properties:
+        release_id:
+          type: integer
+          description: The ID of the release.
+        condition:
+          $ref: '#/components/schemas/MediaCondition'
+        sleeve_condition:
+          $ref: '#/components/schemas/SleeveCondition'
+        price:
+          type: number
+          format: float
+          description: The price of the item in the seller's currency.
+        comments:
+          type: string
+          description: Any remarks about the item.
+        allow_offers:
+          type: boolean
+          default: false
+        status:
+          type: string
+          description: The status of the listing.
+          enum:
+          - For Sale
+          - Draft
+          default: For Sale
+        external_id:
+          type: string
+          description: Private comments for the seller.
+        location:
+          type: string
+          description: Physical location of the item.
+        weight:
+          type: integer
+          description: The weight in grams.
+        format_quantity:
+          type: integer
+          description: How many units this item counts as for shipping.
+    Fee:
+      type: object
+      description: Calculated Discogs marketplace fee for a transaction.
+      properties:
+        value:
+          type: number
+          example: 0.42
+        currency:
+          $ref: '#/components/schemas/Currency'
+    OrdersResponse:
+      type: object
+      description: Paginated marketplace orders for the authenticated seller.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    PriceSuggestion:
+      type: object
+      description: Suggested marketplace price for a release at a given media condition.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          type: number
+          example: 19.99
+    MediaCondition:
+      type: string
+      enum:
+      - Mint (M)
+      - Near Mint (NM or M-)
+      - Very Good Plus (VG+)
+      - Very Good (VG)
+      - Good Plus (G+)
+      - Good (G)
+      - Fair (F)
+      - Poor (P)
+    Order:
+      type: object
+      description: A marketplace order.
+      properties:
+        id:
+          type: string
+          example: 1-1
+        resource_url:
+          type: string
+          format: uri
+        status:
+          type: string
+          example: Payment Received
+        next_status:
+          type: array
+          items:
+            type: string
+        fee:
+          $ref: '#/components/schemas/Price'
+        created:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        shipping:
+          $ref: '#/components/schemas/Price'
+        shipping_address:
+          type: string
+        additional_instructions:
+          type: string
+        archived:
+          type: boolean
+        seller:
+          $ref: '#/components/schemas/UserSummary'
+        buyer:
+          $ref: '#/components/schemas/UserSummary'
+        total:
+          $ref: '#/components/schemas/Price'
+        messages_url:
+          type: string
+          format: uri
+        uri:
+          type: string
+          format: uri
+        last_activity:
+          type: string
+          format: date-time
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    OrderMessagesResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderMessage'
+    ListingRelease:
+      type: object
+      description: Summary of a release within a listing.
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        description:
+          type: string
+        thumbnail:
+          type: string
+          format: uri
+        artist:
+          type: string
+        title:
+          type: string
+        year:
+          type: integer
+        format:
+          type: string
+        catalog_number:
+          type: string
+    SleeveCondition:
+      type: string
+      enum:
+      - Mint (M)
+      - Near Mint (NM or M-)
+      - Very Good Plus (VG+)
+      - Very Good (VG)
+      - Good Plus (G+)
+      - Good (G)
+      - Fair (F)
+      - Poor (P)
+      - Generic
+      - Not Graded
+      - No Cover
+    Currency:
+      type: string
+      enum:
+      - USD
+      - GBP
+      - EUR
+      - CAD
+      - AUD
+      - JPY
+      - CHF
+      - MXN
+      - BRL
+      - NZD
+      - SEK
+      - ZAR
+    PriceSuggestionsResponse:
+      type: object
+      description: Suggested prices for a release across all standard media conditions.
+      additionalProperties:
+        $ref: '#/components/schemas/PriceSuggestion'
+    ReleaseStats:
+      type: object
+      description: Marketplace statistics for a release.
+      properties:
+        lowest_price:
+          $ref: '#/components/schemas/Price'
+        num_for_sale:
+          type: integer
+          example: 47
+        blocked_from_sale:
+          type: boolean
+          example: false
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    OrderMessage:
+      type: object
+      description: A message attached to a marketplace order.
+      properties:
+        refund:
+          type: object
+          properties:
+            amount:
+              type: number
+            order:
+              type: object
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
+        type:
+          type: string
+          enum:
+          - message
+          - status
+          - shipping
+        order:
+          type: object
+          properties:
+            resource_url:
+              type: string
+            id:
+              type: string
+        subject:
+          type: string
+        from:
+          $ref: '#/components/schemas/UserSummary'
+    Price:
+      type: object
+      properties:
+        currency:
+          type: string
+        value:
+          type: number
+          format: float
+  parameters:
+    SortOrder:
+      name: sort_order
+      in: query
+      description: The order to sort the results.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    Username:
+      name: username
+      in: path
+      required: true
+      description: The user's Discogs username.
+      schema:
+        type: string
+      example: rodneyfool
+    ListingId:
+      name: listing_id
+      in: path
+      required: true
+      description: The ID of the marketplace listing.
+      schema:
+        type: integer
+      example: 172723812
+  responses:
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
+    Forbidden:
+      description: Forbidden. You do not have permission to access this resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You don't have permission to access this resource.
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+  headers:
+    Link:
+      description: 'Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.
+
+        '
+      schema:
+        type: string
+        example: <https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel="next", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel="last"
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers

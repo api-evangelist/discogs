@@ -1,0 +1,304 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database User Lists API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: User Lists
+  description: Browse and manage user-created lists of releases, artists, and labels.
+paths:
+  /lists/{list_id}:
+    get:
+      tags:
+      - User Lists
+      summary: Discogs Get List
+      operationId: getList
+      description: Return a single user-created list, including all items.
+      parameters:
+      - name: list_id
+        in: path
+        required: true
+        description: List ID.
+        schema:
+          type: integer
+        example: 12345
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{username}/lists:
+    get:
+      tags:
+      - User Lists
+      summary: Discogs Get User Lists
+      operationId: getUserLists
+      description: Return a paginated list of user-created lists.
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: Discogs username.
+        schema:
+          type: string
+        example: rodneyfool
+      - name: page
+        in: query
+        description: Page number.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Items per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListsResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    List:
+      type: object
+      description: A user-created list of releases, masters, artists, or labels.
+      properties:
+        id:
+          type: integer
+          example: 12345
+        name:
+          type: string
+          example: Best Jazz Albums of 1960s
+        description:
+          type: string
+          example: My personal favorites.
+        public:
+          type: boolean
+          example: true
+        date_added:
+          type: string
+          format: date-time
+          example: '2026-05-29T12:00:00Z'
+        date_changed:
+          type: string
+          format: date-time
+          example: '2026-05-29T12:00:00Z'
+        uri:
+          type: string
+          format: uri
+          example: https://www.discogs.com/lists/12345
+        resource_url:
+          type: string
+          format: uri
+        image_url:
+          type: string
+          format: uri
+        user:
+          $ref: '#/components/schemas/UserSummary'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ListsResponse:
+      type: object
+      description: Paginated response of a user's lists.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        lists:
+          type: array
+          items:
+            $ref: '#/components/schemas/List'
+    ListItem:
+      type: object
+      description: A single item inside a user list.
+      properties:
+        id:
+          type: integer
+          example: 4567
+        type:
+          type: string
+          enum:
+          - release
+          - master
+          - artist
+          - label
+          example: release
+        display_title:
+          type: string
+          example: Miles Davis — Kind Of Blue
+        uri:
+          type: string
+          format: uri
+        comment:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers

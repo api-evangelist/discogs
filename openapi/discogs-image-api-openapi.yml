@@ -1,0 +1,134 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database Image API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: Image
+  description: Image asset retrieval (proxied via OAuth).
+paths:
+  /images/{filename}:
+    get:
+      tags:
+      - Image
+      summary: Discogs Get Image
+      operationId: getImage
+      description: Return a binary image asset. Image URLs in API responses are proxied through this endpoint and require OAuth and a unique User-Agent.
+      parameters:
+      - name: filename
+        in: path
+        required: true
+        description: Image filename, as returned by other endpoints.
+        schema:
+          type: string
+        example: R-249504-1334592212.jpeg
+      responses:
+        '200':
+          description: Image binary
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers

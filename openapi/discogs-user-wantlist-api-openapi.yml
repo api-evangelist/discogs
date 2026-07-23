@@ -1,0 +1,406 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database User Wantlist API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: User Wantlist
+  description: Manage a user's wantlist.
+paths:
+  /users/{username}/wants:
+    get:
+      tags:
+      - User Wantlist
+      summary: Discogs Get User Wantlist
+      operationId: getUserWantlist
+      description: 'Returns the list of releases in a user''s wantlist. Supports pagination.
+
+        If the wantlist is private, authentication as the owner is required.
+
+        '
+      security:
+      - DiscogsAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Username'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of releases in the wantlist.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  wants:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Want'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{username}/wants/{release_id}:
+    put:
+      tags:
+      - User Wantlist
+      summary: Discogs Add Release to Wantlist
+      operationId: addReleaseToWantlist
+      description: Add a release to a user's wantlist. Authentication as the owner is required.
+      security:
+      - DiscogsOAuth: []
+        DiscogsTokenAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Username'
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        description: Optional notes and rating for the wantlist item.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: User notes for this item.
+                rating:
+                  type: integer
+                  description: User's rating for the release (0-5).
+                  minimum: 0
+                  maximum: 5
+                  default: 0
+      responses:
+        '201':
+          description: Release added to wantlist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Want'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - User Wantlist
+      summary: Discogs Delete Release from Wantlist
+      operationId: deleteReleaseFromWantlist
+      description: Delete a release from a user's wantlist. Authentication as the owner is required.
+      security:
+      - DiscogsOAuth: []
+        DiscogsTokenAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Username'
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '204':
+          description: Release successfully deleted from wantlist.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    ReleaseId:
+      name: release_id
+      in: path
+      required: true
+      description: The ID of the release.
+      schema:
+        type: integer
+      example: 249504
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    Username:
+      name: username
+      in: path
+      required: true
+      description: The user's Discogs username.
+      schema:
+        type: string
+      example: rodneyfool
+  responses:
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+  schemas:
+    Want:
+      type: object
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        rating:
+          type: integer
+        notes:
+          type: string
+          nullable: true
+        basic_information:
+          $ref: '#/components/schemas/ReleaseSummary'
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ReleaseSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        year:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        thumb:
+          type: string
+          format: uri
+        cover_image:
+          type: string
+          format: uri
+        formats:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseFormat'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        genres:
+          type: array
+          items:
+            type: string
+        styles:
+          type: array
+          items:
+            type: string
+    ArtistSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        anv:
+          type: string
+          nullable: true
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
+    ReleaseFormat:
+      type: object
+      properties:
+        name:
+          type: string
+        qty:
+          type: string
+        text:
+          type: string
+          nullable: true
+        descriptions:
+          type: array
+          items:
+            type: string
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+  headers:
+    Link:
+      description: 'Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.
+
+        '
+      schema:
+        type: string
+        example: <https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel="next", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel="last"
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers

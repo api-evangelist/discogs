@@ -1,0 +1,474 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database Inventory Management API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: Inventory Management
+  description: Bulk inventory export and CSV upload management.
+paths:
+  /inventory/export:
+    get:
+      tags:
+      - Inventory Management
+      summary: Discogs List Inventory Exports
+      operationId: listInventoryExports
+      description: List past inventory CSV export jobs for the authenticated user.
+      parameters:
+      - name: page
+        in: query
+        description: Page number.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Items per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryExportsResponse'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Inventory Management
+      summary: Discogs Request Inventory Export
+      operationId: requestInventoryExport
+      description: Request an asynchronous CSV export of the authenticated user's inventory.
+      responses:
+        '201':
+          description: Export job queued
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/export/{export_id}:
+    get:
+      tags:
+      - Inventory Management
+      summary: Discogs Get Inventory Export
+      operationId: getInventoryExport
+      description: Return details about a single inventory export job.
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        description: Export job ID.
+        schema:
+          type: integer
+        example: 599
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryExport'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/export/{export_id}/download:
+    get:
+      tags:
+      - Inventory Management
+      summary: Discogs Download Inventory Export
+      operationId: downloadInventoryExport
+      description: Download the CSV file for a completed inventory export.
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        description: Export job ID.
+        schema:
+          type: integer
+        example: 599
+      responses:
+        '200':
+          description: CSV file
+          content:
+            text/csv:
+              schema:
+                type: string
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/upload:
+    get:
+      tags:
+      - Inventory Management
+      summary: Discogs List Inventory Uploads
+      operationId: listInventoryUploads
+      description: List past CSV inventory upload jobs.
+      parameters:
+      - name: page
+        in: query
+        description: Page number.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Items per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUploadsResponse'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/upload/add:
+    post:
+      tags:
+      - Inventory Management
+      summary: Discogs Add Inventory Upload
+      operationId: addInventoryUpload
+      description: Submit a CSV file to add inventory listings in bulk.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                upload:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Upload job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpload'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/upload/change:
+    post:
+      tags:
+      - Inventory Management
+      summary: Discogs Change Inventory Upload
+      operationId: changeInventoryUpload
+      description: Submit a CSV file to update existing inventory listings in bulk.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                upload:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Upload job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpload'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/upload/delete:
+    post:
+      tags:
+      - Inventory Management
+      summary: Discogs Delete Inventory Upload
+      operationId: deleteInventoryUpload
+      description: Submit a CSV file to delete inventory listings in bulk.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                upload:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Upload job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpload'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/upload/{upload_id}:
+    get:
+      tags:
+      - Inventory Management
+      summary: Discogs Get Inventory Upload
+      operationId: getInventoryUpload
+      description: Return details about a single CSV inventory upload job.
+      parameters:
+      - name: upload_id
+        in: path
+        required: true
+        description: Upload job ID.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpload'
+      security:
+      - OAuth1:
+        - read
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    InventoryExport:
+      type: object
+      description: A marketplace inventory CSV export job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - in progress
+          - success
+          - failure
+        created_ts:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        finished_ts:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+          format: uri
+        filename:
+          type: string
+          example: inventory-export.csv
+        id:
+          type: integer
+          example: 599
+        type:
+          type: string
+          example: export
+    InventoryUploadsResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryUpload'
+    InventoryUpload:
+      type: object
+      description: A CSV inventory upload job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - success
+          - failure
+          - partial_success
+        created_ts:
+          type: string
+          format: date-time
+        last_activity:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - add
+          - change
+          - delete
+        id:
+          type: integer
+        filename:
+          type: string
+        results_url:
+          type: string
+          format: uri
+    InventoryExportsResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryExport'
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers

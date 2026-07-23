@@ -1,0 +1,1357 @@
+openapi: 3.1.1
+info:
+  title: Discogs Database API
+  version: v2.0.0
+  description: '# Overview
+
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
+
+
+    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
+
+
+    ## Authentication
+
+    Most endpoints require authentication. The API supports multiple methods:
+
+    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
+
+    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
+
+    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
+
+
+    Your application **must** provide a unique `User-Agent` string with every request.
+
+
+    ## Rate Limiting
+
+    Requests are throttled by source IP.
+
+    - **Authenticated Requests:** 60 requests per minute.
+
+    - **Unauthenticated Requests:** 25 requests per minute.
+
+
+    The API returns the following headers to help you track your usage:
+
+    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
+
+    - `X-Discogs-Ratelimit-Used`: Requests you have made.
+
+    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
+
+
+    ## Data Licensing
+
+    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
+
+    '
+  termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  contact:
+    name: Discogs API Support
+    url: https://www.discogs.com/forum/topic/1082
+    email: api@discogs.com
+  license:
+    name: API Terms of Use
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  x-logo:
+    url: https://www.discogs.com/images/discogs-white.png
+    backgroundColor: '#333333'
+  x-providerName: discogs.com
+  x-origin:
+  - format: markdown
+    url: https://www.discogs.com/developers
+    version: v2.0
+  x-generated-from: documentation
+  x-last-validated: '2026-05-29'
+servers:
+- url: https://api.discogs.com
+  description: Production API Server
+security:
+- DiscogsToken: []
+tags:
+- name: Database
+  description: 'Access Discogs database: artists, releases, masters, labels, and search.'
+paths:
+  /artists/{artist_id}:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get an Artist
+      operationId: getArtist
+      description: Retrieves details for a specific artist.
+      parameters:
+      - $ref: '#/components/parameters/ArtistId'
+      responses:
+        '200':
+          description: Successfully retrieved artist details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /artists/{artist_id}/releases:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get Artist Releases
+      operationId: getArtistReleases
+      description: Returns a list of releases and masters associated with an artist. Supports pagination.
+      parameters:
+      - $ref: '#/components/parameters/ArtistId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/SortArtistReleases'
+      - $ref: '#/components/parameters/SortOrder'
+      responses:
+        '200':
+          description: A paginated list of the artist's releases.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  releases:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ArtistRelease'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /database/search:
+    get:
+      tags:
+      - Database
+      summary: Discogs Search the Database
+      operationId: searchDatabase
+      description: 'Issue a search query to the Discogs database. This endpoint supports pagination and requires authentication.
+
+        '
+      parameters:
+      - name: query
+        in: query
+        description: Your search query.
+        schema:
+          type: string
+        example: The Cure
+      - name: type
+        in: query
+        description: The type of resource to search for.
+        schema:
+          type: string
+          enum:
+          - release
+          - master
+          - artist
+          - label
+      - name: title
+        in: query
+        description: Search by combined "Artist Name - Release Title" field.
+        schema:
+          type: string
+        example: The Cure - Disintegration
+      - name: release_title
+        in: query
+        description: Search release titles.
+        schema:
+          type: string
+        example: Disintegration
+      - name: credit
+        in: query
+        description: Search release credits.
+        schema:
+          type: string
+        example: Robert Smith
+      - name: artist
+        in: query
+        description: Search artist names.
+        schema:
+          type: string
+        example: The Cure
+      - name: anv
+        in: query
+        description: Search an "Artist Name Variation" (ANV).
+        schema:
+          type: string
+      - name: label
+        in: query
+        description: Search label names.
+        schema:
+          type: string
+        example: Fiction Records
+      - name: genre
+        in: query
+        description: Search genres.
+        schema:
+          type: string
+        example: Rock
+      - name: style
+        in: query
+        description: Search styles.
+        schema:
+          type: string
+        example: Gothic Rock
+      - name: country
+        in: query
+        description: Search release country.
+        schema:
+          type: string
+        example: UK
+      - name: year
+        in: query
+        description: Search release year.
+        schema:
+          type: string
+        example: '1989'
+      - name: format
+        in: query
+        description: Search formats.
+        schema:
+          type: string
+        example: Vinyl
+      - name: catno
+        in: query
+        description: Search catalog number.
+        schema:
+          type: string
+        example: FIXH 14
+      - name: barcode
+        in: query
+        description: Search barcodes.
+        schema:
+          type: string
+        example: 042283923518
+      - name: track
+        in: query
+        description: Search track titles.
+        schema:
+          type: string
+        example: Lovesong
+      - name: submitter
+        in: query
+        description: Search by submitter username.
+        schema:
+          type: string
+      - name: contributor
+        in: query
+        description: Search by contributor username.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      security:
+      - DiscogsAuth: []
+      responses:
+        '200':
+          description: Search results returned successfully.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  results:
+                    type: array
+                    items:
+                      oneOf:
+                      - $ref: '#/components/schemas/SearchResultRelease'
+                      - $ref: '#/components/schemas/SearchResultMaster'
+                      - $ref: '#/components/schemas/SearchResultArtist'
+                      - $ref: '#/components/schemas/SearchResultLabel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: Internal Server Error. The query may be too complex or malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Timeout:
+                  value:
+                    message: Query time exceeded. Please try a simpler query.
+                Malformed:
+                  value:
+                    message: An internal server error occurred. (Malformed query?)
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /labels/{label_id}:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get a Label
+      operationId: getLabel
+      description: Retrieves details for a specific label.
+      parameters:
+      - $ref: '#/components/parameters/LabelId'
+      responses:
+        '200':
+          description: Successfully retrieved label details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /labels/{label_id}/releases:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get All Label Releases
+      operationId: getLabelReleases
+      description: Returns a list of releases associated with a label. Supports pagination.
+      parameters:
+      - $ref: '#/components/parameters/LabelId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of the label's releases.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  releases:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LabelRelease'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /masters/{master_id}:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get a Master Release
+      operationId: getMasterRelease
+      description: Retrieves details for a specific master release. A master release represents a set of similar releases.
+      parameters:
+      - $ref: '#/components/parameters/MasterId'
+      responses:
+        '200':
+          description: Successfully retrieved master release details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Master'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /masters/{master_id}/versions:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get Master Release Versions
+      operationId: getMasterReleaseVersions
+      description: Retrieves a list of all releases that are versions of the specified master release. Supports pagination.
+      parameters:
+      - $ref: '#/components/parameters/MasterId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/FormatFilter'
+      - $ref: '#/components/parameters/LabelFilter'
+      - $ref: '#/components/parameters/ReleasedFilter'
+      - $ref: '#/components/parameters/CountryFilter'
+      - $ref: '#/components/parameters/SortMasterVersions'
+      - $ref: '#/components/parameters/SortOrder'
+      responses:
+        '200':
+          description: A paginated list of releases belonging to the master.
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReleaseVersion'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /releases/{release_id}:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get a Release
+      operationId: getRelease
+      description: Retrieves details for a specific release.
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: curr_abbr
+        in: query
+        description: Currency for marketplace data.
+        schema:
+          $ref: '#/components/schemas/Currency'
+      responses:
+        '200':
+          description: Successfully retrieved release details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+              example:
+                id: 249504
+                status: Accepted
+                year: 1987
+                resource_url: https://api.discogs.com/releases/249504
+                uri: https://www.discogs.com/Rick-Astley-Never-Gonna-Give-You-Up/release/249504
+                artists:
+                - id: 72872
+                  name: Rick Astley
+                  resource_url: https://api.discogs.com/artists/72872
+                title: Never Gonna Give You Up
+                country: UK
+                released: '1987'
+                notes: UK Release has a black label...
+                genres:
+                - Electronic
+                - Pop
+                styles:
+                - Synth-pop
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /releases/{release_id}/rating:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get Release Community Rating
+      operationId: getReleaseCommunityRating
+      description: Return the aggregate community rating for a release.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRating'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /releases/{release_id}/rating/{username}:
+    get:
+      tags:
+      - Database
+      summary: Discogs Get Release Rating by User
+      operationId: getReleaseRatingByUser
+      description: Return a user's rating of a release.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      - name: username
+        in: path
+        required: true
+        description: Discogs username.
+        schema:
+          type: string
+        example: memory
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReleaseRating'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Database
+      summary: Discogs Update Release Rating by User
+      operationId: updateReleaseRatingByUser
+      description: Set or update the authenticated user's release rating.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      - name: username
+        in: path
+        required: true
+        description: Discogs username.
+        schema:
+          type: string
+        example: memory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  minimum: 0
+                  maximum: 5
+                  example: 5
+      responses:
+        '201':
+          description: Rating saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReleaseRating'
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Database
+      summary: Discogs Delete Release Rating by User
+      operationId: deleteReleaseRatingByUser
+      description: Remove a release rating for the authenticated user.
+      parameters:
+      - name: release_id
+        in: path
+        required: true
+        description: Release ID.
+        schema:
+          type: integer
+        example: 249504
+      - name: username
+        in: path
+        required: true
+        description: Discogs username.
+        schema:
+          type: string
+        example: memory
+      responses:
+        '204':
+          description: Rating deleted
+      security:
+      - OAuth1:
+        - write
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    ReleaseId:
+      name: release_id
+      in: path
+      required: true
+      description: The ID of the release.
+      schema:
+        type: integer
+      example: 249504
+    SortOrder:
+      name: sort_order
+      in: query
+      description: The order to sort the results.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    FormatFilter:
+      name: format
+      in: query
+      description: Filter by format.
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    SortArtistReleases:
+      name: sort
+      in: query
+      description: The field to sort the results by.
+      schema:
+        type: string
+        enum:
+        - year
+        - title
+        - format
+        default: year
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      description: The ID of the label.
+      schema:
+        type: integer
+      example: 1
+    ReleasedFilter:
+      name: released
+      in: query
+      description: Filter by release year.
+      schema:
+        type: string
+    CountryFilter:
+      name: country
+      in: query
+      description: Filter by country.
+      schema:
+        type: string
+    ArtistId:
+      name: artist_id
+      in: path
+      required: true
+      description: The ID of the artist.
+      schema:
+        type: integer
+      example: 108713
+    LabelFilter:
+      name: label
+      in: query
+      description: Filter by label.
+      schema:
+        type: string
+    MasterId:
+      name: master_id
+      in: path
+      required: true
+      description: The ID of the master release.
+      schema:
+        type: integer
+      example: 1000
+    SortMasterVersions:
+      name: sort
+      in: query
+      description: The field to sort the results by.
+      schema:
+        type: string
+        enum:
+        - released
+        - title
+        - format
+        - label
+        - catno
+        - country
+        default: released
+  schemas:
+    UserReleaseRating:
+      type: object
+      description: A user's own rating for a release.
+      properties:
+        username:
+          type: string
+          example: jsmith
+        release:
+          type: integer
+          example: 249504
+        rating:
+          type: integer
+          minimum: 0
+          maximum: 5
+          example: 5
+    Label:
+      type: object
+      description: Represents a label, company, recording studio, etc.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        releases_url:
+          type: string
+          format: uri
+        profile:
+          type: string
+          nullable: true
+        contact_info:
+          type: string
+          nullable: true
+        parent_label:
+          $ref: '#/components/schemas/LabelSummary'
+          nullable: true
+        sublabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        data_quality:
+          type: string
+    Video:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+        duration:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        embed:
+          type: boolean
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    Identifier:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+    SearchResultArtist:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - artist
+    SearchResultMaster:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - master
+          main_release:
+            type: integer
+    LabelRelease:
+      type: object
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        thumb:
+          type: string
+          format: uri
+        artist:
+          type: string
+        title:
+          type: string
+        format:
+          type: string
+        catno:
+          type: string
+        status:
+          type: string
+        year:
+          type: integer
+    Artist:
+      type: object
+      description: Represents a person or group in the Discogs database.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        realname:
+          type: string
+          nullable: true
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        releases_url:
+          type: string
+          format: uri
+        profile:
+          type: string
+          nullable: true
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        namevariations:
+          type: array
+          items:
+            type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        data_quality:
+          type: string
+    ArtistSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        anv:
+          type: string
+          nullable: true
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
+    ArtistRelease:
+      type: object
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+          - release
+          - master
+        title:
+          type: string
+        thumb:
+          type: string
+          format: uri
+        artist:
+          type: string
+        role:
+          type: string
+        year:
+          type: integer
+          nullable: true
+        format:
+          type: string
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+    Release:
+      type: object
+      description: Represents a particular physical or digital object released by one or more Artists.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        status:
+          type: string
+        data_quality:
+          type: string
+        thumb:
+          type: string
+          format: uri
+        country:
+          type: string
+          nullable: true
+        year:
+          type: integer
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        released:
+          type: string
+          description: Release date in a free-text format.
+        released_formatted:
+          type: string
+          description: Formatted release date.
+        date_added:
+          type: string
+          format: date-time
+        date_changed:
+          type: string
+          format: date-time
+        lowest_price:
+          type: number
+          format: float
+          nullable: true
+        num_for_sale:
+          type: integer
+          nullable: true
+        estimated_weight:
+          type: integer
+          nullable: true
+        format_quantity:
+          type: integer
+        master_id:
+          type: integer
+          nullable: true
+        master_url:
+          type: string
+          format: uri
+          nullable: true
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        extraartists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        formats:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseFormat'
+        genres:
+          type: array
+          items:
+            type: string
+        styles:
+          type: array
+          items:
+            type: string
+        community:
+          $ref: '#/components/schemas/Community'
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        tracklist:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        videos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Video'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    Master:
+      type: object
+      description: Represents a set of similar Releases.
+      allOf:
+      - $ref: '#/components/schemas/Release'
+      - type: object
+        properties:
+          main_release:
+            type: integer
+            description: The ID of the main release for this master.
+          main_release_url:
+            type: string
+            format: uri
+          versions_url:
+            type: string
+            format: uri
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+    ReleaseFormat:
+      type: object
+      properties:
+        name:
+          type: string
+        qty:
+          type: string
+        text:
+          type: string
+          nullable: true
+        descriptions:
+          type: array
+          items:
+            type: string
+    Community:
+      type: object
+      properties:
+        have:
+          type: integer
+        want:
+          type: integer
+        rating:
+          type: object
+          properties:
+            count:
+              type: integer
+            average:
+              type: number
+              format: float
+        submitter:
+          $ref: '#/components/schemas/UserSummary'
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSummary'
+        data_quality:
+          type: string
+        status:
+          type: string
+    SearchResultLabel:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - label
+    Currency:
+      type: string
+      enum:
+      - USD
+      - GBP
+      - EUR
+      - CAD
+      - AUD
+      - JPY
+      - CHF
+      - MXN
+      - BRL
+      - NZD
+      - SEK
+      - ZAR
+    SearchResultRelease:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+          - release
+        title:
+          type: string
+        thumb:
+          type: string
+          format: uri
+        cover_image:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+        uri:
+          type: string
+        country:
+          type: string
+        year:
+          type: string
+        format:
+          type: array
+          items:
+            type: string
+        label:
+          type: array
+          items:
+            type: string
+        catno:
+          type: string
+        genre:
+          type: array
+          items:
+            type: string
+        style:
+          type: array
+          items:
+            type: string
+        barcode:
+          type: array
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ReleaseVersion:
+      type: object
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        status:
+          type: string
+        thumb:
+          type: string
+          format: uri
+        format:
+          type: string
+        country:
+          type: string
+          nullable: true
+        title:
+          type: string
+        label:
+          type: string
+        released:
+          type: string
+        major_formats:
+          type: array
+          items:
+            type: string
+        catno:
+          type: string
+          nullable: true
+        stats:
+          type: object
+          properties:
+            community:
+              type: object
+              properties:
+                in_collection:
+                  type: integer
+                in_wantlist:
+                  type: integer
+    Image:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - primary
+          - secondary
+        uri:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+        uri150:
+          type: string
+          format: uri
+        width:
+          type: integer
+        height:
+          type: integer
+    Track:
+      type: object
+      properties:
+        position:
+          type: string
+        type_:
+          type: string
+        title:
+          type: string
+        duration:
+          type: string
+        extraartists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+    ReleaseRating:
+      type: object
+      description: Aggregate community rating for a release.
+      properties:
+        release_id:
+          type: integer
+          example: 249504
+        rating:
+          type: object
+          properties:
+            count:
+              type: integer
+            average:
+              type: number
+  responses:
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+  headers:
+    Link:
+      description: 'Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.
+
+        '
+      schema:
+        type: string
+        example: <https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel="next", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel="last"
+  securitySchemes:
+    DiscogsToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs personal access token in header: ''Discogs token={token}''.'
+    DiscogsKeySecret:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Discogs consumer key + secret in header: ''Discogs key={key}, secret={secret}''.'
+    OAuth1:
+      type: oauth2
+      description: OAuth 1.0a flow modeled as OAuth2 for tooling. Required for write actions on behalf of other users.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discogs.com/oauth/authorize
+          tokenUrl: https://api.discogs.com/oauth/access_token
+          scopes:
+            read: Read user data
+            write: Write/update user resources
+externalDocs:
+  description: Discogs Developers Portal
+  url: https://www.discogs.com/developers
