@@ -1,4 +1,18 @@
 aid: discogs
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/discogs.png
 name: Discogs
 description: 'Discogs is a community-built music database and marketplace for physical
   music releases (vinyl, CD, cassette, and more). The Discogs API gives developers
@@ -27,30 +41,16 @@ tags:
 - Vinyl
 - Public APIs
 apis:
-- aid: discogs:discogs-api
-  name: Discogs API
-  description: 'RESTful API to the Discogs music catalog and marketplace. Covers the
-    Database (artist, release, master, label, search), authenticated User surfaces
-
-    (identity, profile, collection, wantlist, lists, contributions, submissions, ratings),
-    Marketplace (inventory, orders, listings, fees, price suggestions,
-
-    release stats), bulk Inventory Management (CSV export/upload), and OAuth-signed
-    Image retrieval.
-
-    '
+- aid: discogs:discogs-database-api
+  name: Discogs Database API
+  description: 'Access Discogs database: artists, releases, masters, labels, and search.'
   humanURL: https://www.discogs.com/developers
   baseURL: https://api.discogs.com
   tags:
   - Database
-  - Marketplace
-  - User Identity
-  - User Collection
-  - User Wantlist
-  - User Lists
-  - Inventory Management
-  - Image
   properties:
+  - type: OpenAPI
+    url: openapi/discogs-database-api-openapi.yml
   - type: Documentation
     url: https://www.discogs.com/developers
   - type: APIReference
@@ -59,26 +59,18 @@ apis:
     url: https://www.discogs.com/developers#page:authentication
   - type: TermsOfService
     url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
-  - type: OpenAPI
-    url: openapi/discogs-openapi-original.yml
   - type: SDKs
-    title: Python SDK (Joalla Community Continuation)
     url: https://github.com/joalla/discogs_client
   - type: SDKs
-    title: Python SDK (Modern Reimplementation)
     url: https://github.com/jmfontaine/discogs-sdk
   - type: SDKs
-    title: Java SDK (Community)
     url: https://github.com/andy-miles/discogs-java-client
   - type: SDKs
-    title: Swift Service (Community)
     url: https://github.com/rock-n-code/discogs-service
   - type: SDKs
-    title: PHP SDK (Discogs Client - Deprecated Official)
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-    title: Monthly XML Data Dumps
   - type: X-NaftikoCapability
     url: capabilities/discogs-database.yaml
   - type: X-NaftikoCapability
@@ -95,8 +87,344 @@ apis:
     url: capabilities/discogs-user-lists.yaml
   - type: X-NaftikoCapability
     url: capabilities/discogs-user-wantlist.yaml
-  - url: graphql/discogs-graphql.md
-    type: GraphQL
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-image-api
+  name: Discogs Image API
+  description: Image asset retrieval (proxied via OAuth).
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - Image
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-image-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-inventory-management-api
+  name: Discogs Inventory Management API
+  description: Bulk inventory export and CSV upload management.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - Inventory Management
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-inventory-management-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-marketplace-api
+  name: Discogs Marketplace API
+  description: Marketplace listings, orders, fees, price suggestions, and release stats.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - Marketplace
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-marketplace-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-user-collection-api
+  name: Discogs User Collection API
+  description: Manage a user's record collection.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - User Collection
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-user-collection-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-user-identity-api
+  name: Discogs User Identity API
+  description: Authenticated user identity, profile, submissions, and contributions.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - User Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-user-identity-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-user-lists-api
+  name: Discogs User Lists API
+  description: Browse and manage user-created lists of releases, artists, and labels.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - User Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-user-lists-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
+- aid: discogs:discogs-user-wantlist-api
+  name: Discogs User Wantlist API
+  description: Manage a user's wantlist.
+  humanURL: https://www.discogs.com/developers
+  baseURL: https://api.discogs.com
+  tags:
+  - User Wantlist
+  properties:
+  - type: OpenAPI
+    url: openapi/discogs-user-wantlist-api-openapi.yml
+  - type: Documentation
+    url: https://www.discogs.com/developers
+  - type: APIReference
+    url: https://www.discogs.com/developers
+  - type: Authentication
+    url: https://www.discogs.com/developers#page:authentication
+  - type: TermsOfService
+    url: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
+  - type: SDKs
+    url: https://github.com/joalla/discogs_client
+  - type: SDKs
+    url: https://github.com/jmfontaine/discogs-sdk
+  - type: SDKs
+    url: https://github.com/andy-miles/discogs-java-client
+  - type: SDKs
+    url: https://github.com/rock-n-code/discogs-service
+  - type: SDKs
+    url: https://github.com/discogs/discogs_client
+  - type: BulkData
+    url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-database.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-image.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-inventory-management.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-marketplace.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-collection.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-identity.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-lists.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/discogs-user-wantlist.yaml
+  - type: GraphQL
+    url: graphql/discogs-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/discogs-agentic-access.yml
