@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: Discogs Database API
-  version: v2.0.0
+  version: "v2.0"
   description: '# Overview
 
     The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
@@ -62,7 +62,6 @@ info:
   x-origin:
   - format: markdown
     url: https://www.discogs.com/developers
-    version: v2.0
   x-generated-from: documentation
   x-last-validated: '2026-05-29'
 servers:

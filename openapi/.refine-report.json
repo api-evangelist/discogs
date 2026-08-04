@@ -1,0 +1,28 @@
+{
+  "provider": "discogs",
+  "sources": [
+    "discogs-database-api-openapi.yml",
+    "discogs-image-api-openapi.yml",
+    "discogs-inventory-management-api-openapi.yml",
+    "discogs-marketplace-api-openapi.yml",
+    "discogs-user-collection-api-openapi.yml",
+    "discogs-user-identity-api-openapi.yml",
+    "discogs-user-lists-api-openapi.yml",
+    "discogs-user-wantlist-api-openapi.yml"
+  ],
+  "outputs": [
+    "discogs-database-api-openapi.yml",
+    "discogs-image-api-openapi.yml",
+    "discogs-inventory-management-api-openapi.yml",
+    "discogs-marketplace-api-openapi.yml",
+    "discogs-user-collection-api-openapi.yml",
+    "discogs-user-identity-api-openapi.yml",
+    "discogs-user-lists-api-openapi.yml",
+    "discogs-user-wantlist-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
