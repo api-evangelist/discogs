@@ -3,10 +3,7 @@
   "feeds": [
     {
       "source": "https://discogs.com/digs/feed/",
-      "feed_url": "https://discogs.com/digs/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
+      "error": "HTTPError"
     },
     {
       "source": "https://status.discogs.com",
@@ -17,5 +14,5 @@
     }
   ],
   "post_count": 14,
-  "fetched": "2026-08-01T15:49:00Z"
+  "fetched": "2026-08-06T14:08:46Z"
 }
