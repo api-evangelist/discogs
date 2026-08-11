@@ -71,22 +71,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-image-api
@@ -119,22 +103,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-inventory-management-api
@@ -167,22 +135,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-marketplace-api
@@ -215,22 +167,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-collection-api
@@ -263,22 +199,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-identity-api
@@ -311,22 +231,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-lists-api
@@ -359,22 +263,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-wantlist-api
@@ -407,22 +295,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-database.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-image.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-inventory-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-marketplace.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-collection.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-identity.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-lists.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/discogs-user-wantlist.yaml
   - type: GraphQL
     url: graphql/discogs-graphql.md
 common:
