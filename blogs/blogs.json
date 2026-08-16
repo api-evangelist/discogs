@@ -2,10 +2,6 @@
   "repo": "discogs",
   "feeds": [
     {
-      "source": "https://discogs.com/digs/feed/",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://status.discogs.com",
       "feed_url": "https://status.discogs.com",
       "title": "",
@@ -14,5 +10,5 @@
     }
   ],
   "post_count": 14,
-  "fetched": "2026-08-06T14:08:46Z"
+  "fetched": "2026-08-15T12:22:01Z"
 }
