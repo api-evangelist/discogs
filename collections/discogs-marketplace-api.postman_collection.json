@@ -1,0 +1,2477 @@
+{
+  "item": [
+    {
+      "id": "cdf64467-850c-4fc8-b9bb-7e005e09ec3a",
+      "name": "Marketplace",
+      "description": {
+        "content": "Marketplace listings, orders, fees, price suggestions, and release stats.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb432c66-46aa-42d6-8d62-d45951210a2e",
+          "name": "Discogs Get Marketplace Fee",
+          "request": {
+            "name": "Discogs Get Marketplace Fee",
+            "description": {
+              "content": "Return the Discogs marketplace fee for a transaction at a given price in USD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "fee",
+                ":price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "price",
+                  "description": "(Required) Transaction price in USD."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a29046f-9aa8-425b-bea2-7038eaa77752",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "fee",
+                    ":price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "price",
+                      "description": "(Required) Transaction price in USD."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": 0.42,\n  \"currency\": \"CHF\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af9587c1-06b9-4429-b0f9-3610acdd5d73",
+          "name": "Discogs Get Marketplace Fee with Currency",
+          "request": {
+            "name": "Discogs Get Marketplace Fee with Currency",
+            "description": {
+              "content": "Return the Discogs marketplace fee for a transaction at a given price and currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "fee",
+                ":price",
+                ":currency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "price",
+                  "description": "(Required) Transaction price."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency",
+                  "description": "(Required) ISO currency code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8813444a-7539-41fa-840b-181d1fe3ca28",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "fee",
+                    ":price",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "price",
+                      "description": "(Required) Transaction price."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) ISO currency code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": 0.42,\n  \"currency\": \"CHF\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bdb84cf-40c9-4dc2-9cd4-42c3ea7d777a",
+          "name": "Discogs Create a New Listing",
+          "request": {
+            "name": "Discogs Create a New Listing",
+            "description": {
+              "content": "Create a new Marketplace listing. The listing will be added to the authenticated user’s inventory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"release_id\": \"<integer>\",\n  \"condition\": \"<string>\",\n  \"price\": \"<float>\",\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"<string>\",\n  \"comments\": \"<string>\",\n  \"allow_offers\": false,\n  \"external_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"weight\": \"<integer>\",\n  \"format_quantity\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cceb1702-ce17-49ad-8951-eeb1812e985c",
+              "name": "Listing successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": \"<integer>\",\n  \"condition\": \"Good Plus (G+)\",\n  \"price\": \"<float>\",\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Very Good (VG)\",\n  \"comments\": \"<string>\",\n  \"allow_offers\": false,\n  \"external_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"weight\": \"<integer>\",\n  \"format_quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listing_id\": 41578241,\n  \"resource_url\": \"https://api.discogs.com/marketplace/listings/41578241\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2675692b-0bf7-40d8-b07d-a592e6b8cb47",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": \"<integer>\",\n  \"condition\": \"Good Plus (G+)\",\n  \"price\": \"<float>\",\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Very Good (VG)\",\n  \"comments\": \"<string>\",\n  \"allow_offers\": false,\n  \"external_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"weight\": \"<integer>\",\n  \"format_quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce678be-e32e-405a-b585-cf6cb300559c",
+              "name": "Forbidden. You do not have permission to access this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": \"<integer>\",\n  \"condition\": \"Good Plus (G+)\",\n  \"price\": \"<float>\",\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Very Good (VG)\",\n  \"comments\": \"<string>\",\n  \"allow_offers\": false,\n  \"external_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"weight\": \"<integer>\",\n  \"format_quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You don't have permission to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d74ed56f-b049-480d-8c49-05774abc721f",
+          "name": "Discogs Get a Listing",
+          "request": {
+            "name": "Discogs Get a Listing",
+            "description": {
+              "content": "View the data associated with a Marketplace listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "curr_abbr",
+                  "value": "<string>",
+                  "description": "Currency for marketplace data."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "listing_id",
+                  "description": "(Required) The ID of the marketplace listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "670ecdf1-f8eb-447a-9fdb-d98693daea9e",
+              "name": "Successfully retrieved listing details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "curr_abbr",
+                      "value": "GBP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6537,\n  \"resource_url\": \"https://FqecccbxhEuAqUtAQnPjTOaiS.khVxcdcdmU7mMzAJbn\",\n  \"uri\": \"https://IUfOizwgSpDEkLNKoLfnnp.mbqmJ1CzFoHw3tDgr,Qe7tgdIKNr,2OveZeIz8GC.z3rO3QDtulk,d4xYhrYY1lDDZ\",\n  \"status\": \"Draft\",\n  \"price\": {\n    \"currency\": \"string\",\n    \"value\": 7446.300630043894\n  },\n  \"allow_offers\": false,\n  \"sleeve_condition\": \"Generic\",\n  \"condition\": \"Good (G)\",\n  \"posted\": \"2008-05-10T00:59:05.867Z\",\n  \"ships_from\": \"string\",\n  \"comments\": \"string\",\n  \"seller\": {\n    \"id\": 7863,\n    \"username\": \"string\",\n    \"resource_url\": \"http://VoW.licbjVIsj75bKb-zB7sJzpy15xyLIo+fMKsyF4WMGntvic.bubNdv\"\n  },\n  \"release\": {\n    \"id\": 3185,\n    \"resource_url\": \"http://SJoTzcSgukb.qrtdtpQtoUUYWpA3WOkvDIkdWnuWW2vDFUieTTCxviURdrcJVQTnvn\",\n    \"description\": \"string\",\n    \"thumbnail\": \"http://jxCvrfvWrA.jmSpamcJAeg0tNoxuafIs-TaOU89eJu5HHUblmaiuK95\",\n    \"artist\": \"string\",\n    \"title\": \"string\",\n    \"year\": 955,\n    \"format\": \"string\",\n    \"catalog_number\": \"string\"\n  },\n  \"audio\": true,\n  \"weight\": 7338,\n  \"format_quantity\": 1365,\n  \"external_id\": \"string\",\n  \"location\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f345fab-bee9-4b33-85ab-fb4eddda7f81",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "curr_abbr",
+                      "value": "GBP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41d7955a-cbb2-4a33-852f-b0e78c584038",
+          "name": "Discogs Edit a Listing",
+          "request": {
+            "name": "Discogs Edit a Listing",
+            "description": {
+              "content": "Edit the data associated with a listing.\nAuthentication as the listing owner is required.\nIf the listing’s status is not `For Sale`, `Draft`, or `Expired`, it cannot be modified.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "listing_id",
+                  "description": "(Required) The ID of the marketplace listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41656bf3-2a38-4c04-9189-f4ea38b3d111",
+              "name": "Listing was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": 8854,\n  \"condition\": \"Very Good Plus (VG+)\",\n  \"price\": 6091.524479827596,\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Mint (M)\",\n  \"comments\": \"string\",\n  \"allow_offers\": false,\n  \"external_id\": \"string\",\n  \"location\": \"string\",\n  \"weight\": 3926,\n  \"format_quantity\": 9589\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ba4b7ea-dd50-45b5-ba72-8a5389feafb0",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": 8854,\n  \"condition\": \"Very Good Plus (VG+)\",\n  \"price\": 6091.524479827596,\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Mint (M)\",\n  \"comments\": \"string\",\n  \"allow_offers\": false,\n  \"external_id\": \"string\",\n  \"location\": \"string\",\n  \"weight\": 3926,\n  \"format_quantity\": 9589\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0dbb8de-9ebf-49ba-930f-fbccc106d6b2",
+              "name": "Forbidden. You do not have permission to access this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": 8854,\n  \"condition\": \"Very Good Plus (VG+)\",\n  \"price\": 6091.524479827596,\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Mint (M)\",\n  \"comments\": \"string\",\n  \"allow_offers\": false,\n  \"external_id\": \"string\",\n  \"location\": \"string\",\n  \"weight\": 3926,\n  \"format_quantity\": 9589\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You don't have permission to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d519ee0-dd22-41be-b7da-6e9322211836",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_id\": 8854,\n  \"condition\": \"Very Good Plus (VG+)\",\n  \"price\": 6091.524479827596,\n  \"status\": \"For Sale\",\n  \"sleeve_condition\": \"Mint (M)\",\n  \"comments\": \"string\",\n  \"allow_offers\": false,\n  \"external_id\": \"string\",\n  \"location\": \"string\",\n  \"weight\": 3926,\n  \"format_quantity\": 9589\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c340a11-6a72-4d22-99de-8cc7879451f9",
+          "name": "Discogs Delete a Listing",
+          "request": {
+            "name": "Discogs Delete a Listing",
+            "description": {
+              "content": "Permanently remove a listing from the Marketplace. Authentication as the listing owner is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "listing_id",
+                  "description": "(Required) The ID of the marketplace listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "d9c8580c-d824-4dcb-a3be-6b66de68b4b1",
+              "name": "Listing was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5a48217-1299-49b0-99f7-64650720a376",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cac3006e-4cc9-4880-aa1e-8bfc870488ab",
+              "name": "Forbidden. You do not have permission to access this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You don't have permission to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f4b514b-f079-4439-9135-5bda3c1a0933",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "listing_id",
+                      "description": "(Required) The ID of the marketplace listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40888f11-8e79-4c0b-a3f8-b6afd1bacb93",
+          "name": "Discogs List Orders",
+          "request": {
+            "name": "Discogs List Orders",
+            "description": {
+              "content": "List marketplace orders for the authenticated seller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<dateTime>",
+                  "description": "Return orders created after this ISO 8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<dateTime>",
+                  "description": "Return orders created before this ISO 8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "archived",
+                  "value": "<boolean>",
+                  "description": "Whether to include archived orders."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed9fbb29-ab6a-42ad-b334-94d310b5f4ac",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "archived",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 7066,\n    \"pages\": 2788,\n    \"per_page\": 4734,\n    \"items\": 9055,\n    \"urls\": {\n      \"first\": \"http://oBOFgVqopMmGyYAmqEnj.nhccCpIsRdGLdbxlaV5XEryyEMNgxojcF6SIZvULAmAkUcH19khAW\",\n      \"prev\": \"http://VErbCraoDJMkPIFGUIgGhaAlJGppLDdl.getKz\",\n      \"next\": \"https://MwZtU.dvqSIhMYJ6F0AYh4nrPy9qdM1.DMjuMaOTf9ItdelG7Xsgbk9Y2p-Lsn\",\n      \"last\": \"https://RKLwyLwVadjqvGCtrmq.nqvZ,AwJTEK+NPgbXe0kvEWD3,BgX,lrhHP,LKkrMkX3vF2NMF5yjeT1VtwBu0mmSSkI4rc-J\"\n    }\n  },\n  \"orders\": [\n    {\n      \"id\": \"1-1\",\n      \"resource_url\": \"http://OFtoLuuejwIBQeVWKdxtMp.dtrbcLzdrHb4dJuIytV6ieW69hOf+TjhQtP6LQC.rSBjSDZRxzg\",\n      \"status\": \"Payment Received\",\n      \"next_status\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fee\": {\n        \"currency\": \"string\",\n        \"value\": 1121.2078096556245\n      },\n      \"created\": \"1976-02-18T02:17:35.396Z\",\n      \"items\": [\n        {\n          \"id\": 6013,\n          \"resource_url\": \"http://ad.zyrcxFizKt8nIh1hlbm9HMc7C6cnwcSCkilEOseN6CIJUZ,Tmjk6T9jv5551t\",\n          \"uri\": \"https://adJGBEIufzNFKGFqPpCapFzbkdxr.wviBFTDGefNaX1aXCKmpqQ-huWFLR-vPtoNU59+LVEz4qjg1g\",\n          \"status\": \"Sold\",\n          \"price\": {\n            \"currency\": \"string\",\n            \"value\": 5611.27478856576\n          },\n          \"allow_offers\": false,\n          \"sleeve_condition\": \"Generic\",\n          \"condition\": \"Very Good (VG)\",\n          \"posted\": \"1961-07-04T03:14:36.535Z\",\n          \"ships_from\": \"string\",\n          \"comments\": \"string\",\n          \"seller\": {\n            \"id\": 6568,\n            \"username\": \"string\",\n            \"resource_url\": \"http://GqgdyxayzunWWOpJwukiYGteSK.bchuL-cTa2oIWdvYYWW2GftYMfahsTBkl8EmJR3qOGqTVmQhX86\"\n          },\n          \"release\": {\n            \"id\": 8325,\n            \"resource_url\": \"https://amRQyyyXmIDLPHyOWPS.hekT+GVR.6vnQiJ1SxVrhB3djhY6LedRISQiAjZFmj-l.Kv11f\",\n            \"description\": \"string\",\n            \"thumbnail\": \"https://lsSANLmQPcXHHmEhQI.hmdwyuECbKetdF7sLQl59JDhV\",\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"year\": 7752,\n            \"format\": \"string\",\n            \"catalog_number\": \"string\"\n          },\n          \"audio\": true,\n          \"weight\": 1307,\n          \"format_quantity\": 3923,\n          \"external_id\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"id\": 2259,\n          \"resource_url\": \"https://xlNSkqqUdFiAVCCtDwFdRmMKmGC.zdci3fJHU9TP5HfEYKI8yq+Ex..TXvJ,QhC3jrZ+Gox,uO8a1g16YxBELq+ZsXnTUB1.mg7SFgKkYEVdQMwkTh+g\",\n          \"uri\": \"https://ePADdLERSrFbdzHlEDYysisvsKTTPaJ.gplP1CIr7saE2zm1ETCDakLa\",\n          \"status\": \"For Sale\",\n          \"price\": {\n            \"currency\": \"string\",\n            \"value\": 7786.603209554741\n          },\n          \"allow_offers\": false,\n          \"sleeve_condition\": \"Generic\",\n          \"condition\": \"Very Good Plus (VG+)\",\n          \"posted\": \"1989-03-31T23:05:37.234Z\",\n          \"ships_from\": \"string\",\n          \"comments\": \"string\",\n          \"seller\": {\n            \"id\": 5252,\n            \"username\": \"string\",\n            \"resource_url\": \"http://wqJHFKKwaHBedLSoSGgVAtcnaJmNWiTlL.skybi5tvKROLA8jYfOZb2xWzVnRxNv\"\n          },\n          \"release\": {\n            \"id\": 6499,\n            \"resource_url\": \"https://WGAJpvrfxyNVfuaNE.abowN7aWZofvKrr\",\n            \"description\": \"string\",\n            \"thumbnail\": \"http://mEFDgS.ytixRNtf-4MidrsRa-N+M4gy\",\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"year\": 9490,\n            \"format\": \"string\",\n            \"catalog_number\": \"string\"\n          },\n          \"audio\": false,\n          \"weight\": 2782,\n          \"format_quantity\": 2778,\n          \"external_id\": \"string\",\n          \"location\": \"string\"\n        }\n      ],\n      \"shipping\": {\n        \"currency\": \"string\",\n        \"value\": 4825.325244599358\n      },\n      \"shipping_address\": \"string\",\n      \"additional_instructions\": \"string\",\n      \"archived\": false,\n      \"seller\": {\n        \"id\": 88,\n        \"username\": \"string\",\n        \"resource_url\": \"https://xRcHJjJCtUCUorbz.byljxZbv3KZXx9aP3g\"\n      },\n      \"buyer\": {\n        \"id\": 7267,\n        \"username\": \"string\",\n        \"resource_url\": \"https://iszhsdXlkDfWmfjtEOminqPRsYMRrcCjI.sltttKONHKjinXxEp\"\n      },\n      \"total\": {\n        \"currency\": \"string\",\n        \"value\": 6773.374266211781\n      },\n      \"messages_url\": \"https://KlJvOiD.etlzk9XvutPXKtVtdkbvFKUnaoyXxaDGeFqwvNV3Yu-bFHJwiMpyNVWkggXg\",\n      \"uri\": \"https://JxHsPhRzdxrtvePOtO.vmZE47q1N-BeORk8Z\",\n      \"last_activity\": \"1973-01-15T00:56:49.064Z\"\n    },\n    {\n      \"id\": \"1-1\",\n      \"resource_url\": \"https://DJuywhCzznXYXDHphftjbSitGqdMltz.avuNJi2dto\",\n      \"status\": \"Payment Received\",\n      \"next_status\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fee\": {\n        \"currency\": \"string\",\n        \"value\": 215.29919314612457\n      },\n      \"created\": \"1992-12-24T05:11:17.738Z\",\n      \"items\": [\n        {\n          \"id\": 7731,\n          \"resource_url\": \"http://MPqicRaMJiGGtKHtEsvNFbsZ.avRvVO-.WnflLTv5ZdUmGFqha07O3TLHfx6fFIZrf34RM-UcSw\",\n          \"uri\": \"https://pu.tizopy8Dxe1fc7kJvBO90sRUQe+NlElGw7VGIvhgd\",\n          \"status\": \"Expired\",\n          \"price\": {\n            \"currency\": \"string\",\n            \"value\": 366.6242967208022\n          },\n          \"allow_offers\": true,\n          \"sleeve_condition\": \"Generic\",\n          \"condition\": \"Very Good (VG)\",\n          \"posted\": \"1958-12-20T11:08:54.431Z\",\n          \"ships_from\": \"string\",\n          \"comments\": \"string\",\n          \"seller\": {\n            \"id\": 8699,\n            \"username\": \"string\",\n            \"resource_url\": \"https://pRvagLVhaXlDTnpUr.yimR2wmqi8fvN8wK6vJcs\"\n          },\n          \"release\": {\n            \"id\": 6271,\n            \"resource_url\": \"http://lEYAZxnoFvTmwDBuVgdZTgaou.wqacgccsVTKBq4ZSOvnzbYq-KbL,AupcqXHPswRaI3xKZXAbKw8gxSM9yIGhLQ\",\n            \"description\": \"string\",\n            \"thumbnail\": \"http://mvYb.zwzgSuTLg39kZaRbjqASaIB1HWrsr6SlulY4\",\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"year\": 2294,\n            \"format\": \"string\",\n            \"catalog_number\": \"string\"\n          },\n          \"audio\": false,\n          \"weight\": 9351,\n          \"format_quantity\": 5331,\n          \"external_id\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"id\": 400,\n          \"resource_url\": \"https://ZLqYctCDmNWtrNDYsIEHMihTsclNZgnk.aanrcozDvCdnUBq3zM0,dYzTNa09mZB-t1-y5EanleutIJ\",\n          \"uri\": \"https://T.veO,8GvUgGyKViwV-9NU\",\n          \"status\": \"Sold\",\n          \"price\": {\n            \"currency\": \"string\",\n            \"value\": 1095.4818668644118\n          },\n          \"allow_offers\": true,\n          \"sleeve_condition\": \"Not Graded\",\n          \"condition\": \"Poor (P)\",\n          \"posted\": \"1988-08-22T17:05:31.470Z\",\n          \"ships_from\": \"string\",\n          \"comments\": \"string\",\n          \"seller\": {\n            \"id\": 5529,\n            \"username\": \"string\",\n            \"resource_url\": \"https://tdzEhWHuYgNN.xjbSV.Sg2cW1WpF5x+v3Hl0HY01UCJuUWMkkfR,it4FKqm,Mz1yHwhKz6Ayamr2\"\n          },\n          \"release\": {\n            \"id\": 4475,\n            \"resource_url\": \"http://jqCReSgVYjqKjRbSvsHREfwJf.agQeV10hJ4Luk73kFajD1P4cl.lGUmLdOoHeFOEz3Dg-yuOZEElGj9WD8LIu+ZLh7eQlAkV\",\n            \"description\": \"string\",\n            \"thumbnail\": \"https://abPVzqavnwTPhnYuDnfxlbXlUQaYVXyM.jvdhJX+K7pHtTGRxzs.NVL\",\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"year\": 8963,\n            \"format\": \"string\",\n            \"catalog_number\": \"string\"\n          },\n          \"audio\": false,\n          \"weight\": 2661,\n          \"format_quantity\": 9649,\n          \"external_id\": \"string\",\n          \"location\": \"string\"\n        }\n      ],\n      \"shipping\": {\n        \"currency\": \"string\",\n        \"value\": 7699.824195501787\n      },\n      \"shipping_address\": \"string\",\n      \"additional_instructions\": \"string\",\n      \"archived\": true,\n      \"seller\": {\n        \"id\": 3836,\n        \"username\": \"string\",\n        \"resource_url\": \"http://dbGzMijmvebPEPIPKBorLtF.zdyTQlEMhVLEaA8A-ihQ9bo8Al,Hi9oBtZgtJM1K-OMMUc.EOmwZ9LQ3Dzwt.J\"\n      },\n      \"buyer\": {\n        \"id\": 1552,\n        \"username\": \"string\",\n        \"resource_url\": \"https://QnSOfhBBfTRaXzf.tmhBUXaA,GTrY3hZLPGqeGo22NNfdYzHO8TH\"\n      },\n      \"total\": {\n        \"currency\": \"string\",\n        \"value\": 3158.734179759939\n      },\n      \"messages_url\": \"http://jtkSYHwKoHpGlEdZj.xvdei0ZuYt-msy2AZCELYt42EkWG\",\n      \"uri\": \"https://fxUHZNVNaCcvLjHhiQtfzWpZTWCPtBRSR.tiyI3tmULwmz+3kSoK2ZdL\",\n      \"last_activity\": \"1947-10-13T01:13:40.485Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd3c754c-6b80-4b04-a65c-3416762ba957",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "archived",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c685cb81-9470-41d1-b8d0-3fc8993dbc60",
+          "name": "Discogs Get Order",
+          "request": {
+            "name": "Discogs Get Order",
+            "description": {
+              "content": "Return a single marketplace order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID (e.g. 1-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "064318db-8d7d-4618-a42f-60cb6ac465f7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID (e.g. 1-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1-1\",\n  \"resource_url\": \"http://WjDsJlDbdbrlXbKBXouhDTJlZcExiWGj.mzsFrPE3YkbAcmvgdqnLsYIcGNDmCFJLenvhiWKU2\",\n  \"status\": \"Payment Received\",\n  \"next_status\": [\n    \"string\",\n    \"string\"\n  ],\n  \"fee\": {\n    \"currency\": \"string\",\n    \"value\": 1067.9354083496485\n  },\n  \"created\": \"1982-07-08T06:25:49.115Z\",\n  \"items\": [\n    {\n      \"id\": 6368,\n      \"resource_url\": \"http://zqmlwZvRVfdwdWENXosvzKquQEWMLDoiE.qbjzmw4f2O4r3piA4.,0W6VupGF-moV2,DN4Xu8yzPzrRNfajbNpj8j.8r-Smf5\",\n      \"uri\": \"https://iVdTwGjfiDPK.ywauJwKl,hchdA5gCASXfrOgDz4hl066uR6k8+v\",\n      \"status\": \"Expired\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 2233.218306594966\n      },\n      \"allow_offers\": true,\n      \"sleeve_condition\": \"Not Graded\",\n      \"condition\": \"Very Good Plus (VG+)\",\n      \"posted\": \"2003-03-05T17:35:34.914Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 3077,\n        \"username\": \"string\",\n        \"resource_url\": \"https://WsTXmAxkRSNw.bwhdC.OllIsb.Ve\"\n      },\n      \"release\": {\n        \"id\": 3218,\n        \"resource_url\": \"https://wqucIFrDvWCkLVwbHflqPCk.vaKmzUuifaJhmW6g2XvOgVR6jtGaw-baj3jGO43G-ac0BSt\",\n        \"description\": \"string\",\n        \"thumbnail\": \"http://QHmjNlkXHBilfOunv.tgvlOFcR7..Jw.sLCcNiHHOADt-mJQWGJJxY-.,WOHjOxbwbk4iQSogvs\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 9429,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": true,\n      \"weight\": 4630,\n      \"format_quantity\": 6469,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    },\n    {\n      \"id\": 2858,\n      \"resource_url\": \"https://kOocHnSMiBZZJD.mnxrgUKROQ\",\n      \"uri\": \"http://YjkaBFscGqTSSOwbMqXAMuaBz.enaY27enK0elPmvt12DmUdfd.ajSWJiV9bIifyS3Un6,ji3zfbNiP0.SKFzchsAJ9iQrwOqSd3obQdqoT\",\n      \"status\": \"Sold\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 8457.631104222055\n      },\n      \"allow_offers\": false,\n      \"sleeve_condition\": \"Good (G)\",\n      \"condition\": \"Near Mint (NM or M-)\",\n      \"posted\": \"1951-05-19T02:29:53.175Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 6376,\n        \"username\": \"string\",\n        \"resource_url\": \"https://OIhnUNPixIaLfZ.sgpzVbcALiK7UF,TvcWAQU+EMHPlADtXXqoDOBd6HCVblWuNRVPvxr7+\"\n      },\n      \"release\": {\n        \"id\": 6888,\n        \"resource_url\": \"http://ek.skZ+,HWgqbytgT8gycFWhcctMUV0bLd84fAqZtEcupiyLpjqawQdKjaoA9Zg+PlNz\",\n        \"description\": \"string\",\n        \"thumbnail\": \"http://jtTGVrzILUUzMfhTqUFtvnu.exrZEBfUuKmWAukwDVW-7yGSPOEEFop.+P+7ihtEFqyT0x+lAaQMw30h\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 4519,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": false,\n      \"weight\": 9221,\n      \"format_quantity\": 1587,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    }\n  ],\n  \"shipping\": {\n    \"currency\": \"string\",\n    \"value\": 9039.511759898207\n  },\n  \"shipping_address\": \"string\",\n  \"additional_instructions\": \"string\",\n  \"archived\": true,\n  \"seller\": {\n    \"id\": 2736,\n    \"username\": \"string\",\n    \"resource_url\": \"http://CBSMZ.mgvlxinFLq4De\"\n  },\n  \"buyer\": {\n    \"id\": 8211,\n    \"username\": \"string\",\n    \"resource_url\": \"http://toQukomFKBoDvPpzoCZKRSDsZFAvx.akoqRI0VYwzBKUqkXPFbC5fP\"\n  },\n  \"total\": {\n    \"currency\": \"string\",\n    \"value\": 8443.173548273104\n  },\n  \"messages_url\": \"https://OpqxmwPwhVMLYXySlEZ.jfmgRVFC3iYF9Tj2zeukjJkC1LNNFaPkixjiGrtFsp\",\n  \"uri\": \"http://lkTbcxeBwVkmgQ.fnlk3qG\",\n  \"last_activity\": \"2000-09-29T05:40:21.560Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc757109-1517-492b-a1f9-94d6fa0b60d5",
+          "name": "Discogs Update Order",
+          "request": {
+            "name": "Discogs Update Order",
+            "description": {
+              "content": "Update marketplace order fields (status, shipping).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"shipping\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c323dcb2-a287-4449-944a-d41b91dc2c8e",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Shipped\",\n  \"shipping\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1-1\",\n  \"resource_url\": \"http://WjDsJlDbdbrlXbKBXouhDTJlZcExiWGj.mzsFrPE3YkbAcmvgdqnLsYIcGNDmCFJLenvhiWKU2\",\n  \"status\": \"Payment Received\",\n  \"next_status\": [\n    \"string\",\n    \"string\"\n  ],\n  \"fee\": {\n    \"currency\": \"string\",\n    \"value\": 1067.9354083496485\n  },\n  \"created\": \"1982-07-08T06:25:49.115Z\",\n  \"items\": [\n    {\n      \"id\": 6368,\n      \"resource_url\": \"http://zqmlwZvRVfdwdWENXosvzKquQEWMLDoiE.qbjzmw4f2O4r3piA4.,0W6VupGF-moV2,DN4Xu8yzPzrRNfajbNpj8j.8r-Smf5\",\n      \"uri\": \"https://iVdTwGjfiDPK.ywauJwKl,hchdA5gCASXfrOgDz4hl066uR6k8+v\",\n      \"status\": \"Expired\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 2233.218306594966\n      },\n      \"allow_offers\": true,\n      \"sleeve_condition\": \"Not Graded\",\n      \"condition\": \"Very Good Plus (VG+)\",\n      \"posted\": \"2003-03-05T17:35:34.914Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 3077,\n        \"username\": \"string\",\n        \"resource_url\": \"https://WsTXmAxkRSNw.bwhdC.OllIsb.Ve\"\n      },\n      \"release\": {\n        \"id\": 3218,\n        \"resource_url\": \"https://wqucIFrDvWCkLVwbHflqPCk.vaKmzUuifaJhmW6g2XvOgVR6jtGaw-baj3jGO43G-ac0BSt\",\n        \"description\": \"string\",\n        \"thumbnail\": \"http://QHmjNlkXHBilfOunv.tgvlOFcR7..Jw.sLCcNiHHOADt-mJQWGJJxY-.,WOHjOxbwbk4iQSogvs\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 9429,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": true,\n      \"weight\": 4630,\n      \"format_quantity\": 6469,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    },\n    {\n      \"id\": 2858,\n      \"resource_url\": \"https://kOocHnSMiBZZJD.mnxrgUKROQ\",\n      \"uri\": \"http://YjkaBFscGqTSSOwbMqXAMuaBz.enaY27enK0elPmvt12DmUdfd.ajSWJiV9bIifyS3Un6,ji3zfbNiP0.SKFzchsAJ9iQrwOqSd3obQdqoT\",\n      \"status\": \"Sold\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 8457.631104222055\n      },\n      \"allow_offers\": false,\n      \"sleeve_condition\": \"Good (G)\",\n      \"condition\": \"Near Mint (NM or M-)\",\n      \"posted\": \"1951-05-19T02:29:53.175Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 6376,\n        \"username\": \"string\",\n        \"resource_url\": \"https://OIhnUNPixIaLfZ.sgpzVbcALiK7UF,TvcWAQU+EMHPlADtXXqoDOBd6HCVblWuNRVPvxr7+\"\n      },\n      \"release\": {\n        \"id\": 6888,\n        \"resource_url\": \"http://ek.skZ+,HWgqbytgT8gycFWhcctMUV0bLd84fAqZtEcupiyLpjqawQdKjaoA9Zg+PlNz\",\n        \"description\": \"string\",\n        \"thumbnail\": \"http://jtTGVrzILUUzMfhTqUFtvnu.exrZEBfUuKmWAukwDVW-7yGSPOEEFop.+P+7ihtEFqyT0x+lAaQMw30h\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 4519,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": false,\n      \"weight\": 9221,\n      \"format_quantity\": 1587,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    }\n  ],\n  \"shipping\": {\n    \"currency\": \"string\",\n    \"value\": 9039.511759898207\n  },\n  \"shipping_address\": \"string\",\n  \"additional_instructions\": \"string\",\n  \"archived\": true,\n  \"seller\": {\n    \"id\": 2736,\n    \"username\": \"string\",\n    \"resource_url\": \"http://CBSMZ.mgvlxinFLq4De\"\n  },\n  \"buyer\": {\n    \"id\": 8211,\n    \"username\": \"string\",\n    \"resource_url\": \"http://toQukomFKBoDvPpzoCZKRSDsZFAvx.akoqRI0VYwzBKUqkXPFbC5fP\"\n  },\n  \"total\": {\n    \"currency\": \"string\",\n    \"value\": 8443.173548273104\n  },\n  \"messages_url\": \"https://OpqxmwPwhVMLYXySlEZ.jfmgRVFC3iYF9Tj2zeukjJkC1LNNFaPkixjiGrtFsp\",\n  \"uri\": \"http://lkTbcxeBwVkmgQ.fnlk3qG\",\n  \"last_activity\": \"2000-09-29T05:40:21.560Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ede800a-29ce-4da0-94bc-899a3831d419",
+          "name": "Discogs List Order Messages",
+          "request": {
+            "name": "Discogs List Order Messages",
+            "description": {
+              "content": "List messages exchanged on a marketplace order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "orders",
+                ":order_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dbbe669d-f71d-40e2-aa75-f1a859d73256",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders",
+                    ":order_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 9783,\n    \"pages\": 6227,\n    \"per_page\": 2551,\n    \"items\": 4452,\n    \"urls\": {\n      \"first\": \"https://yHHtZOhYoqZKkApaZ.ccqXkR,Vrnu+GuCnW1Mh.dPufKqBzG9cBYG-6qU2lE1cH4,etMb9cEEEeiRwvKfy\",\n      \"prev\": \"http://cPvibBgAWfMMhlVBpFch.hui426Jkerw4a68ktQa4z4WQBIyizuBRY1\",\n      \"next\": \"http://pdxG.iakgV2WnkPERediUIqro8QaU6zo98SoXdGk,AmsciXGiTUdqQdylRv7dmXswLDv\",\n      \"last\": \"http://wRoacGwDvWifQLRtAcZ.wietawg14qYgZYLqwquCxBJ+tXvCfIj-UcdXUKNCLvZd6OZ\"\n    }\n  },\n  \"messages\": [\n    {\n      \"refund\": {\n        \"amount\": 6265.861964066634,\n        \"order\": {}\n      },\n      \"timestamp\": \"2006-11-03T12:41:51.851Z\",\n      \"message\": \"string\",\n      \"type\": \"message\",\n      \"order\": {\n        \"resource_url\": \"string\",\n        \"id\": \"string\"\n      },\n      \"subject\": \"string\",\n      \"from\": {\n        \"id\": 7775,\n        \"username\": \"string\",\n        \"resource_url\": \"https://Fqrf.xnDhTJHkIKTPpW+vj1LLk56xItZNbO,LA6VTN\"\n      }\n    },\n    {\n      \"refund\": {\n        \"amount\": 4503.461172808862,\n        \"order\": {}\n      },\n      \"timestamp\": \"2017-11-30T06:50:41.861Z\",\n      \"message\": \"string\",\n      \"type\": \"status\",\n      \"order\": {\n        \"resource_url\": \"string\",\n        \"id\": \"string\"\n      },\n      \"subject\": \"string\",\n      \"from\": {\n        \"id\": 3903,\n        \"username\": \"string\",\n        \"resource_url\": \"http://SWFO.jsc0JlEzHbsgewnGEflXO4pX48gL,mxbG-\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1f98dcf-c04e-4251-9c03-57df37c81700",
+          "name": "Discogs Add Order Message",
+          "request": {
+            "name": "Discogs Add Order Message",
+            "description": {
+              "content": "Post a new message on a marketplace order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "orders",
+                ":order_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7091be8-1a75-4bfd-9c83-19cdcb1f672f",
+              "name": "Message added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "orders",
+                    ":order_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Your order has shipped.\",\n  \"status\": \"Shipped\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refund\": {\n    \"amount\": 9457.090728068486,\n    \"order\": {}\n  },\n  \"timestamp\": \"2010-08-05T01:41:02.812Z\",\n  \"message\": \"string\",\n  \"type\": \"message\",\n  \"order\": {\n    \"resource_url\": \"string\",\n    \"id\": \"string\"\n  },\n  \"subject\": \"string\",\n  \"from\": {\n    \"id\": 6592,\n    \"username\": \"string\",\n    \"resource_url\": \"https://gzzcPsMnJrtrSyZfaXgrkVHgkVeM.qvdavlwoYzG0RFmxZbXGmurWPHV0UgvQ\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f0e30bb-c9dc-41e3-89b3-1cbf0c117bc5",
+          "name": "Discogs Get Price Suggestions",
+          "request": {
+            "name": "Discogs Get Price Suggestions",
+            "description": {
+              "content": "Return suggested marketplace prices for a release across all media conditions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "price_suggestions",
+                ":release_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b071abe1-0ec9-4db5-a50c-08dabe6de37b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "price_suggestions",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"currency\": \"CHF\",\n    \"value\": 19.99\n  },\n  \"key_1\": {\n    \"currency\": \"SEK\",\n    \"value\": 19.99\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7158f840-5a1a-4bc0-ab10-29f1e50c9f72",
+          "name": "Discogs Get Release Marketplace Stats",
+          "request": {
+            "name": "Discogs Get Release Marketplace Stats",
+            "description": {
+              "content": "Return marketplace statistics (lowest price, copies for sale) for a release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26cd8e0d-4866-4f39-ac26-7828679e685c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lowest_price\": {\n    \"currency\": \"string\",\n    \"value\": 4507.885782872544\n  },\n  \"num_for_sale\": 47,\n  \"blocked_from_sale\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14d96db4-c307-44fa-aa97-9d28e4b7bb98",
+          "name": "Discogs Get User Inventory",
+          "request": {
+            "name": "Discogs Get User Inventory",
+            "description": {
+              "content": "Returns the list of listings in a user’s inventory. Supports pagination.\nIf you are not authenticated as the inventory owner, only items that have a status of \"For Sale\" will be visible.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "For Sale",
+                  "description": "Only show items with this status."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "listed",
+                  "description": "Sort items by this field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc",
+                  "description": "The order to sort the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "6711194f-b7ea-45a5-9e59-7f3f6b653f61",
+              "name": "A paginated list of inventory listings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "For Sale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "listed"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 9992,\n    \"pages\": 7664,\n    \"per_page\": 523,\n    \"items\": 4685,\n    \"urls\": {\n      \"first\": \"http://noWTYMvnOUYTgZzt.fqTnw9\",\n      \"prev\": \"https://NgvcMV.noekot4EwBaVOB0VmUzWMN8BkzEkIPg3UOGDJDxAjWV70dKKrRVzGM8BZm5PoJKSM5\",\n      \"next\": \"https://FxgoEdvmzz.pduaKsX+ElVas1HPtIyJRl,EU4,Uxenu\",\n      \"last\": \"http://LnfPnescalL.ccxYrviweA.fQAuRPJ6svC+PiHzIrn-lc\"\n    }\n  },\n  \"listings\": [\n    {\n      \"id\": 790,\n      \"resource_url\": \"http://KXtdZERgHyDJPwQvarVfxgUeKXsRIVcU.rppBt.POydFeLAjECqICtTynROlWkPqhbka.WWWTmBarTHki3ZU\",\n      \"uri\": \"http://OJm.wemejrGiPoY6xudGrU2j33irU,TR48K-JR6oO87zvlLjJ\",\n      \"status\": \"Draft\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 7501.025505032683\n      },\n      \"allow_offers\": false,\n      \"sleeve_condition\": \"Very Good (VG)\",\n      \"condition\": \"Fair (F)\",\n      \"posted\": \"1955-07-14T15:35:09.586Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 5930,\n        \"username\": \"string\",\n        \"resource_url\": \"https://HnaXnzoWCrDBORCt.jiZ8-KOW+OwSebpp20uQi745tsPbyd7a+JFuYczjk1mT3.GOQDF\"\n      },\n      \"release\": {\n        \"id\": 8905,\n        \"resource_url\": \"https://QyZnJKmbXGhGnwNtPNellUYYwiEpslAi.ueiln6u1EJLi6,QYn9PXaTS7VwIQOx\",\n        \"description\": \"string\",\n        \"thumbnail\": \"http://YcyDvYABKhipNdjKztgQWLonhlc.mweW1dgwX+\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 159,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": true,\n      \"weight\": 5483,\n      \"format_quantity\": 4991,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    },\n    {\n      \"id\": 3950,\n      \"resource_url\": \"https://ZdrVwtJcOTVxuCjKRRewMibtSjHLE.qiwq8KbnpAF1ppEuKS4QWfFAiP5vOmtPh-\",\n      \"uri\": \"http://ULSMzCssDDvpusZTese.rsnaC6xOk+cdSKKKYRACKRsQPUmD8-bq-vABk\",\n      \"status\": \"Sold\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"value\": 1063.9281904243458\n      },\n      \"allow_offers\": false,\n      \"sleeve_condition\": \"Fair (F)\",\n      \"condition\": \"Good Plus (G+)\",\n      \"posted\": \"2013-10-05T01:50:49.420Z\",\n      \"ships_from\": \"string\",\n      \"comments\": \"string\",\n      \"seller\": {\n        \"id\": 4526,\n        \"username\": \"string\",\n        \"resource_url\": \"https://yKqOyBdClBBTJo.lbgcGbNyEjeVVVT8RopZuK3mFWsFzHfgNG1oJU-RkDHkD3YKqQamg7qQtJ.BT+vdpvthP\"\n      },\n      \"release\": {\n        \"id\": 1617,\n        \"resource_url\": \"http://MqAun.kearRctQkNNFzq6U1FNr\",\n        \"description\": \"string\",\n        \"thumbnail\": \"https://EojlAEyWuITr.otdt4peG0K.,nJ7d6n7iR3VhW9v0WJ\",\n        \"artist\": \"string\",\n        \"title\": \"string\",\n        \"year\": 6882,\n        \"format\": \"string\",\n        \"catalog_number\": \"string\"\n      },\n      \"audio\": false,\n      \"weight\": 6611,\n      \"format_quantity\": 3870,\n      \"external_id\": \"string\",\n      \"location\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "885be818-1ecc-4772-9943-9365491921c3",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "For Sale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "listed"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "434ee709-1c9f-473d-8c81-38359e0da076",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "For Sale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "listed"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "30632512-2029-407d-86a2-056e816c1f9e",
+    "name": "Discogs Database Marketplace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

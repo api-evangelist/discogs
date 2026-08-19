@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database Image API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/images/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "R-249504-1334592212.jpeg",
+                "type": "path",
+                "description": "Image filename, as returned by other endpoints."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a binary image asset. Image URLs in API responses are proxied through this endpoint and require OAuth and a unique User-Agent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

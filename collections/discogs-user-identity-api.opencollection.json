@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database User Identity API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get User Identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/oauth/identity"
+          },
+          "docs": "Retrieve basic information about the authenticated user.\nThis endpoint is useful for verifying that OAuth authentication is working correctly.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Get a User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              }
+            ]
+          },
+          "docs": "Retrieve public profile information for a Discogs user."
+        },
+        {
+          "info": {
+            "name": "Discogs Update User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "Discogs username."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the authenticated user's profile fields."
+        },
+        {
+          "info": {
+            "name": "Discogs Get User Contributions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/contributions",
+            "params": [
+              {
+                "name": "username",
+                "value": "shooezgirl",
+                "type": "path",
+                "description": "Discogs username."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "List all releases a user has contributed to."
+        },
+        {
+          "info": {
+            "name": "Discogs Get User Submissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/submissions",
+            "params": [
+              {
+                "name": "username",
+                "value": "shooezgirl",
+                "type": "path",
+                "description": "Discogs username."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              }
+            ]
+          },
+          "docs": "List all submissions (artist/label/release edits) by a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

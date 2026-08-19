@@ -1,0 +1,776 @@
+{
+  "item": [
+    {
+      "id": "7e07f0a7-9163-432d-88e8-dc027eac6129",
+      "name": "User Identity",
+      "description": {
+        "content": "Authenticated user identity, profile, submissions, and contributions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62e4dddd-54f2-418a-9aab-b37fe5ae29d4",
+          "name": "Discogs Get User Identity",
+          "request": {
+            "name": "Discogs Get User Identity",
+            "description": {
+              "content": "Retrieve basic information about the authenticated user.\nThis endpoint is useful for verifying that OAuth authentication is working correctly.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "identity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e1aabb1b-5c51-432f-ae86-254f0c4ba819",
+              "name": "Successfully retrieved identity information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "identity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9768,\n  \"username\": \"string\",\n  \"resource_url\": \"http://VJYvdXkqmrvrn.azbLBJX-QhNsBghe8Wer,ZLwmiIwBzyrIPySX4b,PMHwpp,ruwd\",\n  \"consumer_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "655c2cc2-7349-4205-9290-ecadde177e13",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "identity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "776d5993-bb11-41af-8f95-78cd574655d4",
+          "name": "Discogs Get a User Profile",
+          "request": {
+            "name": "Discogs Get a User Profile",
+            "description": {
+              "content": "Retrieve public profile information for a Discogs user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4d315d26-678f-48e3-8710-a64887992139",
+              "name": "Successfully retrieved user profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4262,\n  \"username\": \"string\",\n  \"resource_url\": \"http://dlmMAzNjVLphtptgDYFuTocBvzmWo.xouaonVeEutqaWwMs-WkgZx6.kxI2MA7C+sK,cb4rGKuJXkaiy3aShqV-QTkko1jzK41ma\",\n  \"uri\": \"https://kWTjJxlofaTOFArMcYyMZ.evN,EjF7l94LvrfedqvvqoLA+GI7Fnu0NO-G+YFMvr\",\n  \"name\": \"string\",\n  \"home_page\": \"http://BdrGtCOnKYeaPpfktkyXkTKFvNOfl.mjpz6E+,jk\",\n  \"location\": \"string\",\n  \"profile\": \"string\",\n  \"registered\": \"1971-01-19T19:49:53.811Z\",\n  \"rank\": 1589.1961197342653,\n  \"num_pending\": 3087,\n  \"num_for_sale\": 5899,\n  \"num_collection\": 4017,\n  \"num_wantlist\": 7224,\n  \"num_lists\": 7833,\n  \"releases_contributed\": 2300,\n  \"releases_rated\": 18,\n  \"rating_avg\": 467.8439177515903,\n  \"inventory_url\": \"https://VwImWnmoNDLnVxfsFt.zjxkxcpXm2t.D6SWxSHrYk9k+SqHV8IHp6Icuon1aIMleBSSw.Oc-sHquKw.qJZzu5V\",\n  \"collection_folders_url\": \"http://tSLhaeeB.zsqnF+RxiYC3L\",\n  \"collection_fields_url\": \"https://ogYZupgZSavspHofDndnUuydZP.cnwnM,k4H6vAw4bU8EaCCoLr3ztVeRxMR5F\",\n  \"wantlist_url\": \"https://tZiVoIgDoecpLIJpkLILXHKjLu.ifatqV1IMsdMGQYFsV4NsEZKoAkvFzEciZPayAhPMPYUbST.Z0FHsG2si\",\n  \"avatar_url\": \"http://CQvBTIeFZlPnXJtDmXxCWGYlxmIYhjc.skqHK9pGuP4ewSUERPoehbm+eLCeDiTYve1ObuA.8C6WyptdBeIwXs2xFk\",\n  \"banner_url\": \"https://dfkFogwQS.jzhvJij6UWKZI.anmTpH.eCATDSGdDaBYX8zc5DxKQlyVzzeCWOn\",\n  \"curr_abbr\": \"SEK\",\n  \"seller_rating\": 5531.489371091596,\n  \"seller_num_ratings\": 9872,\n  \"buyer_rating\": 2811.621995962004,\n  \"buyer_num_ratings\": 7976,\n  \"email\": \"2gwfjDb@rXugxIxaXFDfgOYp.wzhf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f1b8a97-cc78-404f-942e-d4f710a7bd81",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1aee2e88-f3b5-4234-8b47-4937ca2e48c1",
+          "name": "Discogs Update User Profile",
+          "request": {
+            "name": "Discogs Update User Profile",
+            "description": {
+              "content": "Update the authenticated user's profile fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"home_page\": \"<string>\",\n  \"location\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"curr_abbr\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f884050-8512-47dd-b232-feafa39c7c7b",
+              "name": "Profile updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"home_page\": \"<string>\",\n  \"location\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"curr_abbr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4262,\n  \"username\": \"string\",\n  \"resource_url\": \"http://dlmMAzNjVLphtptgDYFuTocBvzmWo.xouaonVeEutqaWwMs-WkgZx6.kxI2MA7C+sK,cb4rGKuJXkaiy3aShqV-QTkko1jzK41ma\",\n  \"uri\": \"https://kWTjJxlofaTOFArMcYyMZ.evN,EjF7l94LvrfedqvvqoLA+GI7Fnu0NO-G+YFMvr\",\n  \"name\": \"string\",\n  \"home_page\": \"http://BdrGtCOnKYeaPpfktkyXkTKFvNOfl.mjpz6E+,jk\",\n  \"location\": \"string\",\n  \"profile\": \"string\",\n  \"registered\": \"1971-01-19T19:49:53.811Z\",\n  \"rank\": 1589.1961197342653,\n  \"num_pending\": 3087,\n  \"num_for_sale\": 5899,\n  \"num_collection\": 4017,\n  \"num_wantlist\": 7224,\n  \"num_lists\": 7833,\n  \"releases_contributed\": 2300,\n  \"releases_rated\": 18,\n  \"rating_avg\": 467.8439177515903,\n  \"inventory_url\": \"https://VwImWnmoNDLnVxfsFt.zjxkxcpXm2t.D6SWxSHrYk9k+SqHV8IHp6Icuon1aIMleBSSw.Oc-sHquKw.qJZzu5V\",\n  \"collection_folders_url\": \"http://tSLhaeeB.zsqnF+RxiYC3L\",\n  \"collection_fields_url\": \"https://ogYZupgZSavspHofDndnUuydZP.cnwnM,k4H6vAw4bU8EaCCoLr3ztVeRxMR5F\",\n  \"wantlist_url\": \"https://tZiVoIgDoecpLIJpkLILXHKjLu.ifatqV1IMsdMGQYFsV4NsEZKoAkvFzEciZPayAhPMPYUbST.Z0FHsG2si\",\n  \"avatar_url\": \"http://CQvBTIeFZlPnXJtDmXxCWGYlxmIYhjc.skqHK9pGuP4ewSUERPoehbm+eLCeDiTYve1ObuA.8C6WyptdBeIwXs2xFk\",\n  \"banner_url\": \"https://dfkFogwQS.jzhvJij6UWKZI.anmTpH.eCATDSGdDaBYX8zc5DxKQlyVzzeCWOn\",\n  \"curr_abbr\": \"SEK\",\n  \"seller_rating\": 5531.489371091596,\n  \"seller_num_ratings\": 9872,\n  \"buyer_rating\": 2811.621995962004,\n  \"buyer_num_ratings\": 7976,\n  \"email\": \"2gwfjDb@rXugxIxaXFDfgOYp.wzhf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fac45db-c837-463f-80f7-058752ccf566",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"home_page\": \"<string>\",\n  \"location\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"curr_abbr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a574041-5311-43c0-a8ce-c6652db59542",
+          "name": "Discogs Get User Contributions",
+          "request": {
+            "name": "Discogs Get User Contributions",
+            "description": {
+              "content": "List all releases a user has contributed to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "contributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a35f265-1520-48d0-a5c2-9ae054f53011",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "contributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 45,\n    \"pages\": 6856,\n    \"per_page\": 4164,\n    \"items\": 4108,\n    \"urls\": {\n      \"first\": \"https://Di.ohg56lhcMc77J8VQHqt9M6Lv9yAsjq17ShSwREA5V6kNdFmrV-tJI\",\n      \"prev\": \"http://CnauIMPBMhaPtRlEotbCQp.vbWnLqkgASV7Wc6axxNhjYJZ1vCIT6uaayNah+lJZJlYPb7ly7xgOTZVnSlZMea\",\n      \"next\": \"http://QNdxGIDwHNjaa.cjxw0TYrPW-WCqLyH,EUHpg1h1GFwz6fb0KJlmvebT2fbYpb7,BG8Snit.bTKha.GgstZjPLzfkaDpjy-\",\n      \"last\": \"https://rEqfIxGKSVOckFXFiR.qiqmlSpRTzxNeKhXmWCRpC+jUAWXJ-xsQxDvAbXHHWmlWam\"\n    }\n  },\n  \"contributions\": [\n    {\n      \"id\": 8560,\n      \"title\": \"string\",\n      \"year\": 3103,\n      \"resource_url\": \"https://puqnmnBImczHzVAG.fkaz4hWK,ILBptImR\",\n      \"thumb\": \"http://PshAAoEWPdHnbkRiNawZJXFLyk.pxSCaTasHWJ.DoTMlp\",\n      \"cover_image\": \"https://msBquyJYPelDNvcKigulupbDXEfppwEG.ubgbjDNcXuUkX\",\n      \"formats\": [\n        {\n          \"name\": \"string\",\n          \"qty\": \"string\",\n          \"text\": \"string\",\n          \"descriptions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"qty\": \"string\",\n          \"text\": \"string\",\n          \"descriptions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"labels\": [\n        {\n          \"id\": 1637,\n          \"name\": \"string\",\n          \"resource_url\": \"http://gMwCXcXLQyCG.zbweRMx7agVOB1HtY5aZvd,-4KI7e5VwhwND0RvIXD6M4HlfVnjDAFKHDVcBK18o+uwmaJ5lp\",\n          \"catno\": \"string\",\n          \"entity_type\": \"string\"\n        },\n        {\n          \"id\": 8166,\n          \"name\": \"string\",\n          \"resource_url\": \"https://fTibUJWDOxSKlBUrgrWoQAiJeyGdrDegm.dqzSQWCcJT7Rg4CL4jlVmHpZjkUeht0ZbQSotx4dq.4l3CJcQarnmsxTKV\",\n          \"catno\": \"string\",\n          \"entity_type\": \"string\"\n        }\n      ],\n      \"artists\": [\n        {\n          \"id\": 7816,\n          \"name\": \"string\",\n          \"resource_url\": \"http://FvugppqJYGDVgTdNQJUHcWTkjclNPpKj.xcpRNFBwi5hodz5fL0klf7M1Bjp405ebjlRQhtySeRsny3D2bYmpudoNPAMEF\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        },\n        {\n          \"id\": 3995,\n          \"name\": \"string\",\n          \"resource_url\": \"https://SQCslQdgvJlSUObakShJAgR.cadlx84x1VfTx0bSL3pZ7mxHizVim\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        }\n      ],\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"styles\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": 1424,\n      \"title\": \"string\",\n      \"year\": 8037,\n      \"resource_url\": \"https://xaZwFJfEBEdRD.nhhrQIqZCmF.EYNgJ0bqT0-\",\n      \"thumb\": \"https://izjJfNNheiqJzrZrpBsxZJ.xnl6QpzavzjxQ,yS,mv3,-ovnmt7qSSkyfV,Nr0rW-6erG4Ppr6gYcmFNs0CzzAYu\",\n      \"cover_image\": \"http://HFlTJzQysYXu.tjdxLwPccoMSPbW1j0GsKDAq5Kk63rDqjj\",\n      \"formats\": [\n        {\n          \"name\": \"string\",\n          \"qty\": \"string\",\n          \"text\": \"string\",\n          \"descriptions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"qty\": \"string\",\n          \"text\": \"string\",\n          \"descriptions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"labels\": [\n        {\n          \"id\": 2359,\n          \"name\": \"string\",\n          \"resource_url\": \"https://f.qnztSPSMrCSbvhm5wFDAb0prKkOemkhfd1lSXH4YjNnnqZkYNe6yfQ\",\n          \"catno\": \"string\",\n          \"entity_type\": \"string\"\n        },\n        {\n          \"id\": 284,\n          \"name\": \"string\",\n          \"resource_url\": \"https://mOKBjDOTVoMZFzldBuxLnOBDRHfq.vceoEw2Yr86pHEQOs0HTb-Sd-sugvTedEIkyDFd0tPDm1XDBB9DTymJOCm\",\n          \"catno\": \"string\",\n          \"entity_type\": \"string\"\n        }\n      ],\n      \"artists\": [\n        {\n          \"id\": 1039,\n          \"name\": \"string\",\n          \"resource_url\": \"https://ENpDFMkpBvItOQomwBszpeKZrp.ywyX8iA,IxppBcZ4pHDkLU0dHShwoRegS1AVtnXwzG\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        },\n        {\n          \"id\": 4349,\n          \"name\": \"string\",\n          \"resource_url\": \"http://DaHqVgehxrvPJcbPbcqvIoVjtj.tzsUORxLAgP\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        }\n      ],\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"styles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb9d3cea-b955-45d3-9620-80546ccc149f",
+          "name": "Discogs Get User Submissions",
+          "request": {
+            "name": "Discogs Get User Submissions",
+            "description": {
+              "content": "List all submissions (artist/label/release edits) by a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "521eb547-418d-4074-b9bb-04dc4fb78ce7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 8844,\n    \"pages\": 3982,\n    \"per_page\": 9726,\n    \"items\": 728,\n    \"urls\": {\n      \"first\": \"http://TjTPJlrCksrFzUQ.jnreCVEouIwgXpDG2V4T6Wl1.Fc\",\n      \"prev\": \"https://EazcuQrHN.gqrdSiYoz4\",\n      \"next\": \"http://etAvHhf.cona1yu9HJKxsR-LGtgqwnI3ISHLYY-qL6Sa8lSXaOLpn43mMw3pBMMFqNICeKu1YZMQYjYyO7HovviZa4G+I\",\n      \"last\": \"https://muAjeWNTvdowwDBzYBDnMKIyjGC.iwkVupsLoXMclu1NViekgEvwVOpExrvCT4TAf1D\"\n    }\n  },\n  \"submissions\": {\n    \"artists\": [\n      {\n        \"id\": 8363,\n        \"name\": \"string\",\n        \"resource_url\": \"http://tmJEiSxobssCtqKoloiZgL.rrj.YYYbFXLJNztLcal0IXdSuyl7lQ5HzKTywkf85WDarocoTXcqeLB\",\n        \"anv\": \"string\",\n        \"join\": \"string\",\n        \"role\": \"string\",\n        \"tracks\": \"string\"\n      },\n      {\n        \"id\": 8523,\n        \"name\": \"string\",\n        \"resource_url\": \"http://esWnxFESfNoKJrRsdqUTyeVFi.tzfgXe7r\",\n        \"anv\": \"string\",\n        \"join\": \"string\",\n        \"role\": \"string\",\n        \"tracks\": \"string\"\n      }\n    ],\n    \"labels\": [\n      {\n        \"id\": 5183,\n        \"name\": \"string\",\n        \"resource_url\": \"https://MPDrQLOLHN.kvyk3XpYva4pbCfRKBtMDg5lqN6kYvhHAO6cdSD\",\n        \"catno\": \"string\",\n        \"entity_type\": \"string\"\n      },\n      {\n        \"id\": 6920,\n        \"name\": \"string\",\n        \"resource_url\": \"https://jazrjX.pobpOWlnu8H6JeQp8IYZ+yOWTJeNuBS1UFfYR4SnVLweR.W,yQML.SjHhTp\",\n        \"catno\": \"string\",\n        \"entity_type\": \"string\"\n      }\n    ],\n    \"releases\": [\n      {\n        \"id\": 89,\n        \"title\": \"string\",\n        \"year\": 1249,\n        \"resource_url\": \"http://svRMkFyToQM.atxjDL9GfkykJodsdq\",\n        \"thumb\": \"http://USoObJEBvsfTCJwPkCIvtShkY.klsxyGz-hdDktDMjPpTsX+r\",\n        \"cover_image\": \"http://gUV.wfsxst0QCqaTQY3FdZDAj0mtb-qsxBWuimiYhc3sfp9\",\n        \"formats\": [\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"labels\": [\n          {\n            \"id\": 1013,\n            \"name\": \"string\",\n            \"resource_url\": \"http://MWTsfbtrzeFFqdfqAnNJAxOzXJlwFSC.aubRaZMIK61MZGOmU4\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          },\n          {\n            \"id\": 3886,\n            \"name\": \"string\",\n            \"resource_url\": \"http://cVk.jtydmNMSAgtrpBiDSLL,rtDhOlK28eZyeFKiH.PgrzSBf2LnBqTMdCd5r3VK\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          }\n        ],\n        \"artists\": [\n          {\n            \"id\": 3182,\n            \"name\": \"string\",\n            \"resource_url\": \"https://orOIcvmprgbq.ppqBdIMoBK,kBHISF,4l7teVbHRD.b.DYqKMy9yP-JqkEq.SFoieH\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          },\n          {\n            \"id\": 9328,\n            \"name\": \"string\",\n            \"resource_url\": \"http://qwRIuNfkrEdmpriGws.aunqcfqAdcOac,rw+xc-EIYepH4ch-Nug+nCsAJWohlj5Xbp7aQHGuteZCoB\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          }\n        ],\n        \"genres\": [\n          \"string\",\n          \"string\"\n        ],\n        \"styles\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 1050,\n        \"title\": \"string\",\n        \"year\": 107,\n        \"resource_url\": \"http://mgTOGmTmSJZH.ftBJjwIVcfPsVfQU\",\n        \"thumb\": \"https://rzMxuiNxSncFsNGkdSjgGVsxQzO.iwvCakhIJdxiZGpb20tWxxe0kcwKy5RR\",\n        \"cover_image\": \"https://EatKuqTADR.ynyqIBEgYlUI-bhapenDzhYvtL00vZ9imZkjFni\",\n        \"formats\": [\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"labels\": [\n          {\n            \"id\": 2580,\n            \"name\": \"string\",\n            \"resource_url\": \"https://bfsGrMCfuhaabMk.ysviFM2+AGO3XHI,DFoTEuaqmd0grYbSrFGM.yvN7h0IK-hePf3Qp2zwA1-DJcC2hYsLHzJ8vHJHnRIg2kYdQa6xZwCu\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          },\n          {\n            \"id\": 7859,\n            \"name\": \"string\",\n            \"resource_url\": \"https://bfAZllPxSYHChxFtsSP.bhXxxRaG4Yp0XE8xMsx8Pxrw9VS7520dp-+p2NWtr6WLLeaW58IUl1djvCIl5dD\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          }\n        ],\n        \"artists\": [\n          {\n            \"id\": 3750,\n            \"name\": \"string\",\n            \"resource_url\": \"https://CzfZqiapMmrBAXlvOfD.dvalAS60,sLqcbXv9B1OoYEgaIO3LV9r5C+zxcddeHOPfS3y\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          },\n          {\n            \"id\": 7111,\n            \"name\": \"string\",\n            \"resource_url\": \"https://kOibDdSGXTfXdRyDMojPX.korgtm8P0VZl0t6kUWmXkxNDq0lrMOxLHUFhggWWq4IGTmnRPe9\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          }\n        ],\n        \"genres\": [\n          \"string\",\n          \"string\"\n        ],\n        \"styles\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "235fb292-c082-4a88-9acf-30d3625d7c16",
+    "name": "Discogs Database User Identity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

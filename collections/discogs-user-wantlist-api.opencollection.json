@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database User Wantlist API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Wantlist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get User Wantlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/wants",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Returns the list of releases in a user's wantlist. Supports pagination.\nIf the wantlist is private, authentication as the owner is required.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Add Release to Wantlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.discogs.com/users/:username/wants/:release_id",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "The ID of the release."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a release to a user's wantlist. Authentication as the owner is required."
+        },
+        {
+          "info": {
+            "name": "Discogs Delete Release from Wantlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.discogs.com/users/:username/wants/:release_id",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "The ID of the release."
+              }
+            ]
+          },
+          "docs": "Delete a release from a user's wantlist. Authentication as the owner is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

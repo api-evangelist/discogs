@@ -1,0 +1,500 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Database",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get an Artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/artists/:artist_id",
+            "params": [
+              {
+                "name": "artist_id",
+                "value": "108713",
+                "type": "path",
+                "description": "The ID of the artist."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific artist."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Artist Releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/artists/:artist_id/releases",
+            "params": [
+              {
+                "name": "artist_id",
+                "value": "108713",
+                "type": "path",
+                "description": "The ID of the artist."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort the results by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The order to sort the results."
+              }
+            ]
+          },
+          "docs": "Returns a list of releases and masters associated with an artist. Supports pagination."
+        },
+        {
+          "info": {
+            "name": "Discogs Search the Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/database/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "The Cure",
+                "type": "query",
+                "description": "Your search query."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of resource to search for."
+              },
+              {
+                "name": "title",
+                "value": "The Cure - Disintegration",
+                "type": "query",
+                "description": "Search by combined \"Artist Name - Release Title\" field."
+              },
+              {
+                "name": "release_title",
+                "value": "Disintegration",
+                "type": "query",
+                "description": "Search release titles."
+              },
+              {
+                "name": "credit",
+                "value": "Robert Smith",
+                "type": "query",
+                "description": "Search release credits."
+              },
+              {
+                "name": "artist",
+                "value": "The Cure",
+                "type": "query",
+                "description": "Search artist names."
+              },
+              {
+                "name": "anv",
+                "value": "",
+                "type": "query",
+                "description": "Search an \"Artist Name Variation\" (ANV)."
+              },
+              {
+                "name": "label",
+                "value": "Fiction Records",
+                "type": "query",
+                "description": "Search label names."
+              },
+              {
+                "name": "genre",
+                "value": "Rock",
+                "type": "query",
+                "description": "Search genres."
+              },
+              {
+                "name": "style",
+                "value": "Gothic Rock",
+                "type": "query",
+                "description": "Search styles."
+              },
+              {
+                "name": "country",
+                "value": "UK",
+                "type": "query",
+                "description": "Search release country."
+              },
+              {
+                "name": "year",
+                "value": "1989",
+                "type": "query",
+                "description": "Search release year."
+              },
+              {
+                "name": "format",
+                "value": "Vinyl",
+                "type": "query",
+                "description": "Search formats."
+              },
+              {
+                "name": "catno",
+                "value": "FIXH 14",
+                "type": "query",
+                "description": "Search catalog number."
+              },
+              {
+                "name": "barcode",
+                "value": "42283923518",
+                "type": "query",
+                "description": "Search barcodes."
+              },
+              {
+                "name": "track",
+                "value": "Lovesong",
+                "type": "query",
+                "description": "Search track titles."
+              },
+              {
+                "name": "submitter",
+                "value": "",
+                "type": "query",
+                "description": "Search by submitter username."
+              },
+              {
+                "name": "contributor",
+                "value": "",
+                "type": "query",
+                "description": "Search by contributor username."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Issue a search query to the Discogs database. This endpoint supports pagination and requires authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Get a Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/labels/:label_id",
+            "params": [
+              {
+                "name": "label_id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the label."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific label."
+        },
+        {
+          "info": {
+            "name": "Discogs Get All Label Releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/labels/:label_id/releases",
+            "params": [
+              {
+                "name": "label_id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the label."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Returns a list of releases associated with a label. Supports pagination."
+        },
+        {
+          "info": {
+            "name": "Discogs Get a Master Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/masters/:master_id",
+            "params": [
+              {
+                "name": "master_id",
+                "value": "1000",
+                "type": "path",
+                "description": "The ID of the master release."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific master release. A master release represents a set of similar releases."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Master Release Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/masters/:master_id/versions",
+            "params": [
+              {
+                "name": "master_id",
+                "value": "1000",
+                "type": "path",
+                "description": "The ID of the master release."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Filter by format."
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "Filter by label."
+              },
+              {
+                "name": "released",
+                "value": "",
+                "type": "query",
+                "description": "Filter by release year."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort the results by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The order to sort the results."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all releases that are versions of the specified master release. Supports pagination."
+        },
+        {
+          "info": {
+            "name": "Discogs Get a Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/releases/:release_id",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "The ID of the release."
+              },
+              {
+                "name": "curr_abbr",
+                "value": "",
+                "type": "query",
+                "description": "Currency for marketplace data."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific release."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Release Community Rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/releases/:release_id/rating",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              }
+            ]
+          },
+          "docs": "Return the aggregate community rating for a release."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Release Rating by User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/releases/:release_id/rating/:username",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              },
+              {
+                "name": "username",
+                "value": "memory",
+                "type": "path",
+                "description": "Discogs username."
+              }
+            ]
+          },
+          "docs": "Return a user's rating of a release."
+        },
+        {
+          "info": {
+            "name": "Discogs Update Release Rating by User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.discogs.com/releases/:release_id/rating/:username",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              },
+              {
+                "name": "username",
+                "value": "memory",
+                "type": "path",
+                "description": "Discogs username."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Set or update the authenticated user's release rating."
+        },
+        {
+          "info": {
+            "name": "Discogs Delete Release Rating by User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.discogs.com/releases/:release_id/rating/:username",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              },
+              {
+                "name": "username",
+                "value": "memory",
+                "type": "path",
+                "description": "Discogs username."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a release rating for the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

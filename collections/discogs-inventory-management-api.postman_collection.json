@@ -1,0 +1,1124 @@
+{
+  "item": [
+    {
+      "id": "d71e39fb-5dad-4919-903d-91f3ce014560",
+      "name": "Inventory Management",
+      "description": {
+        "content": "Bulk inventory export and CSV upload management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8d11845-8d6c-4220-8e62-88d575286d66",
+          "name": "Discogs List Inventory Exports",
+          "request": {
+            "name": "Discogs List Inventory Exports",
+            "description": {
+              "content": "List past inventory CSV export jobs for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05f90c4d-111d-48f4-a8e3-4e0ad4fa28b9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 5731,\n    \"pages\": 1746,\n    \"per_page\": 3613,\n    \"items\": 3476,\n    \"urls\": {\n      \"first\": \"http://dLPbHMYSNNlPsJkRngkIR.nbqJW4KV\",\n      \"prev\": \"https://sbWzPIeQElCfOcmoRjQqSNbqjxZFXJ.hxbeQm9SantBz-t-SGymYp\",\n      \"next\": \"https://JOhfbWKT.fjIswvp1.StyR+ymv\",\n      \"last\": \"https://rCSZIJMCkXROABYmjin.wurfY.hHaM5N0NiKooDTYC6Y,o8d9pFf5eru2apjLX.COg\"\n    }\n  },\n  \"items\": [\n    {\n      \"status\": \"pending\",\n      \"created_ts\": \"1949-06-19T19:41:52.118Z\",\n      \"url\": \"http://QfDETctklZQSLUlh.vvjst+PXfS-lvylK1l6mXld+zDV9z\",\n      \"finished_ts\": \"1970-09-11T06:13:41.407Z\",\n      \"download_url\": \"https://fnFXnaqxtkFoNbUCOkOmALMdT.owddGMfr4Suo7bXsf5BVIzjiRvucmpUlwp,-V5\",\n      \"filename\": \"inventory-export.csv\",\n      \"id\": 599,\n      \"type\": \"export\"\n    },\n    {\n      \"status\": \"success\",\n      \"created_ts\": \"2000-08-27T20:40:12.026Z\",\n      \"url\": \"http://mGGJiSVWSNiHLPKDIF.pwSUs,pZvSIUoqQftBYwjq.glXzsJa9Ok1Uiy2YDXuqxGjCjQokd+uDAiDQ\",\n      \"finished_ts\": \"1953-07-21T09:28:08.644Z\",\n      \"download_url\": \"http://xZanx.duhx3-3zC\",\n      \"filename\": \"inventory-export.csv\",\n      \"id\": 599,\n      \"type\": \"export\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1483cb08-76dc-4f50-819b-450b79e423ee",
+          "name": "Discogs Request Inventory Export",
+          "request": {
+            "name": "Discogs Request Inventory Export",
+            "description": {
+              "content": "Request an asynchronous CSV export of the authenticated user's inventory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c48e8993-e677-4659-a081-2491a633d316",
+              "name": "Export job queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec0181b8-2453-4375-b1ab-984a1382365b",
+          "name": "Discogs Get Inventory Export",
+          "request": {
+            "name": "Discogs Get Inventory Export",
+            "description": {
+              "content": "Return details about a single inventory export job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "export",
+                ":export_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "export_id",
+                  "description": "(Required) Export job ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e72106d2-c78f-408f-a29e-430b7db66bea",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "export",
+                    ":export_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "export_id",
+                      "description": "(Required) Export job ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"in progress\",\n  \"created_ts\": \"1989-06-27T05:37:09.806Z\",\n  \"url\": \"http://iDKfWpAXUUImZufWWkswNaOXyWOQv.ktjHDo-gHVem8g.kA3CbLuv2Xk79vHlDSkIzhyv6AlI,qjsJbkCR\",\n  \"finished_ts\": \"1982-11-26T16:24:55.961Z\",\n  \"download_url\": \"http://hQstmrIzbGBEuYRghopUAijbwRT.arese\",\n  \"filename\": \"inventory-export.csv\",\n  \"id\": 599,\n  \"type\": \"export\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cba0723a-10c9-4895-9be8-a4b348950768",
+          "name": "Discogs Download Inventory Export",
+          "request": {
+            "name": "Discogs Download Inventory Export",
+            "description": {
+              "content": "Download the CSV file for a completed inventory export.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "export",
+                ":export_id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "export_id",
+                  "description": "(Required) Export job ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b07f7cbb-5d3f-4244-9f36-377354045358",
+              "name": "CSV file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "export",
+                    ":export_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "export_id",
+                      "description": "(Required) Export job ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aeb2ef5e-553d-448f-bdcf-b42683dacbef",
+          "name": "Discogs List Inventory Uploads",
+          "request": {
+            "name": "Discogs List Inventory Uploads",
+            "description": {
+              "content": "List past CSV inventory upload jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0253e25-a875-4efb-a118-148977310a85",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 4530,\n    \"pages\": 3204,\n    \"per_page\": 9249,\n    \"items\": 7706,\n    \"urls\": {\n      \"first\": \"http://CeRjtwaBCsRHAiYsDJj.flovXq97SyVAXyIY\",\n      \"prev\": \"https://tzIqYUqcpVZyBRHryqmnNzkkxxCIMVp.auugJeKkfFXdL\",\n      \"next\": \"http://imzXLaiKJhXqAykIEbMgoNww.ikhjad1wyE,aXQvN\",\n      \"last\": \"https://hnVQ.mqH9+SMHKUMCQRv.BIMJu\"\n    }\n  },\n  \"items\": [\n    {\n      \"status\": \"failure\",\n      \"created_ts\": \"1959-03-22T13:08:32.535Z\",\n      \"last_activity\": \"2008-09-27T06:48:21.380Z\",\n      \"type\": \"delete\",\n      \"id\": 2483,\n      \"filename\": \"string\",\n      \"results_url\": \"http://xKwzfhEJSPCdrFFiVvKXgngTlzww.hqOiu7G6TOYTgb7ODzEAtbu+t8fsUHtYex1QAJT0uBT\"\n    },\n    {\n      \"status\": \"partial_success\",\n      \"created_ts\": \"1998-03-07T15:35:12.567Z\",\n      \"last_activity\": \"1982-03-02T05:13:26.264Z\",\n      \"type\": \"change\",\n      \"id\": 5665,\n      \"filename\": \"string\",\n      \"results_url\": \"http://bedIMaq.tmcmc+Hfq+pzBRs54-\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a797c1c7-b808-4bde-b680-3f7925bd3caf",
+          "name": "Discogs Add Inventory Upload",
+          "request": {
+            "name": "Discogs Add Inventory Upload",
+            "description": {
+              "content": "Submit a CSV file to add inventory listings in bulk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "upload",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d0eddb4-e4b5-462d-959d-5d3a99598033",
+              "name": "Upload job queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "upload",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"failure\",\n  \"created_ts\": \"1998-01-15T19:36:54.741Z\",\n  \"last_activity\": \"1965-11-11T20:08:02.210Z\",\n  \"type\": \"add\",\n  \"id\": 5595,\n  \"filename\": \"string\",\n  \"results_url\": \"http://V.mrjcR1-vif\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffcf6219-4083-4e51-9c3b-b0e877dc5a80",
+          "name": "Discogs Change Inventory Upload",
+          "request": {
+            "name": "Discogs Change Inventory Upload",
+            "description": {
+              "content": "Submit a CSV file to update existing inventory listings in bulk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "upload",
+                "change"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6fbb9119-e1be-4302-9772-2bfa8fe15fdc",
+              "name": "Upload job queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "upload",
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"failure\",\n  \"created_ts\": \"1998-01-15T19:36:54.741Z\",\n  \"last_activity\": \"1965-11-11T20:08:02.210Z\",\n  \"type\": \"add\",\n  \"id\": 5595,\n  \"filename\": \"string\",\n  \"results_url\": \"http://V.mrjcR1-vif\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb6754ad-5e58-4f16-a7b6-0497869f1f8d",
+          "name": "Discogs Delete Inventory Upload",
+          "request": {
+            "name": "Discogs Delete Inventory Upload",
+            "description": {
+              "content": "Submit a CSV file to delete inventory listings in bulk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "upload",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "918ea39e-b9c1-455e-9b2b-8353212c2234",
+              "name": "Upload job queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "upload",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"failure\",\n  \"created_ts\": \"1998-01-15T19:36:54.741Z\",\n  \"last_activity\": \"1965-11-11T20:08:02.210Z\",\n  \"type\": \"add\",\n  \"id\": 5595,\n  \"filename\": \"string\",\n  \"results_url\": \"http://V.mrjcR1-vif\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c66f5292-19b3-4ffd-bb1e-568cdcc02991",
+          "name": "Discogs Get Inventory Upload",
+          "request": {
+            "name": "Discogs Get Inventory Upload",
+            "description": {
+              "content": "Return details about a single CSV inventory upload job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory",
+                "upload",
+                ":upload_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "upload_id",
+                  "description": "(Required) Upload job ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b8b797fb-61c8-41a4-a7b0-3c287c52d6c9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory",
+                    "upload",
+                    ":upload_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "upload_id",
+                      "description": "(Required) Upload job ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"failure\",\n  \"created_ts\": \"1998-01-15T19:36:54.741Z\",\n  \"last_activity\": \"1965-11-11T20:08:02.210Z\",\n  \"type\": \"add\",\n  \"id\": 5595,\n  \"filename\": \"string\",\n  \"results_url\": \"http://V.mrjcR1-vif\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c555849-5e3b-4f40-acd4-7f9dae619732",
+    "name": "Discogs Database Inventory Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

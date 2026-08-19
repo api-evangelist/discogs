@@ -1,0 +1,379 @@
+{
+  "item": [
+    {
+      "id": "a439edf4-a368-4791-8f88-b234fa36e4dd",
+      "name": "User Lists",
+      "description": {
+        "content": "Browse and manage user-created lists of releases, artists, and labels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5908ef8-6734-44d9-bc00-d2bd535fc893",
+          "name": "Discogs Get List",
+          "request": {
+            "name": "Discogs Get List",
+            "description": {
+              "content": "Return a single user-created list, including all items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "list_id",
+                  "description": "(Required) List ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8209aac1-845d-4d19-94d0-0037c41bb1ec",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "list_id",
+                      "description": "(Required) List ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"name\": \"Best Jazz Albums of 1960s\",\n  \"description\": \"My personal favorites.\",\n  \"public\": true,\n  \"date_added\": \"2026-05-29T12:00:00Z\",\n  \"date_changed\": \"2026-05-29T12:00:00Z\",\n  \"uri\": \"https://www.discogs.com/lists/12345\",\n  \"resource_url\": \"https://BHjoCWLnat.bfUyMuOF68o4nwR33\",\n  \"image_url\": \"http://yKCcAklLqjRfHoKsjQM.pqvwYh1dFjcwyWlDNEQYBLm,rP.WM9QIHFTG6vgfGayLBpd\",\n  \"user\": {\n    \"id\": 4972,\n    \"username\": \"string\",\n    \"resource_url\": \"https://iFpIDCqixyuActYtEkKxiWNX.yecicYlPJ083blVs-2BROnuTsJkPqY6gDvfBwBcgqaMySTzzwITNHtrVCz7B+mEERq3hsMqVVHa+N5Lv8Gg\"\n  },\n  \"items\": [\n    {\n      \"id\": 4567,\n      \"type\": \"release\",\n      \"display_title\": \"Miles Davis — Kind Of Blue\",\n      \"uri\": \"http://bmbMfiTjhkICDPq.btxuS3.Bc4rmcZggObw3ZZakOtx83vHdLIc\",\n      \"comment\": \"string\",\n      \"image_url\": \"http://ieSpCJb.ksk0UO22Udckl4jpG5AKBF9paF0aLzVYtML3IZsRkiv3JcNU77.v2w-X\",\n      \"resource_url\": \"http://ucYAtNAFIwssEoMiiwmQefReq.yqinZVQvW9Osg5yf.qD+CABLbDtJ,9GbcdzfmsbuuHxK3oeyuR1\"\n    },\n    {\n      \"id\": 4567,\n      \"type\": \"release\",\n      \"display_title\": \"Miles Davis — Kind Of Blue\",\n      \"uri\": \"https://KchDuhcDoLWk.iaovyAeXkeUK\",\n      \"comment\": \"string\",\n      \"image_url\": \"https://eVQlHxvhRNkvzHbNLw.bujlc1,zMrhIl5vM\",\n      \"resource_url\": \"http://oWgofRMWhRSIZxGleYRzdESMWzYy.jafD0focN4GZG1cnArTZKkIj\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9594a9ab-d91f-4027-b903-4de478889def",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "list_id",
+                      "description": "(Required) List ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8772a00-4c64-43ac-a642-0b7d5ca98ad8",
+          "name": "Discogs Get User Lists",
+          "request": {
+            "name": "Discogs Get User Lists",
+            "description": {
+              "content": "Return a paginated list of user-created lists.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Items per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adb98f65-65d6-42c0-87cf-a252ded02aab",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 1046,\n    \"pages\": 3720,\n    \"per_page\": 7408,\n    \"items\": 3095,\n    \"urls\": {\n      \"first\": \"http://yfLhXTEzYzpcBoMjX.xhnkoygX2B0BxHu5AlwueoVAfqhz+YseHGJLdMN+tYG0C0aPSwoFve\",\n      \"prev\": \"http://zw.cpvdUYoHpCWfSNzpnapHHS2My-wbj3w4ahgXp9LmYVgDk5hAcHjY7CvBTP5anQLH+m0tN\",\n      \"next\": \"https://FdofUSArpvdnXcGpig.sciRKrqhQxZEEEauNbKMZpEpgXsVnPqgGS1Ime+ekjd6TAopfUqezLIg\",\n      \"last\": \"https://vHCmIaDPlvslrWGXjsjCZiNborMxjXYoQ.xodkwjoZ6oihN.rdK3epbYCDWVJrZNXK-N+RoZHSRBJTp-Xq53U\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Best Jazz Albums of 1960s\",\n      \"description\": \"My personal favorites.\",\n      \"public\": true,\n      \"date_added\": \"2026-05-29T12:00:00Z\",\n      \"date_changed\": \"2026-05-29T12:00:00Z\",\n      \"uri\": \"https://www.discogs.com/lists/12345\",\n      \"resource_url\": \"https://HkXIUKFQYXbILLqeJoxsvrujgtrwqNhW.pbf28njF+jahjcZpqtpaT\",\n      \"image_url\": \"http://OTywnTjfeArdOyddqwUsGoAfD.xfqxv0xINo+yA,Vxr\",\n      \"user\": {\n        \"id\": 5591,\n        \"username\": \"string\",\n        \"resource_url\": \"http://QVyBqAnMpkEbDQgXpMFzHRHHDDtQjN.unfFYTS033UFhYIxXbr3YgIo9tgFSkN6gqaxmJKTxUC1crtH\"\n      },\n      \"items\": [\n        {\n          \"id\": 4567,\n          \"type\": \"release\",\n          \"display_title\": \"Miles Davis — Kind Of Blue\",\n          \"uri\": \"http://baxD.bzphr+KhFMV\",\n          \"comment\": \"string\",\n          \"image_url\": \"https://YAQODjzzKrWCir.bokqnSOLuH\",\n          \"resource_url\": \"https://QCGDXKeZJKyqMSZqDXRJtDH.yig.sUIU-rZZyBLV\"\n        },\n        {\n          \"id\": 4567,\n          \"type\": \"release\",\n          \"display_title\": \"Miles Davis — Kind Of Blue\",\n          \"uri\": \"https://uTTo.tfSIr-RHV-QihS-olCMg3pIuR.XcJf\",\n          \"comment\": \"string\",\n          \"image_url\": \"https://ipUHyPrQnlcSiBcWDrRATOaSTP.ypuul7A5xYFhAa\",\n          \"resource_url\": \"http://adVm.udaB4tZZdKev\"\n        }\n      ]\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Best Jazz Albums of 1960s\",\n      \"description\": \"My personal favorites.\",\n      \"public\": true,\n      \"date_added\": \"2026-05-29T12:00:00Z\",\n      \"date_changed\": \"2026-05-29T12:00:00Z\",\n      \"uri\": \"https://www.discogs.com/lists/12345\",\n      \"resource_url\": \"https://jaXhVdx.jkqR903QTm6czjIYL9MRuQRRbfTttWe3FeEcaw9XcbM4mZVrmbJy.GXqyaHthu1i7c\",\n      \"image_url\": \"https://SmFEgXzrdmHTzBUtfsZHC.pceWHWnFUkOCPQQKhn-Mi+JNlEk,jPOauI9hLjtvMCcemlRG.bK34pZ.tqOP-62UPr\",\n      \"user\": {\n        \"id\": 7054,\n        \"username\": \"string\",\n        \"resource_url\": \"https://HqQYqOFOgM.azgboEawmXPIZQtftpu-pSm\"\n      },\n      \"items\": [\n        {\n          \"id\": 4567,\n          \"type\": \"release\",\n          \"display_title\": \"Miles Davis — Kind Of Blue\",\n          \"uri\": \"https://tfIuvtn.dqsijpmTb1BkeK1J7+9VqZcAc6GnjH\",\n          \"comment\": \"string\",\n          \"image_url\": \"http://nHdaSPlBulDVQsKoLFfjih.cupmoRkYtrvvIWU1tdnc\",\n          \"resource_url\": \"https://kwoaQdKehQvFyTvrNeBsBsyVnRI.obdDdLwUkz2wYNoEHVYIkgP-vHou8+GIE.uv\"\n        },\n        {\n          \"id\": 4567,\n          \"type\": \"release\",\n          \"display_title\": \"Miles Davis — Kind Of Blue\",\n          \"uri\": \"http://nSrsugtixLDTzMQZdIEwxSzeDjbMvGW.whlkxFPFxOaJCZq,ramwQ0c9WiKKqo-xGgvK2r0reD818Lsmms\",\n          \"comment\": \"string\",\n          \"image_url\": \"http://hjqcDHUaBTGiv.wwfrFo3mHVJCZ\",\n          \"resource_url\": \"https://IrkKqbJHdxOREpJDuM.qrofCjf\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b301f1e-d087-424c-9b86-f8ac9de49224",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "270a6eda-4149-4a41-8bdd-da68ce786731",
+    "name": "Discogs Database User Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

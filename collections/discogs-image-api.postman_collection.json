@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "ee76d34a-e2b7-4ed6-8776-d3e59bcb542b",
+      "name": "Image",
+      "description": {
+        "content": "Image asset retrieval (proxied via OAuth).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99ab0a6a-de90-4c95-a081-2f7cdc3dc176",
+          "name": "Discogs Get Image",
+          "request": {
+            "name": "Discogs Get Image",
+            "description": {
+              "content": "Return a binary image asset. Image URLs in API responses are proxied through this endpoint and require OAuth and a unique User-Agent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images",
+                ":filename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filename",
+                  "description": "(Required) Image filename, as returned by other endpoints."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76368905-314a-43dd-abe9-b93ec60a4433",
+              "name": "Image binary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images",
+                    ":filename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filename",
+                      "description": "(Required) Image filename, as returned by other endpoints."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/jpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b1ea7a51-c223-463e-99fa-efe178dcf26f",
+    "name": "Discogs Database Image API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

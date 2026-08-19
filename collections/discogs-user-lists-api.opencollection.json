@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database User Lists API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/lists/:list_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "12345",
+                "type": "path",
+                "description": "List ID."
+              }
+            ]
+          },
+          "docs": "Return a single user-created list, including all items."
+        },
+        {
+          "info": {
+            "name": "Discogs Get User Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/lists",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "Discogs username."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of user-created lists."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

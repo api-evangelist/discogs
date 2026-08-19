@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database Marketplace API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketplace",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get Marketplace Fee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/fee/:price",
+            "params": [
+              {
+                "name": "price",
+                "value": "10",
+                "type": "path",
+                "description": "Transaction price in USD."
+              }
+            ]
+          },
+          "docs": "Return the Discogs marketplace fee for a transaction at a given price in USD."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Marketplace Fee with Currency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/fee/:price/:currency",
+            "params": [
+              {
+                "name": "price",
+                "value": "10",
+                "type": "path",
+                "description": "Transaction price."
+              },
+              {
+                "name": "currency",
+                "value": "EUR",
+                "type": "path",
+                "description": "ISO currency code."
+              }
+            ]
+          },
+          "docs": "Return the Discogs marketplace fee for a transaction at a given price and currency."
+        },
+        {
+          "info": {
+            "name": "Discogs Create a New Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/marketplace/listings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Marketplace listing. The listing will be added to the authenticated user’s inventory."
+        },
+        {
+          "info": {
+            "name": "Discogs Get a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "172723812",
+                "type": "path",
+                "description": "The ID of the marketplace listing."
+              },
+              {
+                "name": "curr_abbr",
+                "value": "",
+                "type": "query",
+                "description": "Currency for marketplace data."
+              }
+            ]
+          },
+          "docs": "View the data associated with a Marketplace listing."
+        },
+        {
+          "info": {
+            "name": "Discogs Edit a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/marketplace/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "172723812",
+                "type": "path",
+                "description": "The ID of the marketplace listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit the data associated with a listing.\nAuthentication as the listing owner is required.\nIf the listing’s status is not `For Sale`, `Draft`, or `Expired`, it cannot be modified.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Delete a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.discogs.com/marketplace/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "172723812",
+                "type": "path",
+                "description": "The ID of the marketplace listing."
+              }
+            ]
+          },
+          "docs": "Permanently remove a listing from the Marketplace. Authentication as the listing owner is required."
+        },
+        {
+          "info": {
+            "name": "Discogs List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/orders",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status."
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query",
+                "description": "Return orders created after this ISO 8601 datetime."
+              },
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query",
+                "description": "Return orders created before this ISO 8601 datetime."
+              },
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include archived orders."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List marketplace orders for the authenticated seller."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "1-1",
+                "type": "path",
+                "description": "Order ID (e.g. 1-1)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a single marketplace order."
+        },
+        {
+          "info": {
+            "name": "Discogs Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/marketplace/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "1-1",
+                "type": "path",
+                "description": "Order ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update marketplace order fields (status, shipping)."
+        },
+        {
+          "info": {
+            "name": "Discogs List Order Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/orders/:order_id/messages",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "1-1",
+                "type": "path",
+                "description": "Order ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List messages exchanged on a marketplace order."
+        },
+        {
+          "info": {
+            "name": "Discogs Add Order Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/marketplace/orders/:order_id/messages",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "1-1",
+                "type": "path",
+                "description": "Order ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Post a new message on a marketplace order."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Price Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/marketplace/price_suggestions/:release_id",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return suggested marketplace prices for a release across all media conditions."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Release Marketplace Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/releases/:release_id/stats",
+            "params": [
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "Release ID."
+              }
+            ]
+          },
+          "docs": "Return marketplace statistics (lowest price, copies for sale) for a release."
+        },
+        {
+          "info": {
+            "name": "Discogs Get User Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/inventory",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Only show items with this status."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort items by this field."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The order to sort the results."
+              }
+            ]
+          },
+          "docs": "Returns the list of listings in a user’s inventory. Supports pagination.\nIf you are not authenticated as the inventory owner, only items that have a status of \"For Sale\" will be visible.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

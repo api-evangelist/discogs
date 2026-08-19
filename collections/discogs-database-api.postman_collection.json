@@ -1,0 +1,2362 @@
+{
+  "item": [
+    {
+      "id": "4e21949a-01c2-4fee-ae32-b34c5757d335",
+      "name": "Database",
+      "description": {
+        "content": "Access Discogs database: artists, releases, masters, labels, and search.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33fe7159-2a0e-476f-82f3-25248437ddf5",
+          "name": "Discogs Get an Artist",
+          "request": {
+            "name": "Discogs Get an Artist",
+            "description": {
+              "content": "Retrieves details for a specific artist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artists",
+                ":artist_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "artist_id",
+                  "description": "(Required) The ID of the artist."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "530768d1-8277-4565-8c57-997578eeecae",
+              "name": "Successfully retrieved artist details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artists",
+                    ":artist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) The ID of the artist."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 228,\n  \"name\": \"string\",\n  \"realname\": \"string\",\n  \"resource_url\": \"http://c.bbwW-uVH2+EM+,Ak1c\",\n  \"uri\": \"https://JwpeUlqHfWDnjarhQNdJAtKjjc.jjuRlO3tEP8\",\n  \"releases_url\": \"http://viawd.xfuoRTPLGXLU+aH5VN.g5mftqJaiUiOPzeoZWTT49iOl2fqVE\",\n  \"profile\": \"string\",\n  \"urls\": [\n    \"https://kMXWdBRSQqnjGmxJdnByAbrbFm.laabr\",\n    \"http://ZjWKxTySQfhpLIyLIMVmfu.houtx3BaGh35i\"\n  ],\n  \"namevariations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"members\": [\n    {\n      \"id\": 9324,\n      \"name\": \"string\",\n      \"resource_url\": \"http://oKdxwfSMBwlxlBHceZDZsidIkQbtqKx.hvibPt-DwN4sXXQRiqqlPBsASyjhthFfeptzhlbIoKZkG7U1imhJaJ1\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    },\n    {\n      \"id\": 2765,\n      \"name\": \"string\",\n      \"resource_url\": \"http://cCufJREyoXJsmwmgakDsbOzJNzUB.mbM4HunpOGXiwL7Lfsss4iZ2ys7\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    }\n  ],\n  \"images\": [\n    {\n      \"type\": \"primary\",\n      \"uri\": \"http://VxJFoFjJxwlgJTEUAaxlBsUAJjTxhwZ.poklo67ha91nQpiz8LSYvDnjQBPfFsuKEp1aaK\",\n      \"resource_url\": \"http://PlsNyWjvSJMi.gjgiYDaPmjIxvAkbQayhts27O0anqAP7+udgGuOnel9Ei.rGOSmSn0d-iRwK3h\",\n      \"uri150\": \"https://tuEYXMTF.bgdaj.0kseakVT8,ehNIHy96eXApDUwWX4ITbhsR\",\n      \"width\": 5054,\n      \"height\": 7516\n    },\n    {\n      \"type\": \"secondary\",\n      \"uri\": \"https://RceOu.pedphZt.ipt6ppbu8p0XNRMteh1EiLg+4PdNZ4\",\n      \"resource_url\": \"http://DOAha.ekvaA.tbCu1iuw,5B\",\n      \"uri150\": \"https://DqxoHe.rnqa1XrB6OvUmQ-A0Kl2nua\",\n      \"width\": 4969,\n      \"height\": 8606\n    }\n  ],\n  \"data_quality\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d339a0e6-48a6-4499-b168-dfe8234035d5",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artists",
+                    ":artist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) The ID of the artist."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79bab509-6c47-47df-838d-5f865c5e839c",
+          "name": "Discogs Get Artist Releases",
+          "request": {
+            "name": "Discogs Get Artist Releases",
+            "description": {
+              "content": "Returns a list of releases and masters associated with an artist. Supports pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artists",
+                ":artist_id",
+                "releases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "year",
+                  "description": "The field to sort the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc",
+                  "description": "The order to sort the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "artist_id",
+                  "description": "(Required) The ID of the artist."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "175c0109-c789-4283-b269-31888c4fc9fc",
+              "name": "A paginated list of the artist's releases.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artists",
+                    ":artist_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "year"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) The ID of the artist."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 2785,\n    \"pages\": 5428,\n    \"per_page\": 6358,\n    \"items\": 5871,\n    \"urls\": {\n      \"first\": \"http://TKMozyUUZKeRPBmCiZrDbgK.vyufNAc8eU88V53TxYKkwPLFWJ3+\",\n      \"prev\": \"http://DMCrggw.lhlcOlltAMaRk77,FmH28cAa8rE6GH1G0wUH3LcUNumoljtrMJAHYNJRRAPaIvkat1Of0Nj\",\n      \"next\": \"https://DWDtBsfM.dmqnB+wJfjhBdQ5EJ1AdI7NWAk\",\n      \"last\": \"http://tCYeaMCUwlJmQmTXYcoafrjslVEK.epcv+u\"\n    }\n  },\n  \"releases\": [\n    {\n      \"id\": 9314,\n      \"resource_url\": \"http://xBpmUwVgvpkCpRoOTJgyyuELJ.znTfUxUpJgLNbqFfRYj3PurayaGYJhTssk.bfhx5oDFmzmzCZqxqPRSqht\",\n      \"type\": \"master\",\n      \"title\": \"string\",\n      \"thumb\": \"https://HqQSJacFlDLemOWksNeDHeKsrdmZeQ.nmkxQFT5ePbeqgY-Hnl.xasPSDp1wLc\",\n      \"artist\": \"string\",\n      \"role\": \"string\",\n      \"year\": 3811,\n      \"format\": \"string\",\n      \"label\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": 7990,\n      \"resource_url\": \"http://dqhBHNmFJbqJdxcNAMxVQsmZdoQ.jdsYr93dsgt.I+UijJWr+\",\n      \"type\": \"release\",\n      \"title\": \"string\",\n      \"thumb\": \"https://UumgNDHQkOInkLyqYLCYEFHDjyPFTlfUf.vuhmF1sO8I0LtdIM2UaX3mjhwVAnKIicLA3SyL+Mcv0aAPFbZ3DI,TX.LY7eqnhKm\",\n      \"artist\": \"string\",\n      \"role\": \"string\",\n      \"year\": 7105,\n      \"format\": \"string\",\n      \"label\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb99e2b0-fbfd-48cf-9f2d-f08840619c10",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artists",
+                    ":artist_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "year"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) The ID of the artist."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9edb2da-181b-4a26-8476-250f0afdd22e",
+          "name": "Discogs Search the Database",
+          "request": {
+            "name": "Discogs Search the Database",
+            "description": {
+              "content": "Issue a search query to the Discogs database. This endpoint supports pagination and requires authentication.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Your search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of resource to search for."
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "Search by combined \"Artist Name - Release Title\" field."
+                },
+                {
+                  "disabled": false,
+                  "key": "release_title",
+                  "value": "<string>",
+                  "description": "Search release titles."
+                },
+                {
+                  "disabled": false,
+                  "key": "credit",
+                  "value": "<string>",
+                  "description": "Search release credits."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "Search artist names."
+                },
+                {
+                  "disabled": false,
+                  "key": "anv",
+                  "value": "<string>",
+                  "description": "Search an \"Artist Name Variation\" (ANV)."
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>",
+                  "description": "Search label names."
+                },
+                {
+                  "disabled": false,
+                  "key": "genre",
+                  "value": "<string>",
+                  "description": "Search genres."
+                },
+                {
+                  "disabled": false,
+                  "key": "style",
+                  "value": "<string>",
+                  "description": "Search styles."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Search release country."
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<string>",
+                  "description": "Search release year."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Search formats."
+                },
+                {
+                  "disabled": false,
+                  "key": "catno",
+                  "value": "<string>",
+                  "description": "Search catalog number."
+                },
+                {
+                  "disabled": false,
+                  "key": "barcode",
+                  "value": "<string>",
+                  "description": "Search barcodes."
+                },
+                {
+                  "disabled": false,
+                  "key": "track",
+                  "value": "<string>",
+                  "description": "Search track titles."
+                },
+                {
+                  "disabled": false,
+                  "key": "submitter",
+                  "value": "<string>",
+                  "description": "Search by submitter username."
+                },
+                {
+                  "disabled": false,
+                  "key": "contributor",
+                  "value": "<string>",
+                  "description": "Search by contributor username."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a3039c0e-5a46-46df-9c2d-c134479b7457",
+              "name": "Search results returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "The Cure - Disintegration"
+                    },
+                    {
+                      "key": "release_title",
+                      "value": "Disintegration"
+                    },
+                    {
+                      "key": "credit",
+                      "value": "Robert Smith"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "anv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "Fiction Records"
+                    },
+                    {
+                      "key": "genre",
+                      "value": "Rock"
+                    },
+                    {
+                      "key": "style",
+                      "value": "Gothic Rock"
+                    },
+                    {
+                      "key": "country",
+                      "value": "UK"
+                    },
+                    {
+                      "key": "year",
+                      "value": "1989"
+                    },
+                    {
+                      "key": "format",
+                      "value": "Vinyl"
+                    },
+                    {
+                      "key": "catno",
+                      "value": "FIXH 14"
+                    },
+                    {
+                      "key": "barcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "Lovesong"
+                    },
+                    {
+                      "key": "submitter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 6473,\n    \"pages\": 1007,\n    \"per_page\": 5494,\n    \"items\": 5637,\n    \"urls\": {\n      \"first\": \"http://NDVEwrkStJAbGQjd.unzxIpV6JvdRF8nq.9aEwSF1SqD,,loC,q19owex4.fS07Qa+cm72FGfNQb3IylgqQm+OSo.lwX,8AWzLl\",\n      \"prev\": \"http://ytDHsAKgUUDKEbpBNJcCksMTqK.xxy6vLfMTbHXVyS2VPBZ2d\",\n      \"next\": \"https://sDoFFvAFWjSGjcEkyYcHvTg.hkX5jlzmP75hR0BKnMwzwO.\",\n      \"last\": \"http://nyxKWEinvZKI.pwmJin,8oLIBKIeXvgWvsCb-PVj3OOGy5tDY9H7EMWAvfCZFp.Yl8\"\n    }\n  },\n  \"results\": [\n    {\n      \"id\": 57,\n      \"type\": \"release\",\n      \"title\": \"string\",\n      \"thumb\": \"https://XrnYyYGUvSkpJKefoWgzvAhDkWydMo.tmkI+Q\",\n      \"cover_image\": \"https://DViqVKLqyHUjXMH.slcbRq-4gaTlWz8PI8rVr+nP99+xu\",\n      \"resource_url\": \"https://InBqbngcUUjZGhkTkDagpmAL.fjQvzQiUjLOK48-qa-BI3N-kucERCtINAWw.ByhOPAftQYd5KqWQ+\",\n      \"uri\": \"string\",\n      \"country\": \"string\",\n      \"year\": \"string\",\n      \"format\": [\n        \"string\",\n        \"string\"\n      ],\n      \"label\": [\n        \"string\",\n        \"string\"\n      ],\n      \"catno\": \"string\",\n      \"genre\": [\n        \"string\",\n        \"string\"\n      ],\n      \"style\": [\n        \"string\",\n        \"string\"\n      ],\n      \"barcode\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": 6842,\n      \"type\": \"release\",\n      \"title\": \"string\",\n      \"thumb\": \"http://FAZaarucGQys.tovKojt5kSPaX8BobBIHJ\",\n      \"cover_image\": \"https://luqikYVmRxqJJESyDgER.qoo\",\n      \"resource_url\": \"http://tEaa.gcgqR\",\n      \"uri\": \"string\",\n      \"country\": \"string\",\n      \"year\": \"string\",\n      \"format\": [\n        \"string\",\n        \"string\"\n      ],\n      \"label\": [\n        \"string\",\n        \"string\"\n      ],\n      \"catno\": \"string\",\n      \"genre\": [\n        \"string\",\n        \"string\"\n      ],\n      \"style\": [\n        \"string\",\n        \"string\"\n      ],\n      \"barcode\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a81806c9-1db2-4910-8851-35baa4648900",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "The Cure - Disintegration"
+                    },
+                    {
+                      "key": "release_title",
+                      "value": "Disintegration"
+                    },
+                    {
+                      "key": "credit",
+                      "value": "Robert Smith"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "anv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "Fiction Records"
+                    },
+                    {
+                      "key": "genre",
+                      "value": "Rock"
+                    },
+                    {
+                      "key": "style",
+                      "value": "Gothic Rock"
+                    },
+                    {
+                      "key": "country",
+                      "value": "UK"
+                    },
+                    {
+                      "key": "year",
+                      "value": "1989"
+                    },
+                    {
+                      "key": "format",
+                      "value": "Vinyl"
+                    },
+                    {
+                      "key": "catno",
+                      "value": "FIXH 14"
+                    },
+                    {
+                      "key": "barcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "Lovesong"
+                    },
+                    {
+                      "key": "submitter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d65b9b39-9947-4531-bf46-1be0dfc42919",
+              "name": "Internal Server Error. The query may be too complex or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "The Cure - Disintegration"
+                    },
+                    {
+                      "key": "release_title",
+                      "value": "Disintegration"
+                    },
+                    {
+                      "key": "credit",
+                      "value": "Robert Smith"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "The Cure"
+                    },
+                    {
+                      "key": "anv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "Fiction Records"
+                    },
+                    {
+                      "key": "genre",
+                      "value": "Rock"
+                    },
+                    {
+                      "key": "style",
+                      "value": "Gothic Rock"
+                    },
+                    {
+                      "key": "country",
+                      "value": "UK"
+                    },
+                    {
+                      "key": "year",
+                      "value": "1989"
+                    },
+                    {
+                      "key": "format",
+                      "value": "Vinyl"
+                    },
+                    {
+                      "key": "catno",
+                      "value": "FIXH 14"
+                    },
+                    {
+                      "key": "barcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "Lovesong"
+                    },
+                    {
+                      "key": "submitter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Query time exceeded. Please try a simpler query.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5369f67-244b-4c09-b849-a25946a91d83",
+          "name": "Discogs Get a Label",
+          "request": {
+            "name": "Discogs Get a Label",
+            "description": {
+              "content": "Retrieves details for a specific label.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "labels",
+                ":label_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "label_id",
+                  "description": "(Required) The ID of the label."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd27084f-c02c-40f6-9e17-766bb3869334",
+              "name": "Successfully retrieved label details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "labels",
+                    ":label_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "label_id",
+                      "description": "(Required) The ID of the label."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1153,\n  \"name\": \"string\",\n  \"resource_url\": \"http://IRGmmHCbiLcTQUDyrDythmN.nvakT-f2PSWhZiOr-0zQ-td\",\n  \"uri\": \"http://VnGeVTTlmI.ejvjkBuOZM.ACYjGc4cXGyEtyxKcWPnPv9AzILHAnghCVTkoDr.3\",\n  \"releases_url\": \"http://HIDDwKKifEcZx.zgceCdWeUbt5vvnY0YEQfHpV\",\n  \"profile\": \"string\",\n  \"contact_info\": \"string\",\n  \"parent_label\": {\n    \"id\": 3827,\n    \"name\": \"string\",\n    \"resource_url\": \"http://cYFME.xkwN2ZM7VhJ50LUwzMWH,wRS78awVzaDjLUyKPYC4xOJniNubJUHaKN-zGFF4bbOi.FpfT\",\n    \"catno\": \"string\",\n    \"entity_type\": \"string\"\n  },\n  \"sublabels\": [\n    {\n      \"id\": 7221,\n      \"name\": \"string\",\n      \"resource_url\": \"http://ErdNh.ofMAS+,fF.ebm3I.4ctJIL9RBZkoCSF+eAFkbC4m9cwycI1P1tf\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    },\n    {\n      \"id\": 2867,\n      \"name\": \"string\",\n      \"resource_url\": \"https://KJeIpIUzcfo.rjeLdeJdXeBRPh78bHzqstA4YlyWLMqBAKChyIHsKPEDTvEQfv6xJWXkTm6KMUvrRqIdtaV\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    }\n  ],\n  \"urls\": [\n    \"https://FewTMGOqEpT.plavh9\",\n    \"http://hrcNDKtcX.hqaol8e+ncsb3lwjfXt0T\"\n  ],\n  \"images\": [\n    {\n      \"type\": \"secondary\",\n      \"uri\": \"http://hEGpqVEyTQmcVpAVrsyFaOBlehtnCEvmz.gbaxzCA\",\n      \"resource_url\": \"http://MwRjDtvoiqEy.shDhzic+9ODnaDgX7moUYuO-ErkuZpEpj3RWhZBgIFkY1i9KFkxWVGmWq,xoQwD4UjKTr\",\n      \"uri150\": \"http://lPyvmZfiFvqvZjezlPkFNYFZSIMwlA.akvrNyzLLlTT9HlDWupu9irKw\",\n      \"width\": 6938,\n      \"height\": 6029\n    },\n    {\n      \"type\": \"primary\",\n      \"uri\": \"https://zwahBmhMjSrasuNErDjJmqSekbuKT.ptLqAcFWkk6tqg.lFc.\",\n      \"resource_url\": \"http://Yl.maaEi\",\n      \"uri150\": \"https://q.qmyrpE-cMDyY23KXjSdzZeo7vdyywV4zvdj8t6bk13exi4XS7.YD,WWQ+wcDNW8RESTpS-\",\n      \"width\": 3274,\n      \"height\": 4365\n    }\n  ],\n  \"data_quality\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb45098a-973c-4a7c-9494-c842e5f4eecf",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "labels",
+                    ":label_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "label_id",
+                      "description": "(Required) The ID of the label."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77de6883-62ba-4b81-a4fb-e96d7506aea1",
+          "name": "Discogs Get All Label Releases",
+          "request": {
+            "name": "Discogs Get All Label Releases",
+            "description": {
+              "content": "Returns a list of releases associated with a label. Supports pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "labels",
+                ":label_id",
+                "releases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "label_id",
+                  "description": "(Required) The ID of the label."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "602179db-9043-470a-a113-4174e4f1695e",
+              "name": "A paginated list of the label's releases.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "labels",
+                    ":label_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "label_id",
+                      "description": "(Required) The ID of the label."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 5305,\n    \"pages\": 8223,\n    \"per_page\": 9086,\n    \"items\": 1923,\n    \"urls\": {\n      \"first\": \"http://BgNvfUVtEXNwvyuH.keyJBhBjwOL\",\n      \"prev\": \"https://LmGgsyXJastaPYp.umdfvHOtTZQbTKNldUV.G\",\n      \"next\": \"https://OpPo.ttxNh-,,SwHJB\",\n      \"last\": \"https://dDur.yniF1Gu2I2S35scI\"\n    }\n  },\n  \"releases\": [\n    {\n      \"id\": 642,\n      \"resource_url\": \"http://eZIsNKmABAcaK.kypgbii\",\n      \"thumb\": \"https://wZlxxSfgckBsPZmDuSHd.omOMeQfVvp4x+ZP,Ia55FPXxiVWYZs+aT2y4g.xJ-R+LFqV\",\n      \"artist\": \"string\",\n      \"title\": \"string\",\n      \"format\": \"string\",\n      \"catno\": \"string\",\n      \"status\": \"string\",\n      \"year\": 2199\n    },\n    {\n      \"id\": 3204,\n      \"resource_url\": \"https://ojwaICzABcVWBX.ghzDj8evJJcvULA4dTsUAju\",\n      \"thumb\": \"http://quJsebOeS.nanRA,cUlo2OBrT,NSodv0c.EQ+JIVX2HFJCEkgpWu9cBmF3gG\",\n      \"artist\": \"string\",\n      \"title\": \"string\",\n      \"format\": \"string\",\n      \"catno\": \"string\",\n      \"status\": \"string\",\n      \"year\": 2686\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcfdc98f-4715-4c12-9ccc-70588dc84ebb",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "labels",
+                    ":label_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "label_id",
+                      "description": "(Required) The ID of the label."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d7b50de-5152-41ba-bcb0-8e7bdbd87525",
+          "name": "Discogs Get a Master Release",
+          "request": {
+            "name": "Discogs Get a Master Release",
+            "description": {
+              "content": "Retrieves details for a specific master release. A master release represents a set of similar releases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "masters",
+                ":master_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "master_id",
+                  "description": "(Required) The ID of the master release."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "043415af-56f9-4d0f-974d-e7e277676ed0",
+              "name": "Successfully retrieved master release details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "masters",
+                    ":master_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "master_id",
+                      "description": "(Required) The ID of the master release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3615,\n  \"title\": \"string\",\n  \"resource_url\": \"https://qjRHjwsEwTpF.yiR3lgx-HGrnV4Z+dASYE-\",\n  \"uri\": \"https://iVyE.udyvrJmZCdqfRhY,HpaiMSwgLLJasbTFKM1h8\",\n  \"status\": \"string\",\n  \"data_quality\": \"string\",\n  \"thumb\": \"https://IppkJaRTFdwPt.ibo+0.-jjuCUPRGCpWa\",\n  \"country\": \"string\",\n  \"year\": 1972,\n  \"notes\": \"string\",\n  \"released\": \"string\",\n  \"released_formatted\": \"string\",\n  \"date_added\": \"1968-10-23T11:16:47.654Z\",\n  \"date_changed\": \"1947-06-06T12:33:45.933Z\",\n  \"lowest_price\": 6856.911665095408,\n  \"num_for_sale\": 2218,\n  \"estimated_weight\": 3330,\n  \"format_quantity\": 5097,\n  \"master_id\": 5714,\n  \"master_url\": \"https://QYsZFKUNeRvEyquocdEXAJiL.dgJPAxOYd26mP\",\n  \"artists\": [\n    {\n      \"id\": 1713,\n      \"name\": \"string\",\n      \"resource_url\": \"https://zTzBepPnCFTXGW.uaaqbym4IXJAi2jIqhArztpThO5L-5,jjnv8Md\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    },\n    {\n      \"id\": 4491,\n      \"name\": \"string\",\n      \"resource_url\": \"https://BERTwJewsJPDO.slvfFg.Zq+XlOw2dsIuBa1OvTn9IxGUrrgVLdE1hkRvQqhOPWUB8gmg6dXVx2SZn6Jlgi3,h\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    }\n  ],\n  \"labels\": [\n    {\n      \"id\": 3995,\n      \"name\": \"string\",\n      \"resource_url\": \"https://TSOfBEhzdYwctiOitTVqTQyucwsXtmWET.hfiotPVsNXNbxPP1GmN6RrUUaSigrVgAUUsJmjsjiTW0r2UTxONwQbbg2WRd\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    },\n    {\n      \"id\": 1556,\n      \"name\": \"string\",\n      \"resource_url\": \"https://oeyiEgkfZyr.wnmjRdFbt.-9yS9vAB8hm725aIi+-ws9hBJs5Irwxyl\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    }\n  ],\n  \"extraartists\": [\n    {\n      \"id\": 7211,\n      \"name\": \"string\",\n      \"resource_url\": \"http://nIDcbcXbgyc.exPW1EDw0WnFNpdph2frnM8DxH5Y59yp7Ba+0RpXfZf4YfGOzJxho36Wb1i.UOl3K-FdaPk\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    },\n    {\n      \"id\": 6755,\n      \"name\": \"string\",\n      \"resource_url\": \"http://PhKMZGhPBTth.obtJ-.aYjZtPkGQL\",\n      \"anv\": \"string\",\n      \"join\": \"string\",\n      \"role\": \"string\",\n      \"tracks\": \"string\"\n    }\n  ],\n  \"formats\": [\n    {\n      \"name\": \"string\",\n      \"qty\": \"string\",\n      \"text\": \"string\",\n      \"descriptions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"qty\": \"string\",\n      \"text\": \"string\",\n      \"descriptions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"genres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"styles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"community\": {\n    \"have\": 6690,\n    \"want\": 3191,\n    \"rating\": {\n      \"count\": 3094,\n      \"average\": 6088.841341013887\n    },\n    \"submitter\": {\n      \"id\": 7342,\n      \"username\": \"string\",\n      \"resource_url\": \"http://bUqyRZtTlqAtRSaQYhcAXKpWgZQ.vkymBQjvDix.JXwITQT0BK8eLh9qn1VDAUue1NBCS-\"\n    },\n    \"contributors\": [\n      {\n        \"id\": 2784,\n        \"username\": \"string\",\n        \"resource_url\": \"http://gRGWmYGZjQLxdHOYloFiSJbyi.cxcUo,S7K9a,gkwqFnf\"\n      },\n      {\n        \"id\": 2958,\n        \"username\": \"string\",\n        \"resource_url\": \"http://knTE.lhpNJ6GOKlfdzJGENzI7Qtecjn\"\n      }\n    ],\n    \"data_quality\": \"string\",\n    \"status\": \"string\"\n  },\n  \"companies\": [\n    {\n      \"id\": 1178,\n      \"name\": \"string\",\n      \"resource_url\": \"https://lmf.rmabUHAo9QiJ4i\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    },\n    {\n      \"id\": 5274,\n      \"name\": \"string\",\n      \"resource_url\": \"http://DjumHzioAHupJJpPjrmBnjp.lukgSnP.lyCcVRsGgzLohpndaAXn7hhc7WrPCrYAsNj0-mZeRXu0zOlB46KnQY0\",\n      \"catno\": \"string\",\n      \"entity_type\": \"string\"\n    }\n  ],\n  \"tracklist\": [\n    {\n      \"position\": \"string\",\n      \"type_\": \"string\",\n      \"title\": \"string\",\n      \"duration\": \"string\",\n      \"extraartists\": [\n        {\n          \"id\": 6376,\n          \"name\": \"string\",\n          \"resource_url\": \"https://hVXxGGLHmTnyCMYWiAPLdltCwHbbVd.dtmn4udljLNVYTCjyo-\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        },\n        {\n          \"id\": 8214,\n          \"name\": \"string\",\n          \"resource_url\": \"https://poRvBnqk.kjxaMrEj0PfmIviEGqvBAqQ7Bo5-ZmgleqqhSPBF1AvRDVPgWizGe\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        }\n      ]\n    },\n    {\n      \"position\": \"string\",\n      \"type_\": \"string\",\n      \"title\": \"string\",\n      \"duration\": \"string\",\n      \"extraartists\": [\n        {\n          \"id\": 961,\n          \"name\": \"string\",\n          \"resource_url\": \"http://MpxtOeBppkVoyMIfICdXtpTRdeY.pqszH6ab73rnVJtIGHQTP4p4\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        },\n        {\n          \"id\": 429,\n          \"name\": \"string\",\n          \"resource_url\": \"http://XJsFvLaJs.xjj3Bj+lqtgEvS5,dBsx1nNHcehCQzhi.M4y9.AKGPjmow7WVafcf7gIWeQxIegG\",\n          \"anv\": \"string\",\n          \"join\": \"string\",\n          \"role\": \"string\",\n          \"tracks\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"videos\": [\n    {\n      \"uri\": \"http://hcRLTVvFtJatNfkNkMjocILD.wcxnpFG2u87mMULODYkPShDybZpQrhPvjN38OSWSIWV5\",\n      \"duration\": 4355,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"embed\": false\n    },\n    {\n      \"uri\": \"http://EhymX.infny73ToqnvrkDKYeDd43Fs,baL09n0PAy7g+f8mGRa\",\n      \"duration\": 6744,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"embed\": true\n    }\n  ],\n  \"identifiers\": [\n    {\n      \"type\": \"string\",\n      \"value\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"main_release\": 5029,\n  \"main_release_url\": \"https://hGJJfqWINIRLdEPPB.mzaGn3X7nU9xIIcGnsmUAex0i5pdeth1-HhFWSbZAcc0zOzPopxrq+Bo.ZH-7HCBWz\",\n  \"versions_url\": \"https://KqDCqH.ksfua9AZcS-oy6YZogKxmXIT2V6ji\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "651abe1d-1153-4d2a-9588-5b28f47a008d",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "masters",
+                    ":master_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "master_id",
+                      "description": "(Required) The ID of the master release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c33598-057c-4e76-9365-f994d1523629",
+          "name": "Discogs Get Master Release Versions",
+          "request": {
+            "name": "Discogs Get Master Release Versions",
+            "description": {
+              "content": "Retrieves a list of all releases that are versions of the specified master release. Supports pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "masters",
+                ":master_id",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Filter by format."
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>",
+                  "description": "Filter by label."
+                },
+                {
+                  "disabled": false,
+                  "key": "released",
+                  "value": "<string>",
+                  "description": "Filter by release year."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter by country."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "released",
+                  "description": "The field to sort the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc",
+                  "description": "The order to sort the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "master_id",
+                  "description": "(Required) The ID of the master release."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfbbcb19-b89e-4d2a-9142-457e6cd7dbf2",
+              "name": "A paginated list of releases belonging to the master.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "masters",
+                    ":master_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "released",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "released"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "master_id",
+                      "description": "(Required) The ID of the master release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 2939,\n    \"pages\": 409,\n    \"per_page\": 462,\n    \"items\": 6801,\n    \"urls\": {\n      \"first\": \"http://xopwxcByeKvh.nxbBCrLktFzHvBfo0abrcjUYmwUnoqSl1wUUj+c\",\n      \"prev\": \"https://rCyqpaZzkXYciMHXKULAksQgAT.dpubvdyF8SCvTvgSaF9tUJ,,k,IbOJho,nC2sDMYbzn.Pqs1If\",\n      \"next\": \"https://ECerJOWsCtrnlTBwQfjePWZMglAKoCOak.mcg1RxcN+oMIgmWhguEwFtbWK3LRpBstBDhOacJmIO1OyP0OJeStua3wsn\",\n      \"last\": \"http://rieLmRMmLuXjeiVhSLAK.chqTIMhUaJ1E1d6fZIfEGhnE2vWfeAN4svr\"\n    }\n  },\n  \"versions\": [\n    {\n      \"id\": 2028,\n      \"resource_url\": \"https://O.dpjvo,jqyLqN3EcnrG6QGJOq-MRnIfMqUW-UgxuSc75lL8suPVPEKtCQ\",\n      \"status\": \"string\",\n      \"thumb\": \"http://WScBbjxxkPtNf.jrcl6zCFWBnGpxeRAmNGwLHc2YXdBXtZa2ole5moYe.7l+KYa9v7kGZPfKGToWtQoKo7HOJcpijOA0LPJ\",\n      \"format\": \"string\",\n      \"country\": \"string\",\n      \"title\": \"string\",\n      \"label\": \"string\",\n      \"released\": \"string\",\n      \"major_formats\": [\n        \"string\",\n        \"string\"\n      ],\n      \"catno\": \"string\",\n      \"stats\": {\n        \"community\": {\n          \"in_collection\": 3770,\n          \"in_wantlist\": 9894\n        }\n      }\n    },\n    {\n      \"id\": 7050,\n      \"resource_url\": \"https://SqeCXhgOYTDHVXYQuorxZgweUTCwqibw.qwmlynPal-8SlVm5mUw+WywUXBDJ7Y.zIUqC,dujR9\",\n      \"status\": \"string\",\n      \"thumb\": \"http://dAtlOhliCNrvKEtsUIedwideVeaGcENde.npRg\",\n      \"format\": \"string\",\n      \"country\": \"string\",\n      \"title\": \"string\",\n      \"label\": \"string\",\n      \"released\": \"string\",\n      \"major_formats\": [\n        \"string\",\n        \"string\"\n      ],\n      \"catno\": \"string\",\n      \"stats\": {\n        \"community\": {\n          \"in_collection\": 9889,\n          \"in_wantlist\": 4891\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d32b998-e57b-40e3-af63-f8ebd2f054eb",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "masters",
+                    ":master_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "released",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "released"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "master_id",
+                      "description": "(Required) The ID of the master release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3349fdee-0b8e-4199-aace-b163482cad3a",
+          "name": "Discogs Get a Release",
+          "request": {
+            "name": "Discogs Get a Release",
+            "description": {
+              "content": "Retrieves details for a specific release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "curr_abbr",
+                  "value": "<string>",
+                  "description": "Currency for marketplace data."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) The ID of the release."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a6aaf17-77e0-4835-8cbd-e6e780a4463a",
+              "name": "Successfully retrieved release details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "curr_abbr",
+                      "value": "GBP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) The ID of the release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 249504,\n  \"status\": \"Accepted\",\n  \"year\": 1987,\n  \"resource_url\": \"https://api.discogs.com/releases/249504\",\n  \"uri\": \"https://www.discogs.com/Rick-Astley-Never-Gonna-Give-You-Up/release/249504\",\n  \"artists\": [\n    {\n      \"id\": 72872,\n      \"name\": \"Rick Astley\",\n      \"resource_url\": \"https://api.discogs.com/artists/72872\"\n    }\n  ],\n  \"title\": \"Never Gonna Give You Up\",\n  \"country\": \"UK\",\n  \"released\": \"1987\",\n  \"notes\": \"UK Release has a black label...\",\n  \"genres\": [\n    \"Electronic\",\n    \"Pop\"\n  ],\n  \"styles\": [\n    \"Synth-pop\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4994f2e-3a64-4844-be41-985c4bce2041",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "curr_abbr",
+                      "value": "GBP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) The ID of the release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7befc58b-2130-4a48-ba06-abfab2741862",
+          "name": "Discogs Get Release Community Rating",
+          "request": {
+            "name": "Discogs Get Release Community Rating",
+            "description": {
+              "content": "Return the aggregate community rating for a release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id",
+                "rating"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e568c5d1-e074-4207-96bd-70ac7a4e81bb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"release_id\": 249504,\n  \"rating\": {\n    \"count\": 3963,\n    \"average\": 2306.292085141376\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15cd214d-a0c3-46b5-8311-a64ba93f397e",
+          "name": "Discogs Get Release Rating by User",
+          "request": {
+            "name": "Discogs Get Release Rating by User",
+            "description": {
+              "content": "Return a user's rating of a release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id",
+                "rating",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1715c330-b0c0-4329-9160-08445ba49e4e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id",
+                    "rating",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"jsmith\",\n  \"release\": 249504,\n  \"rating\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6247d4c2-2de7-4472-9e3e-28a4a5aa985a",
+          "name": "Discogs Update Release Rating by User",
+          "request": {
+            "name": "Discogs Update Release Rating by User",
+            "description": {
+              "content": "Set or update the authenticated user's release rating.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id",
+                "rating",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "821e3d6c-1001-4f24-adee-24105ec4192b",
+              "name": "Rating saved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id",
+                    "rating",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"jsmith\",\n  \"release\": 249504,\n  \"rating\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85e620ea-aaef-4387-9e32-50172146393f",
+          "name": "Discogs Delete Release Rating by User",
+          "request": {
+            "name": "Discogs Delete Release Rating by User",
+            "description": {
+              "content": "Remove a release rating for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "releases",
+                ":release_id",
+                "rating",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) Release ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Discogs username."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read write"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.discogs.com/oauth/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://discogs.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb8f7dd3-2fe2-4638-bf96-4b97564de341",
+              "name": "Rating deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "releases",
+                    ":release_id",
+                    "rating",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) Release ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3cf2e4d6-8fd2-4089-85c8-d5451ae9669e",
+    "name": "Discogs Database API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}

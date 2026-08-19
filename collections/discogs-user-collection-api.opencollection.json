@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database User Collection API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Collection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs Get Collection Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/collection/folders",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of folders in a user’s collection.\nIf the collection is private, authentication as the owner is required.\nIf not authenticated as the owner, only the \"All\" folder (ID 0) is returned for public collections.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Create a Collection Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/users/:username/collection/folders",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new folder in a user’s collection. Authentication as the owner is required."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Collection Items by Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/users/:username/collection/folders/:folder_id/releases",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "folder_id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the collection folder."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort the results by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The order to sort the results."
+              }
+            ]
+          },
+          "docs": "Returns the list of items in a folder in a user’s collection. Accepts pagination.\nIf `folder_id` is not 0 or the collection is private, authentication as the collection owner is required.\n"
+        },
+        {
+          "info": {
+            "name": "Discogs Add Release to Collection Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/users/:username/collection/folders/:folder_id/releases/:release_id",
+            "params": [
+              {
+                "name": "username",
+                "value": "rodneyfool",
+                "type": "path",
+                "description": "The user's Discogs username."
+              },
+              {
+                "name": "folder_id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the collection folder."
+              },
+              {
+                "name": "release_id",
+                "value": "249504",
+                "type": "path",
+                "description": "The ID of the release."
+              }
+            ]
+          },
+          "docs": "Add a release to a folder in a user's collection.\n`folder_id` must be non-zero (use `1` for \"Uncategorized\").\nAuthentication as the collection owner is required.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

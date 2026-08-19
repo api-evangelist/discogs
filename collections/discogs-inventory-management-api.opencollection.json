@@ -1,0 +1,297 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discogs Database Inventory Management API",
+    "version": "v2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discogs List Inventory Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/inventory/export",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List past inventory CSV export jobs for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Discogs Request Inventory Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/inventory/export",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Request an asynchronous CSV export of the authenticated user's inventory."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Inventory Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/inventory/export/:export_id",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "599",
+                "type": "path",
+                "description": "Export job ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a single inventory export job."
+        },
+        {
+          "info": {
+            "name": "Discogs Download Inventory Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/inventory/export/:export_id/download",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "599",
+                "type": "path",
+                "description": "Export job ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Download the CSV file for a completed inventory export."
+        },
+        {
+          "info": {
+            "name": "Discogs List Inventory Uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/inventory/upload",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List past CSV inventory upload jobs."
+        },
+        {
+          "info": {
+            "name": "Discogs Add Inventory Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/inventory/upload/add",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Submit a CSV file to add inventory listings in bulk."
+        },
+        {
+          "info": {
+            "name": "Discogs Change Inventory Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/inventory/upload/change",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Submit a CSV file to update existing inventory listings in bulk."
+        },
+        {
+          "info": {
+            "name": "Discogs Delete Inventory Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.discogs.com/inventory/upload/delete",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Submit a CSV file to delete inventory listings in bulk."
+        },
+        {
+          "info": {
+            "name": "Discogs Get Inventory Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.discogs.com/inventory/upload/:upload_id",
+            "params": [
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "path",
+                "description": "Upload job ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://discogs.com/oauth/authorize",
+              "accessTokenUrl": "https://api.discogs.com/oauth/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a single CSV inventory upload job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

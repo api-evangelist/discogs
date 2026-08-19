@@ -1,0 +1,1038 @@
+{
+  "item": [
+    {
+      "id": "8ba75b66-c0ea-4c26-998c-3f9e110d7ec1",
+      "name": "User Collection",
+      "description": {
+        "content": "Manage a user's record collection.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "15746da7-1d23-4b3c-9c36-44b15b1653d5",
+          "name": "Discogs Get Collection Folders",
+          "request": {
+            "name": "Discogs Get Collection Folders",
+            "description": {
+              "content": "Retrieve a list of folders in a user’s collection.\nIf the collection is private, authentication as the owner is required.\nIf not authenticated as the owner, only the \"All\" folder (ID 0) is returned for public collections.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "collection",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c30a04c1-8dbb-452e-828e-97024ba616e5",
+              "name": "A list of collection folders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folders\": [\n    {\n      \"id\": 1612,\n      \"name\": \"string\",\n      \"count\": 3667,\n      \"resource_url\": \"http://EMUkLqfOGXoOpdLyykszHLcMOLV.rvdyc\"\n    },\n    {\n      \"id\": 2822,\n      \"name\": \"string\",\n      \"count\": 3617,\n      \"resource_url\": \"https://rPGgfYHHhFUUHyQLdbSZWmPEaFQENoJ.lqysLJznWOo+L2+uwn,xSWLwoCBWSz-1XsxoEJijZKNt0u+ctOhq,\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "850a56fe-8289-44c1-8438-bd9d36f73767",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1d3e2d0-4a78-42f1-aa42-262d09517fc3",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5974663b-01b2-4ccf-a4ed-cce9c7505a35",
+          "name": "Discogs Create a Collection Folder",
+          "request": {
+            "name": "Discogs Create a Collection Folder",
+            "description": {
+              "content": "Create a new folder in a user’s collection. Authentication as the owner is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "collection",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "420675c2-3762-4b8f-a891-58331cd4c83b",
+              "name": "Folder created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Favorites\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3538,\n  \"name\": \"string\",\n  \"count\": 4541,\n  \"resource_url\": \"http://XlEfCNNielhgbeCKRmlZcyHvxxBeqilz.rwklWLi2ipGzMNwI82qRhBvSjeC2.niRjICfFLuiuVPHFhUlFNz+.PMr1P-tJdf2Q.y\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9702354e-0005-4bbe-a150-a9e5f9d0176a",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Favorites\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4752ed23-224e-4cd9-819c-7f04d1c54c94",
+          "name": "Discogs Get Collection Items by Folder",
+          "request": {
+            "name": "Discogs Get Collection Items by Folder",
+            "description": {
+              "content": "Returns the list of items in a folder in a user’s collection. Accepts pagination.\nIf `folder_id` is not 0 or the collection is private, authentication as the collection owner is required.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "collection",
+                "folders",
+                ":folder_id",
+                "releases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "added",
+                  "description": "The field to sort the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc",
+                  "description": "The order to sort the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "folder_id",
+                  "description": "(Required) The ID of the collection folder."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d6debcaf-5649-4889-9b46-fc43e8a61c68",
+              "name": "A paginated list of releases in the folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "added"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.\n",
+                  "key": "Link",
+                  "value": "<https://api.discogs.com/artists/1/releases?page=2&per_page=75>; rel=\"next\", <https://api.discogs.com/artists/1/releases?page=30&per_page=75>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"page\": 1218,\n    \"pages\": 5622,\n    \"per_page\": 6182,\n    \"items\": 242,\n    \"urls\": {\n      \"first\": \"http://zr.pgwsVczeXLMP.wDZDil6LxXUBvI-kxxTSEU9\",\n      \"prev\": \"http://IqyyPOhUczBGysatvwEuUikKdkg.fiqyAJzNymNSNrAEaXDq2Lnwi841U0yOZHA2T5ZKDrFMpmbnz9309J5v8vy\",\n      \"next\": \"http://MllpguqbdOMkURmFnVavaXilG.jrmfopxX..9Tvw7tcqLNYDwTyvchPpijAuk3hc0oMbHbKYg9siv\",\n      \"last\": \"https://WOFxasyVnBYnTPRvsWjI.reFZizKKoGgFxYOQ\"\n    }\n  },\n  \"releases\": [\n    {\n      \"id\": 8121,\n      \"instance_id\": 9689,\n      \"folder_id\": 4565,\n      \"rating\": 8342,\n      \"date_added\": \"1985-11-02T17:11:00.881Z\",\n      \"basic_information\": {\n        \"id\": 43,\n        \"title\": \"string\",\n        \"year\": 632,\n        \"resource_url\": \"http://fFiAYYsuOoTeDda.sbcmoWnnEzBCMMNmUQ5qDaDB5botPCflqf,9S5ySQpUrkaycgRleqYgEVcdR-sRoC\",\n        \"thumb\": \"https://YIxKALqHXnQ.fejMs9pEVNi\",\n        \"cover_image\": \"https://RtgEZwOQdXPvUJlvGorUaexXaRYzq.rmnRIkW8MtAoCyU9z0.kV,WfWkKNj8GQ0WyEXSfGOWXJ07MJB\",\n        \"formats\": [\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"labels\": [\n          {\n            \"id\": 8854,\n            \"name\": \"string\",\n            \"resource_url\": \"http://gPHXKtofmBsqvIw.rcxrHKBvngT3NcsxpNv3VYmZENCNKDbng323xDg4bl9RgB\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          },\n          {\n            \"id\": 4852,\n            \"name\": \"string\",\n            \"resource_url\": \"https://hUbQKRYyXYXdEqAXhicgmXKTpxck.tpivGDpE.fDXJdHSI756teL.cwZ3uux4o2icVLs\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          }\n        ],\n        \"artists\": [\n          {\n            \"id\": 3849,\n            \"name\": \"string\",\n            \"resource_url\": \"http://RezCkYjWyx.qrD4YebAB9NscIQ\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          },\n          {\n            \"id\": 4396,\n            \"name\": \"string\",\n            \"resource_url\": \"https://mwMIf.infgULbxE\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          }\n        ],\n        \"genres\": [\n          \"string\",\n          \"string\"\n        ],\n        \"styles\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": 9495,\n      \"instance_id\": 1967,\n      \"folder_id\": 1941,\n      \"rating\": 8028,\n      \"date_added\": \"1961-09-06T05:47:16.845Z\",\n      \"basic_information\": {\n        \"id\": 6474,\n        \"title\": \"string\",\n        \"year\": 8836,\n        \"resource_url\": \"https://ALPVLVPHRtfaxxIcxpRBSQNHThcSqTkC.kwaAsLPpzYK55fbQnHo.fd,fGqwx,9tEXumvQtqVvMMhBvCstldqYDsT+t\",\n        \"thumb\": \"https://XMZPcHSyJgvfohpvdbeXuchVPBQWkCkPV.pmwbWLZvXWqjSFe2GD7j4bfiN-aMQLO.S7Mhw2S,Vi.yDucxF9FKSdk-OgXR\",\n        \"cover_image\": \"https://sloLORfiEKCMWVp.brwubuqugE9KbxduM1oohFtR6heL9SctMz5bvJrt8U.Siu+Bjj-QRX29ZTU\",\n        \"formats\": [\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"qty\": \"string\",\n            \"text\": \"string\",\n            \"descriptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"labels\": [\n          {\n            \"id\": 964,\n            \"name\": \"string\",\n            \"resource_url\": \"https://kUApbWC.cvtgURl-SkPpqHDUuD4Po2NlL+aXWaZnHzauNtq\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          },\n          {\n            \"id\": 6462,\n            \"name\": \"string\",\n            \"resource_url\": \"http://Ck.nkhzEXaZMXEFHchW+CM25ltTLOUFR5URpieHeQNxsG705dyAXIesEYa7C6sYlib+DDpoch-\",\n            \"catno\": \"string\",\n            \"entity_type\": \"string\"\n          }\n        ],\n        \"artists\": [\n          {\n            \"id\": 583,\n            \"name\": \"string\",\n            \"resource_url\": \"http://Us.ifqyKl8w,W0Mi5PLLenT7BZrt2Vf-X1km2jh1FjknDu,lddvnRTQgYuM6HBKcVtt\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          },\n          {\n            \"id\": 7288,\n            \"name\": \"string\",\n            \"resource_url\": \"http://xhhZvoKPGQBGucxeSRQXSACaXBvIiEBjU.oqrgYGvM2IClco9N.ECK4hgoewJxQJ5pSCgKbIYN6MOB.vhA1n+\",\n            \"anv\": \"string\",\n            \"join\": \"string\",\n            \"role\": \"string\",\n            \"tracks\": \"string\"\n          }\n        ],\n        \"genres\": [\n          \"string\",\n          \"string\"\n        ],\n        \"styles\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5148b19f-80f7-41ff-be9c-a98f39d14806",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "added"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fc7efdf-9bad-48ac-b3f0-c08451d7a090",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "added"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71a932e9-9bf7-4961-8f37-c312bdab47c3",
+          "name": "Discogs Add Release to Collection Folder",
+          "request": {
+            "name": "Discogs Add Release to Collection Folder",
+            "description": {
+              "content": "Add a release to a folder in a user's collection.\n`folder_id` must be non-zero (use `1` for \"Uncategorized\").\nAuthentication as the collection owner is required.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "collection",
+                "folders",
+                ":folder_id",
+                "releases",
+                ":release_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) The user's Discogs username."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "folder_id",
+                  "description": "(Required) The ID of the collection folder."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "release_id",
+                  "description": "(Required) The ID of the release."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "b97fd03f-6d33-4752-a1e1-98d824813753",
+              "name": "Release added to collection successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) The ID of the release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance_id\": 148842233,\n  \"resource_url\": \"http://bOwzpxXudrfQTnqOXZtBGtkoCmHSs.uvceg8C+qjpY2unXAtJ,F7A\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "567d43e4-ddaf-4463-aeb8-318239ce92c8",
+              "name": "Unauthorized. Authentication information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) The ID of the release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You must authenticate to access this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f99be1e1-85dc-4657-85b3-cbf24438b4cc",
+              "name": "Not Found. The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "collection",
+                    "folders",
+                    ":folder_id",
+                    "releases",
+                    ":release_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) The user's Discogs username."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "folder_id",
+                      "description": "(Required) The ID of the collection folder."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "release_id",
+                      "description": "(Required) The ID of the release."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Resource not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.discogs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d979e76-e871-4d9f-920c-490ca11d5274",
+    "name": "Discogs Database User Collection API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.\n\nFor detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).\n\n## Authentication\nMost endpoints require authentication. The API supports multiple methods:\n1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.\n2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.\n3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.\n\nYour application **must** provide a unique `User-Agent` string with every request.\n\n## Rate Limiting\nRequests are throttled by source IP.\n- **Authenticated Requests:** 60 requests per minute.\n- **Unauthenticated Requests:** 25 requests per minute.\n\nThe API returns the following headers to help you track your usage:\n- `X-Discogs-Ratelimit`: Total requests allowed in the window.\n- `X-Discogs-Ratelimit-Used`: Requests you have made.\n- `X-Discogs-Ratelimit-Remaining`: Requests remaining.\n\n## Data Licensing\nSome Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).\n\n\nContact Support:\n Name: Discogs API Support\n Email: api@discogs.com",
+      "type": "text/plain"
+    }
+  }
+}
