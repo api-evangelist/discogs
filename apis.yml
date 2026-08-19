@@ -25,7 +25,7 @@ description: 'Discogs is a community-built music database and marketplace for ph
 
   '
 url: https://www.discogs.com/developers/
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-05-29'
 x-source: public-apis/public-apis
