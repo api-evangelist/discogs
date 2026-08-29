@@ -23,6 +23,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "discogs-database-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-image-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-inventory-management-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-marketplace-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-user-collection-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-user-identity-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-user-lists-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "discogs-user-wantlist-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

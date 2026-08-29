@@ -1,7 +1,7 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
   title: Discogs Database Inventory Management API
-  version: "v2.0"
+  version: v2.0
   description: '# Overview
 
     The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
@@ -335,38 +335,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    InventoryExport:
-      type: object
-      description: A marketplace inventory CSV export job.
-      properties:
-        status:
-          type: string
-          enum:
-          - pending
-          - in progress
-          - success
-          - failure
-        created_ts:
-          type: string
-          format: date-time
-        url:
-          type: string
-          format: uri
-        finished_ts:
-          type: string
-          format: date-time
-        download_url:
-          type: string
-          format: uri
-        filename:
-          type: string
-          example: inventory-export.csv
-        id:
-          type: integer
-          example: 599
-        type:
-          type: string
-          example: export
     InventoryUploadsResponse:
       type: object
       properties:
@@ -416,6 +384,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryExport'
+    InventoryExport:
+      type: object
+      description: A marketplace inventory CSV export job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - in progress
+          - success
+          - failure
+        created_ts:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        finished_ts:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+          format: uri
+        filename:
+          type: string
+          example: inventory-export.csv
+        id:
+          type: integer
+          example: 599
+        type:
+          type: string
+          example: export
     Pagination:
       type: object
       description: Details for paginated results.

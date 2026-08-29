@@ -1,7 +1,7 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
   title: Discogs Database User Lists API
-  version: "v2.0"
+  version: v2.0
   description: '# Overview
 
     The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
@@ -152,6 +152,11 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     List:
       type: object
       description: A user-created list of releases, masters, artists, or labels.
@@ -192,31 +197,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ListItem'
-    UserSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-    ListsResponse:
-      type: object
-      description: Paginated response of a user's lists.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        lists:
-          type: array
-          items:
-            $ref: '#/components/schemas/List'
     ListItem:
       type: object
       description: A single item inside a user list.
@@ -243,6 +223,16 @@ components:
         image_url:
           type: string
           format: uri
+        resource_url:
+          type: string
+          format: uri
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
         resource_url:
           type: string
           format: uri
@@ -277,6 +267,16 @@ components:
               type: string
               format: uri
               nullable: true
+    ListsResponse:
+      type: object
+      description: Paginated response of a user's lists.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        lists:
+          type: array
+          items:
+            $ref: '#/components/schemas/List'
   securitySchemes:
     DiscogsToken:
       type: apiKey

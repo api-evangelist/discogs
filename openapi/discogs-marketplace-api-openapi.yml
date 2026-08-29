@@ -1,7 +1,7 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
   title: Discogs Database Marketplace API
-  version: "v2.0"
+  version: v2.0
   description: '# Overview
 
     The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
@@ -629,6 +629,163 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    OrderMessagesResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderMessage'
+    ListingNew:
+      type: object
+      description: Data for creating a new listing.
+      required:
+      - release_id
+      - condition
+      - price
+      - status
+      properties:
+        release_id:
+          type: integer
+          description: The ID of the release.
+        condition:
+          $ref: '#/components/schemas/MediaCondition'
+        sleeve_condition:
+          $ref: '#/components/schemas/SleeveCondition'
+        price:
+          type: number
+          format: float
+          description: The price of the item in the seller's currency.
+        comments:
+          type: string
+          description: Any remarks about the item.
+        allow_offers:
+          type: boolean
+          default: false
+        status:
+          type: string
+          description: The status of the listing.
+          enum:
+          - For Sale
+          - Draft
+          default: For Sale
+        external_id:
+          type: string
+          description: Private comments for the seller.
+        location:
+          type: string
+          description: Physical location of the item.
+        weight:
+          type: integer
+          description: The weight in grams.
+        format_quantity:
+          type: integer
+          description: How many units this item counts as for shipping.
+    PriceSuggestion:
+      type: object
+      description: Suggested marketplace price for a release at a given media condition.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          type: number
+          example: 19.99
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ListingUpdate:
+      type: object
+      description: Data for updating a listing.
+      allOf:
+      - $ref: '#/components/schemas/ListingNew'
+    Price:
+      type: object
+      properties:
+        currency:
+          type: string
+        value:
+          type: number
+          format: float
+    PriceSuggestionsResponse:
+      type: object
+      description: Suggested prices for a release across all standard media conditions.
+      additionalProperties:
+        $ref: '#/components/schemas/PriceSuggestion'
+    ReleaseStats:
+      type: object
+      description: Marketplace statistics for a release.
+      properties:
+        lowest_price:
+          $ref: '#/components/schemas/Price'
+        num_for_sale:
+          type: integer
+          example: 47
+        blocked_from_sale:
+          type: boolean
+          example: false
+    Order:
+      type: object
+      description: A marketplace order.
+      properties:
+        id:
+          type: string
+          example: 1-1
+        resource_url:
+          type: string
+          format: uri
+        status:
+          type: string
+          example: Payment Received
+        next_status:
+          type: array
+          items:
+            type: string
+        fee:
+          $ref: '#/components/schemas/Price'
+        created:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        shipping:
+          $ref: '#/components/schemas/Price'
+        shipping_address:
+          type: string
+        additional_instructions:
+          type: string
+        archived:
+          type: boolean
+        seller:
+          $ref: '#/components/schemas/UserSummary'
+        buyer:
+          $ref: '#/components/schemas/UserSummary'
+        total:
+          $ref: '#/components/schemas/Price'
+        messages_url:
+          type: string
+          format: uri
+        uri:
+          type: string
+          format: uri
+        last_activity:
+          type: string
+          format: date-time
     Listing:
       type: object
       description: A Marketplace listing.
@@ -686,65 +843,6 @@ components:
           type: string
           nullable: true
           description: Physical location of the item.
-    ListingUpdate:
-      type: object
-      description: Data for updating a listing.
-      allOf:
-      - $ref: '#/components/schemas/ListingNew'
-    ListingNew:
-      type: object
-      description: Data for creating a new listing.
-      required:
-      - release_id
-      - condition
-      - price
-      - status
-      properties:
-        release_id:
-          type: integer
-          description: The ID of the release.
-        condition:
-          $ref: '#/components/schemas/MediaCondition'
-        sleeve_condition:
-          $ref: '#/components/schemas/SleeveCondition'
-        price:
-          type: number
-          format: float
-          description: The price of the item in the seller's currency.
-        comments:
-          type: string
-          description: Any remarks about the item.
-        allow_offers:
-          type: boolean
-          default: false
-        status:
-          type: string
-          description: The status of the listing.
-          enum:
-          - For Sale
-          - Draft
-          default: For Sale
-        external_id:
-          type: string
-          description: Private comments for the seller.
-        location:
-          type: string
-          description: Physical location of the item.
-        weight:
-          type: integer
-          description: The weight in grams.
-        format_quantity:
-          type: integer
-          description: How many units this item counts as for shipping.
-    Fee:
-      type: object
-      description: Calculated Discogs marketplace fee for a transaction.
-      properties:
-        value:
-          type: number
-          example: 0.42
-        currency:
-          $ref: '#/components/schemas/Currency'
     OrdersResponse:
       type: object
       description: Paginated marketplace orders for the authenticated seller.
@@ -755,46 +853,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Order'
-    Pagination:
+    Fee:
       type: object
-      description: Details for paginated results.
+      description: Calculated Discogs marketplace fee for a transaction.
       properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    PriceSuggestion:
-      type: object
-      description: Suggested marketplace price for a release at a given media condition.
-      properties:
-        currency:
-          $ref: '#/components/schemas/Currency'
         value:
           type: number
-          example: 19.99
+          example: 0.42
+        currency:
+          $ref: '#/components/schemas/Currency'
     MediaCondition:
       type: string
       enum:
@@ -806,74 +873,6 @@ components:
       - Good (G)
       - Fair (F)
       - Poor (P)
-    Order:
-      type: object
-      description: A marketplace order.
-      properties:
-        id:
-          type: string
-          example: 1-1
-        resource_url:
-          type: string
-          format: uri
-        status:
-          type: string
-          example: Payment Received
-        next_status:
-          type: array
-          items:
-            type: string
-        fee:
-          $ref: '#/components/schemas/Price'
-        created:
-          type: string
-          format: date-time
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Listing'
-        shipping:
-          $ref: '#/components/schemas/Price'
-        shipping_address:
-          type: string
-        additional_instructions:
-          type: string
-        archived:
-          type: boolean
-        seller:
-          $ref: '#/components/schemas/UserSummary'
-        buyer:
-          $ref: '#/components/schemas/UserSummary'
-        total:
-          $ref: '#/components/schemas/Price'
-        messages_url:
-          type: string
-          format: uri
-        uri:
-          type: string
-          format: uri
-        last_activity:
-          type: string
-          format: date-time
-    UserSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-    OrderMessagesResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderMessage'
     ListingRelease:
       type: object
       description: Summary of a release within a listing.
@@ -898,20 +897,6 @@ components:
           type: string
         catalog_number:
           type: string
-    SleeveCondition:
-      type: string
-      enum:
-      - Mint (M)
-      - Near Mint (NM or M-)
-      - Very Good Plus (VG+)
-      - Very Good (VG)
-      - Good Plus (G+)
-      - Good (G)
-      - Fair (F)
-      - Poor (P)
-      - Generic
-      - Not Graded
-      - No Cover
     Currency:
       type: string
       enum:
@@ -927,28 +912,6 @@ components:
       - NZD
       - SEK
       - ZAR
-    PriceSuggestionsResponse:
-      type: object
-      description: Suggested prices for a release across all standard media conditions.
-      additionalProperties:
-        $ref: '#/components/schemas/PriceSuggestion'
-    ReleaseStats:
-      type: object
-      description: Marketplace statistics for a release.
-      properties:
-        lowest_price:
-          $ref: '#/components/schemas/Price'
-        num_for_sale:
-          type: integer
-          example: 47
-        blocked_from_sale:
-          type: boolean
-          example: false
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     OrderMessage:
       type: object
       description: A message attached to a marketplace order.
@@ -982,14 +945,51 @@ components:
           type: string
         from:
           $ref: '#/components/schemas/UserSummary'
-    Price:
+    SleeveCondition:
+      type: string
+      enum:
+      - Mint (M)
+      - Near Mint (NM or M-)
+      - Very Good Plus (VG+)
+      - Very Good (VG)
+      - Good Plus (G+)
+      - Good (G)
+      - Fair (F)
+      - Poor (P)
+      - Generic
+      - Not Graded
+      - No Cover
+    Pagination:
       type: object
+      description: Details for paginated results.
       properties:
-        currency:
-          type: string
-        value:
-          type: number
-          format: float
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
   parameters:
     SortOrder:
       name: sort_order
@@ -1001,14 +1001,14 @@ components:
         - asc
         - desc
         default: desc
-    Page:
-      name: page
-      in: query
-      description: The page number to return.
+    ListingId:
+      name: listing_id
+      in: path
+      required: true
+      description: The ID of the marketplace listing.
       schema:
         type: integer
-        default: 1
-        minimum: 1
+      example: 172723812
     PerPage:
       name: per_page
       in: query
@@ -1018,6 +1018,14 @@ components:
         default: 50
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
     Username:
       name: username
       in: path
@@ -1026,14 +1034,6 @@ components:
       schema:
         type: string
       example: rodneyfool
-    ListingId:
-      name: listing_id
-      in: path
-      required: true
-      description: The ID of the marketplace listing.
-      schema:
-        type: integer
-      example: 172723812
   responses:
     NotFound:
       description: Not Found. The requested resource does not exist.
