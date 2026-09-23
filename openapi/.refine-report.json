@@ -1,14 +1,7 @@
 {
   "provider": "discogs",
   "sources": [
-    "discogs-database-api-openapi.yml",
-    "discogs-image-api-openapi.yml",
-    "discogs-inventory-management-api-openapi.yml",
-    "discogs-marketplace-api-openapi.yml",
-    "discogs-user-collection-api-openapi.yml",
-    "discogs-user-identity-api-openapi.yml",
-    "discogs-user-lists-api-openapi.yml",
-    "discogs-user-wantlist-api-openapi.yml"
+    "_ae-authored/discogs-openapi-original.yml"
   ],
   "outputs": [
     "discogs-database-api-openapi.yml",
@@ -24,15 +17,18 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "discogs-database-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-image-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-inventory-management-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-marketplace-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-user-collection-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-user-identity-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-user-lists-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
-    "discogs-user-wantlist-api-openapi.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "discogs-openapi-original.yml: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "discogs-database-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-image-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-inventory-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-marketplace-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-user-collection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-user-identity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-user-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discogs-user-wantlist-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

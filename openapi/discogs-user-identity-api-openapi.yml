@@ -1,52 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Discogs Database User Identity API
-  version: v2.0
+  title: Discogs User Identity API
+  version: v2.0.0
   description: '# Overview
 
-    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
-
-
-    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
-
-
-    ## Authentication
-
-    Most endpoints require authentication. The API supports multiple methods:
-
-    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
-
-    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
-
-    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
-
-
-    Your application **must** provide a unique `User-Agent` string with every request.
-
-
-    ## Rate Limiting
-
-    Requests are throttled by source IP.
-
-    - **Authenticated Requests:** 60 requests per minute.
-
-    - **Unauthenticated Requests:** 25 requests per minute.
-
-
-    The API returns the following headers to help you track your usage:
-
-    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
-
-    - `X-Discogs-Ratelimit-Used`: Requests you have made.
-
-    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
-
-
-    ## Data Licensing
-
-    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
-
-    '
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices.'
   termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
   contact:
     name: Discogs API Support
@@ -62,6 +20,7 @@ info:
   x-origin:
   - format: markdown
     url: https://www.discogs.com/developers
+    version: v2.0
   x-generated-from: documentation
   x-last-validated: '2026-05-29'
 servers:
@@ -81,9 +40,7 @@ paths:
       operationId: getUserIdentity
       description: 'Retrieve basic information about the authenticated user.
 
-        This endpoint is useful for verifying that OAuth authentication is working correctly.
-
-        '
+        This endpoint is useful for verifying that OAuth authentication is working correctly.'
       security:
       - DiscogsOAuth: []
         DiscogsTokenAuth: []
@@ -264,81 +221,48 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized. Authentication information is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: You must authenticate to access this resource.
-    NotFound:
-      description: Not Found. The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Resource not found.
   schemas:
-    Error:
+    Contribution:
       type: object
+      description: A user's contribution to the Discogs database.
       properties:
-        message:
-          type: string
-    ReleaseSummary:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseSummary'
+    Pagination:
       type: object
+      description: Details for paginated results.
       properties:
-        id:
+        page:
           type: integer
-        title:
-          type: string
-        year:
+        pages:
           type: integer
-        resource_url:
-          type: string
-          format: uri
-        thumb:
-          type: string
-          format: uri
-        cover_image:
-          type: string
-          format: uri
-        formats:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReleaseFormat'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/LabelSummary'
-        artists:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistSummary'
-        genres:
-          type: array
-          items:
-            type: string
-        styles:
-          type: array
-          items:
-            type: string
-    ReleaseFormat:
-      type: object
-      properties:
-        name:
-          type: string
-        qty:
-          type: string
-        text:
-          type: string
-          nullable: true
-        descriptions:
-          type: array
-          items:
-            type: string
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
     Identity:
       type: object
       properties:
@@ -373,22 +297,6 @@ components:
         tracks:
           type: string
           nullable: true
-    LabelSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        catno:
-          type: string
-          nullable: true
-        entity_type:
-          type: string
-          nullable: true
     Currency:
       type: string
       enum:
@@ -404,27 +312,6 @@ components:
       - NZD
       - SEK
       - ZAR
-    Submission:
-      type: object
-      description: A submission (release/artist/label edit) made by a user.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        submissions:
-          type: object
-          properties:
-            artists:
-              type: array
-              items:
-                $ref: '#/components/schemas/ArtistSummary'
-            labels:
-              type: array
-              items:
-                $ref: '#/components/schemas/LabelSummary'
-            releases:
-              type: array
-              items:
-                $ref: '#/components/schemas/ReleaseSummary'
     Profile:
       type: object
       properties:
@@ -511,6 +398,62 @@ components:
         email:
           type: string
           format: email
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+    ReleaseFormat:
+      type: object
+      properties:
+        name:
+          type: string
+        qty:
+          type: string
+        text:
+          type: string
+          nullable: true
+        descriptions:
+          type: array
+          items:
+            type: string
+    Submission:
+      type: object
+      description: A submission (release/artist/label edit) made by a user.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        submissions:
+          type: object
+          properties:
+            artists:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArtistSummary'
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelSummary'
+            releases:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReleaseSummary'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     ProfileUpdate:
       type: object
       description: Editable profile fields.
@@ -538,47 +481,61 @@ components:
           - NZD
           - SEK
           - ZAR
-    Pagination:
+    ReleaseSummary:
       type: object
-      description: Details for paginated results.
       properties:
-        page:
+        id:
           type: integer
-        pages:
+        title:
+          type: string
+        year:
           type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    Contribution:
-      type: object
-      description: A user's contribution to the Discogs database.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        contributions:
+        resource_url:
+          type: string
+          format: uri
+        thumb:
+          type: string
+          format: uri
+        cover_image:
+          type: string
+          format: uri
+        formats:
           type: array
           items:
-            $ref: '#/components/schemas/ReleaseSummary'
+            $ref: '#/components/schemas/ReleaseFormat'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        genres:
+          type: array
+          items:
+            type: string
+        styles:
+          type: array
+          items:
+            type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
   parameters:
     Username:
       name: username

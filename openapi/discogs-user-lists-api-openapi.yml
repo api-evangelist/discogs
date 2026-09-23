@@ -1,52 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Discogs Database User Lists API
-  version: v2.0
+  title: Discogs User Lists API
+  version: v2.0.0
   description: '# Overview
 
-    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
-
-
-    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
-
-
-    ## Authentication
-
-    Most endpoints require authentication. The API supports multiple methods:
-
-    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
-
-    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
-
-    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
-
-
-    Your application **must** provide a unique `User-Agent` string with every request.
-
-
-    ## Rate Limiting
-
-    Requests are throttled by source IP.
-
-    - **Authenticated Requests:** 60 requests per minute.
-
-    - **Unauthenticated Requests:** 25 requests per minute.
-
-
-    The API returns the following headers to help you track your usage:
-
-    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
-
-    - `X-Discogs-Ratelimit-Used`: Requests you have made.
-
-    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
-
-
-    ## Data Licensing
-
-    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
-
-    '
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices.'
   termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
   contact:
     name: Discogs API Support
@@ -62,6 +20,7 @@ info:
   x-origin:
   - format: markdown
     url: https://www.discogs.com/developers
+    version: v2.0
   x-generated-from: documentation
   x-last-validated: '2026-05-29'
 servers:
@@ -152,11 +111,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     List:
       type: object
       description: A user-created list of releases, masters, artists, or labels.
@@ -197,45 +151,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ListItem'
-    ListItem:
-      type: object
-      description: A single item inside a user list.
-      properties:
-        id:
-          type: integer
-          example: 4567
-        type:
-          type: string
-          enum:
-          - release
-          - master
-          - artist
-          - label
-          example: release
-        display_title:
-          type: string
-          example: Miles Davis — Kind Of Blue
-        uri:
-          type: string
-          format: uri
-        comment:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        resource_url:
-          type: string
-          format: uri
-    UserSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
     Pagination:
       type: object
       description: Details for paginated results.
@@ -267,6 +182,16 @@ components:
               type: string
               format: uri
               nullable: true
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
     ListsResponse:
       type: object
       description: Paginated response of a user's lists.
@@ -277,6 +202,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/List'
+    ListItem:
+      type: object
+      description: A single item inside a user list.
+      properties:
+        id:
+          type: integer
+          example: 4567
+        type:
+          type: string
+          enum:
+          - release
+          - master
+          - artist
+          - label
+          example: release
+        display_title:
+          type: string
+          example: Miles Davis — Kind Of Blue
+        uri:
+          type: string
+          format: uri
+        comment:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     DiscogsToken:
       type: apiKey

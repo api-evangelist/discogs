@@ -1,52 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Discogs Database User Collection API
-  version: v2.0
+  title: Discogs User Collection API
+  version: v2.0.0
   description: '# Overview
 
-    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices. Access JSON-formatted information about Database objects like Artists, Releases, and Labels, and manage User Collections, Wantlists, and Marketplace Listings.
-
-
-    For detailed documentation, please visit the [Official Discogs API Documentation](https://www.discogs.com/developers).
-
-
-    ## Authentication
-
-    Most endpoints require authentication. The API supports multiple methods:
-
-    1.  **Discogs Auth (Key & Secret):** For read-only access to public data with a higher rate limit.
-
-    2.  **Discogs Auth (Personal Access Token):** For full access to your own user account data.
-
-    3.  **OAuth 1.0a:** For building third-party applications that act on behalf of other Discogs users.
-
-
-    Your application **must** provide a unique `User-Agent` string with every request.
-
-
-    ## Rate Limiting
-
-    Requests are throttled by source IP.
-
-    - **Authenticated Requests:** 60 requests per minute.
-
-    - **Unauthenticated Requests:** 25 requests per minute.
-
-
-    The API returns the following headers to help you track your usage:
-
-    - `X-Discogs-Ratelimit`: Total requests allowed in the window.
-
-    - `X-Discogs-Ratelimit-Used`: Requests you have made.
-
-    - `X-Discogs-Ratelimit-Remaining`: Requests remaining.
-
-
-    ## Data Licensing
-
-    Some Discogs data is available under the [CC0 No Rights Reserved](http://creativecommons.org/about/cc0) license, while some is restricted. Use of the API is subject to the [API Terms of Use](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use).
-
-    '
+    The Discogs API v2.0 is a RESTful interface to Discogs data, allowing developers to build applications for web, desktop, and mobile devices.'
   termsOfService: https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use
   contact:
     name: Discogs API Support
@@ -62,6 +20,7 @@ info:
   x-origin:
   - format: markdown
     url: https://www.discogs.com/developers
+    version: v2.0
   x-generated-from: documentation
   x-last-validated: '2026-05-29'
 servers:
@@ -83,9 +42,7 @@ paths:
 
         If the collection is private, authentication as the owner is required.
 
-        If not authenticated as the owner, only the "All" folder (ID 0) is returned for public collections.
-
-        '
+        If not authenticated as the owner, only the "All" folder (ID 0) is returned for public collections.'
       security:
       - DiscogsAuth: []
       parameters:
@@ -153,9 +110,7 @@ paths:
       operationId: getCollectionItemsByFolder
       description: 'Returns the list of items in a folder in a user’s collection. Accepts pagination.
 
-        If `folder_id` is not 0 or the collection is private, authentication as the collection owner is required.
-
-        '
+        If `folder_id` is not 0 or the collection is private, authentication as the collection owner is required.'
       security:
       - DiscogsAuth: []
       parameters:
@@ -199,9 +154,7 @@ paths:
 
         `folder_id` must be non-zero (use `1` for "Uncategorized").
 
-        Authentication as the collection owner is required.
-
-        '
+        Authentication as the collection owner is required.'
       security:
       - DiscogsOAuth: []
         DiscogsTokenAuth: []
@@ -232,24 +185,102 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized. Authentication information is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: You must authenticate to access this resource.
-    NotFound:
-      description: Not Found. The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Resource not found.
   schemas:
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    ArtistSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        anv:
+          type: string
+          nullable: true
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
+    CollectionFolder:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        count:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+    ReleaseFormat:
+      type: object
+      properties:
+        name:
+          type: string
+        qty:
+          type: string
+        text:
+          type: string
+          nullable: true
+        descriptions:
+          type: array
+          items:
+            type: string
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
     Error:
       type: object
       properties:
@@ -309,110 +340,24 @@ components:
           type: array
           items:
             type: string
-    CollectionFolder:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        count:
-          type: integer
-        resource_url:
-          type: string
-          format: uri
-    ReleaseFormat:
-      type: object
-      properties:
-        name:
-          type: string
-        qty:
-          type: string
-        text:
-          type: string
-          nullable: true
-        descriptions:
-          type: array
-          items:
-            type: string
-    ArtistSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        anv:
-          type: string
-          nullable: true
-        join:
-          type: string
-          nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-    LabelSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        catno:
-          type: string
-          nullable: true
-        entity_type:
-          type: string
-          nullable: true
-    Pagination:
-      type: object
-      description: Details for paginated results.
-      properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
+  responses:
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
   parameters:
-    FolderId:
-      name: folder_id
-      in: path
-      required: true
-      description: The ID of the collection folder.
-      schema:
-        type: integer
-      example: 1
     PerPage:
       name: per_page
       in: query
@@ -422,6 +367,14 @@ components:
         default: 50
         minimum: 1
         maximum: 100
+    FolderId:
+      name: folder_id
+      in: path
+      required: true
+      description: The ID of the collection folder.
+      schema:
+        type: integer
+      example: 1
     Page:
       name: page
       in: query
@@ -448,6 +401,14 @@ components:
       schema:
         type: integer
       example: 249504
+    Username:
+      name: username
+      in: path
+      required: true
+      description: The user's Discogs username.
+      schema:
+        type: string
+      example: rodneyfool
     SortCollection:
       name: sort
       in: query
@@ -464,14 +425,6 @@ components:
         - added
         - year
         default: added
-    Username:
-      name: username
-      in: path
-      required: true
-      description: The user's Discogs username.
-      schema:
-        type: string
-      example: rodneyfool
   headers:
     Link:
       description: 'Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.
