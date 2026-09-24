@@ -83,8 +83,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-image-api
   name: Discogs Image API
   description: Image asset retrieval (proxied via OAuth).
@@ -115,8 +113,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-inventory-management-api
   name: Discogs Inventory Management API
   description: Bulk inventory export and CSV upload management.
@@ -147,8 +143,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-marketplace-api
   name: Discogs Marketplace API
   description: Marketplace listings, orders, fees, price suggestions, and release stats.
@@ -179,8 +173,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-collection-api
   name: Discogs User Collection API
   description: Manage a user's record collection.
@@ -211,8 +203,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-identity-api
   name: Discogs User Identity API
   description: Authenticated user identity, profile, submissions, and contributions.
@@ -243,8 +233,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-lists-api
   name: Discogs User Lists API
   description: Browse and manage user-created lists of releases, artists, and labels.
@@ -275,8 +263,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 - aid: discogs:discogs-user-wantlist-api
   name: Discogs User Wantlist API
   description: Manage a user's wantlist.
@@ -307,8 +293,6 @@ apis:
     url: https://github.com/discogs/discogs_client
   - type: BulkData
     url: https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html
-  - type: GraphQL
-    url: graphql/discogs-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/discogs-agentic-access.yml
