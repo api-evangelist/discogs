@@ -111,6 +111,91 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ListItem:
+      type: object
+      description: A single item inside a user list.
+      properties:
+        id:
+          type: integer
+          example: 4567
+        type:
+          type: string
+          enum:
+          - release
+          - master
+          - artist
+          - label
+          example: release
+        display_title:
+          type: string
+          example: Miles Davis — Kind Of Blue
+        uri:
+          type: string
+          format: uri
+        comment:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+    ListsResponse:
+      type: object
+      description: Paginated response of a user's lists.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        lists:
+          type: array
+          items:
+            $ref: '#/components/schemas/List'
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     List:
       type: object
       description: A user-created list of releases, masters, artists, or labels.
@@ -151,91 +236,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ListItem'
-    Pagination:
-      type: object
-      description: Details for paginated results.
-      properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    UserSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-    ListsResponse:
-      type: object
-      description: Paginated response of a user's lists.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        lists:
-          type: array
-          items:
-            $ref: '#/components/schemas/List'
-    ListItem:
-      type: object
-      description: A single item inside a user list.
-      properties:
-        id:
-          type: integer
-          example: 4567
-        type:
-          type: string
-          enum:
-          - release
-          - master
-          - artist
-          - label
-          example: release
-        display_title:
-          type: string
-          example: Miles Davis — Kind Of Blue
-        uri:
-          type: string
-          format: uri
-        comment:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        resource_url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
   securitySchemes:
     DiscogsToken:
       type: apiKey

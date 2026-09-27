@@ -119,6 +119,8 @@ apis:
   humanURL: https://www.discogs.com/developers
   baseURL: https://api.discogs.com
   tags:
+  - Inventory
+  tags_raw:
   - Inventory Management
   properties:
   - type: OpenAPI

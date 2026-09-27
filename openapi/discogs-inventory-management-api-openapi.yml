@@ -294,6 +294,69 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    InventoryExport:
+      type: object
+      description: A marketplace inventory CSV export job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - in progress
+          - success
+          - failure
+        created_ts:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        finished_ts:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+          format: uri
+        filename:
+          type: string
+          example: inventory-export.csv
+        id:
+          type: integer
+          example: 599
+        type:
+          type: string
+          example: export
+    InventoryUpload:
+      type: object
+      description: A CSV inventory upload job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - success
+          - failure
+          - partial_success
+        created_ts:
+          type: string
+          format: date-time
+        last_activity:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - add
+          - change
+          - delete
+        id:
+          type: integer
+        filename:
+          type: string
+        results_url:
+          type: string
+          format: uri
     InventoryUploadsResponse:
       type: object
       properties:
@@ -334,38 +397,6 @@ components:
               type: string
               format: uri
               nullable: true
-    InventoryExport:
-      type: object
-      description: A marketplace inventory CSV export job.
-      properties:
-        status:
-          type: string
-          enum:
-          - pending
-          - in progress
-          - success
-          - failure
-        created_ts:
-          type: string
-          format: date-time
-        url:
-          type: string
-          format: uri
-        finished_ts:
-          type: string
-          format: date-time
-        download_url:
-          type: string
-          format: uri
-        filename:
-          type: string
-          example: inventory-export.csv
-        id:
-          type: integer
-          example: 599
-        type:
-          type: string
-          example: export
     InventoryExportsResponse:
       type: object
       properties:
@@ -375,37 +406,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryExport'
-    InventoryUpload:
-      type: object
-      description: A CSV inventory upload job.
-      properties:
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - success
-          - failure
-          - partial_success
-        created_ts:
-          type: string
-          format: date-time
-        last_activity:
-          type: string
-          format: date-time
-        type:
-          type: string
-          enum:
-          - add
-          - change
-          - delete
-        id:
-          type: integer
-        filename:
-          type: string
-        results_url:
-          type: string
-          format: uri
   securitySchemes:
     DiscogsToken:
       type: apiKey
