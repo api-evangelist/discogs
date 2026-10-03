@@ -294,6 +294,77 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    InventoryUpload:
+      type: object
+      description: A CSV inventory upload job.
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - success
+          - failure
+          - partial_success
+        created_ts:
+          type: string
+          format: date-time
+        last_activity:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - add
+          - change
+          - delete
+        id:
+          type: integer
+        filename:
+          type: string
+        results_url:
+          type: string
+          format: uri
+    InventoryExportsResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryExport'
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
     InventoryExport:
       type: object
       description: A marketplace inventory CSV export job.
@@ -326,37 +397,6 @@ components:
         type:
           type: string
           example: export
-    InventoryUpload:
-      type: object
-      description: A CSV inventory upload job.
-      properties:
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - success
-          - failure
-          - partial_success
-        created_ts:
-          type: string
-          format: date-time
-        last_activity:
-          type: string
-          format: date-time
-        type:
-          type: string
-          enum:
-          - add
-          - change
-          - delete
-        id:
-          type: integer
-        filename:
-          type: string
-        results_url:
-          type: string
-          format: uri
     InventoryUploadsResponse:
       type: object
       properties:
@@ -366,46 +406,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryUpload'
-    Pagination:
-      type: object
-      description: Details for paginated results.
-      properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    InventoryExportsResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryExport'
   securitySchemes:
     DiscogsToken:
       type: apiKey
