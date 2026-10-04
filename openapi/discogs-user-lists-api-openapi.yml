@@ -111,11 +111,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     List:
       type: object
       description: A user-created list of releases, masters, artists, or labels.
@@ -156,6 +151,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ListItem'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ListItem:
+      type: object
+      description: A single item inside a user list.
+      properties:
+        id:
+          type: integer
+          example: 4567
+        type:
+          type: string
+          enum:
+          - release
+          - master
+          - artist
+          - label
+          example: release
+        display_title:
+          type: string
+          example: Miles Davis — Kind Of Blue
+        uri:
+          type: string
+          format: uri
+        comment:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
     ListsResponse:
       type: object
       description: Paginated response of a user's lists.
@@ -197,35 +226,6 @@ components:
               type: string
               format: uri
               nullable: true
-    ListItem:
-      type: object
-      description: A single item inside a user list.
-      properties:
-        id:
-          type: integer
-          example: 4567
-        type:
-          type: string
-          enum:
-          - release
-          - master
-          - artist
-          - label
-          example: release
-        display_title:
-          type: string
-          example: Miles Davis — Kind Of Blue
-        uri:
-          type: string
-          format: uri
-        comment:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        resource_url:
-          type: string
-          format: uri
     UserSummary:
       type: object
       properties:

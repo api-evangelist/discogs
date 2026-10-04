@@ -222,6 +222,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Contribution:
+      type: object
+      description: A user's contribution to the Discogs database.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseSummary'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     ReleaseFormat:
       type: object
       properties:
@@ -236,18 +251,6 @@ components:
           type: array
           items:
             type: string
-    Identity:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        consumer_name:
-          type: string
     Profile:
       type: object
       properties:
@@ -334,27 +337,6 @@ components:
         email:
           type: string
           format: email
-    Submission:
-      type: object
-      description: A submission (release/artist/label edit) made by a user.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        submissions:
-          type: object
-          properties:
-            artists:
-              type: array
-              items:
-                $ref: '#/components/schemas/ArtistSummary'
-            labels:
-              type: array
-              items:
-                $ref: '#/components/schemas/LabelSummary'
-            releases:
-              type: array
-              items:
-                $ref: '#/components/schemas/ReleaseSummary'
     Currency:
       type: string
       enum:
@@ -370,7 +352,19 @@ components:
       - NZD
       - SEK
       - ZAR
-    ArtistSummary:
+    Identity:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        consumer_name:
+          type: string
+    LabelSummary:
       type: object
       properties:
         id:
@@ -380,50 +374,12 @@ components:
         resource_url:
           type: string
           format: uri
-        anv:
+        catno:
           type: string
           nullable: true
-        join:
+        entity_type:
           type: string
           nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-    ProfileUpdate:
-      type: object
-      description: Editable profile fields.
-      properties:
-        name:
-          type: string
-        home_page:
-          type: string
-        location:
-          type: string
-        profile:
-          type: string
-        curr_abbr:
-          type: string
-          enum:
-          - USD
-          - GBP
-          - EUR
-          - CAD
-          - AUD
-          - JPY
-          - CHF
-          - MXN
-          - BRL
-          - NZD
-          - SEK
-          - ZAR
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     Pagination:
       type: object
       description: Details for paginated results.
@@ -493,7 +449,55 @@ components:
           type: array
           items:
             type: string
-    LabelSummary:
+    Submission:
+      type: object
+      description: A submission (release/artist/label edit) made by a user.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        submissions:
+          type: object
+          properties:
+            artists:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArtistSummary'
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelSummary'
+            releases:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReleaseSummary'
+    ProfileUpdate:
+      type: object
+      description: Editable profile fields.
+      properties:
+        name:
+          type: string
+        home_page:
+          type: string
+        location:
+          type: string
+        profile:
+          type: string
+        curr_abbr:
+          type: string
+          enum:
+          - USD
+          - GBP
+          - EUR
+          - CAD
+          - AUD
+          - JPY
+          - CHF
+          - MXN
+          - BRL
+          - NZD
+          - SEK
+          - ZAR
+    ArtistSummary:
       type: object
       properties:
         id:
@@ -503,31 +507,19 @@ components:
         resource_url:
           type: string
           format: uri
-        catno:
+        anv:
           type: string
           nullable: true
-        entity_type:
+        join:
           type: string
           nullable: true
-    Contribution:
-      type: object
-      description: A user's contribution to the Discogs database.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        contributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReleaseSummary'
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
   responses:
-    Unauthorized:
-      description: Unauthorized. Authentication information is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: You must authenticate to access this resource.
     NotFound:
       description: Not Found. The requested resource does not exist.
       content:
@@ -536,6 +528,14 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             message: Resource not found.
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
   parameters:
     Username:
       name: username

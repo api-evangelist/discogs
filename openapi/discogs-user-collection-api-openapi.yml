@@ -185,7 +185,80 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    SortCollection:
+      name: sort
+      in: query
+      description: The field to sort the results by.
+      schema:
+        type: string
+        enum:
+        - label
+        - artist
+        - title
+        - catno
+        - format
+        - rating
+        - added
+        - year
+        default: added
+    SortOrder:
+      name: sort_order
+      in: query
+      description: The order to sort the results.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    FolderId:
+      name: folder_id
+      in: path
+      required: true
+      description: The ID of the collection folder.
+      schema:
+        type: integer
+      example: 1
+    ReleaseId:
+      name: release_id
+      in: path
+      required: true
+      description: The ID of the release.
+      schema:
+        type: integer
+      example: 249504
+    Username:
+      name: username
+      in: path
+      required: true
+      description: The user's Discogs username.
+      schema:
+        type: string
+      example: rodneyfool
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     ReleaseFormat:
       type: object
       properties:
@@ -200,33 +273,22 @@ components:
           type: array
           items:
             type: string
-    ArtistSummary:
+    CollectionRelease:
       type: object
       properties:
         id:
           type: integer
-        name:
+        instance_id:
+          type: integer
+        folder_id:
+          type: integer
+        rating:
+          type: integer
+        date_added:
           type: string
-        resource_url:
-          type: string
-          format: uri
-        anv:
-          type: string
-          nullable: true
-        join:
-          type: string
-          nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
+          format: date-time
+        basic_information:
+          $ref: '#/components/schemas/ReleaseSummary'
     CollectionFolder:
       type: object
       properties:
@@ -239,6 +301,22 @@ components:
         resource_url:
           type: string
           format: uri
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
     Pagination:
       type: object
       description: Details for paginated results.
@@ -308,7 +386,7 @@ components:
           type: array
           items:
             type: string
-    LabelSummary:
+    ArtistSummary:
       type: object
       properties:
         id:
@@ -318,96 +396,18 @@ components:
         resource_url:
           type: string
           format: uri
-        catno:
+        anv:
           type: string
           nullable: true
-        entity_type:
+        join:
           type: string
           nullable: true
-    CollectionRelease:
-      type: object
-      properties:
-        id:
-          type: integer
-        instance_id:
-          type: integer
-        folder_id:
-          type: integer
-        rating:
-          type: integer
-        date_added:
+        role:
           type: string
-          format: date-time
-        basic_information:
-          $ref: '#/components/schemas/ReleaseSummary'
-  parameters:
-    SortOrder:
-      name: sort_order
-      in: query
-      description: The order to sort the results.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    Username:
-      name: username
-      in: path
-      required: true
-      description: The user's Discogs username.
-      schema:
-        type: string
-      example: rodneyfool
-    PerPage:
-      name: per_page
-      in: query
-      description: The number of items to return per page.
-      schema:
-        type: integer
-        default: 50
-        minimum: 1
-        maximum: 100
-    ReleaseId:
-      name: release_id
-      in: path
-      required: true
-      description: The ID of the release.
-      schema:
-        type: integer
-      example: 249504
-    FolderId:
-      name: folder_id
-      in: path
-      required: true
-      description: The ID of the collection folder.
-      schema:
-        type: integer
-      example: 1
-    Page:
-      name: page
-      in: query
-      description: The page number to return.
-      schema:
-        type: integer
-        default: 1
-        minimum: 1
-    SortCollection:
-      name: sort
-      in: query
-      description: The field to sort the results by.
-      schema:
-        type: string
-        enum:
-        - label
-        - artist
-        - title
-        - catno
-        - format
-        - rating
-        - added
-        - year
-        default: added
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
   responses:
     Unauthorized:
       description: Unauthorized. Authentication information is missing or invalid.

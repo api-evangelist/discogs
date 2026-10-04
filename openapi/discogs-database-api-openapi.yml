@@ -541,131 +541,292 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    MasterId:
-      name: master_id
-      in: path
-      required: true
-      description: The ID of the master release.
-      schema:
-        type: integer
-      example: 1000
-    FormatFilter:
-      name: format
-      in: query
-      description: Filter by format.
-      schema:
-        type: string
-    ReleasedFilter:
-      name: released
-      in: query
-      description: Filter by release year.
-      schema:
-        type: string
-    CountryFilter:
-      name: country
-      in: query
-      description: Filter by country.
-      schema:
-        type: string
-    SortOrder:
-      name: sort_order
-      in: query
-      description: The order to sort the results.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    SortMasterVersions:
-      name: sort
-      in: query
-      description: The field to sort the results by.
-      schema:
-        type: string
-        enum:
-        - released
-        - title
-        - format
-        - label
-        - catno
-        - country
-        default: released
-    ReleaseId:
-      name: release_id
-      in: path
-      required: true
-      description: The ID of the release.
-      schema:
-        type: integer
-      example: 249504
-    Page:
-      name: page
-      in: query
-      description: The page number to return.
-      schema:
-        type: integer
-        default: 1
-        minimum: 1
-    ArtistId:
-      name: artist_id
-      in: path
-      required: true
-      description: The ID of the artist.
-      schema:
-        type: integer
-      example: 108713
-    PerPage:
-      name: per_page
-      in: query
-      description: The number of items to return per page.
-      schema:
-        type: integer
-        default: 50
-        minimum: 1
-        maximum: 100
-    LabelFilter:
-      name: label
-      in: query
-      description: Filter by label.
-      schema:
-        type: string
-    SortArtistReleases:
-      name: sort
-      in: query
-      description: The field to sort the results by.
-      schema:
-        type: string
-        enum:
-        - year
-        - title
-        - format
-        default: year
-    LabelId:
-      name: label_id
-      in: path
-      required: true
-      description: The ID of the label.
-      schema:
-        type: integer
-      example: 1
   schemas:
-    Currency:
-      type: string
-      enum:
-      - USD
-      - GBP
-      - EUR
-      - CAD
-      - AUD
-      - JPY
-      - CHF
-      - MXN
-      - BRL
-      - NZD
-      - SEK
-      - ZAR
+    Master:
+      type: object
+      description: Represents a set of similar Releases.
+      allOf:
+      - $ref: '#/components/schemas/Release'
+      - type: object
+        properties:
+          main_release:
+            type: integer
+            description: The ID of the main release for this master.
+          main_release_url:
+            type: string
+            format: uri
+          versions_url:
+            type: string
+            format: uri
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    ArtistSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        anv:
+          type: string
+          nullable: true
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
+    SearchResultLabel:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - label
+    Label:
+      type: object
+      description: Represents a label, company, recording studio, etc.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        releases_url:
+          type: string
+          format: uri
+        profile:
+          type: string
+          nullable: true
+        contact_info:
+          type: string
+          nullable: true
+        parent_label:
+          $ref: '#/components/schemas/LabelSummary'
+          nullable: true
+        sublabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        data_quality:
+          type: string
+    UserReleaseRating:
+      type: object
+      description: A user's own rating for a release.
+      properties:
+        username:
+          type: string
+          example: jsmith
+        release:
+          type: integer
+          example: 249504
+        rating:
+          type: integer
+          minimum: 0
+          maximum: 5
+          example: 5
+    ReleaseVersion:
+      type: object
+      properties:
+        id:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        status:
+          type: string
+        thumb:
+          type: string
+          format: uri
+        format:
+          type: string
+        country:
+          type: string
+          nullable: true
+        title:
+          type: string
+        label:
+          type: string
+        released:
+          type: string
+        major_formats:
+          type: array
+          items:
+            type: string
+        catno:
+          type: string
+          nullable: true
+        stats:
+          type: object
+          properties:
+            community:
+              type: object
+              properties:
+                in_collection:
+                  type: integer
+                in_wantlist:
+                  type: integer
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+    Community:
+      type: object
+      properties:
+        have:
+          type: integer
+        want:
+          type: integer
+        rating:
+          type: object
+          properties:
+            count:
+              type: integer
+            average:
+              type: number
+              format: float
+        submitter:
+          $ref: '#/components/schemas/UserSummary'
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSummary'
+        data_quality:
+          type: string
+        status:
+          type: string
+    ReleaseRating:
+      type: object
+      description: Aggregate community rating for a release.
+      properties:
+        release_id:
+          type: integer
+          example: 249504
+        rating:
+          type: object
+          properties:
+            count:
+              type: integer
+            average:
+              type: number
+    Image:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - primary
+          - secondary
+        uri:
+          type: string
+          format: uri
+        resource_url:
+          type: string
+          format: uri
+        uri150:
+          type: string
+          format: uri
+        width:
+          type: integer
+        height:
+          type: integer
+    SearchResultArtist:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - artist
+    Identifier:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ReleaseFormat:
+      type: object
+      properties:
+        name:
+          type: string
+        qty:
+          type: string
+        text:
+          type: string
+          nullable: true
+        descriptions:
+          type: array
+          items:
+            type: string
     Release:
       type: object
       description: Represents a particular physical or digital object released by one or more Artists.
@@ -772,204 +933,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
-    SearchResultLabel:
-      allOf:
-      - $ref: '#/components/schemas/SearchResultRelease'
-      - type: object
-        properties:
-          type:
-            enum:
-            - label
-    Video:
-      type: object
-      properties:
-        uri:
-          type: string
-          format: uri
-        duration:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        embed:
-          type: boolean
-    Identifier:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-    Master:
-      type: object
-      description: Represents a set of similar Releases.
-      allOf:
-      - $ref: '#/components/schemas/Release'
-      - type: object
-        properties:
-          main_release:
-            type: integer
-            description: The ID of the main release for this master.
-          main_release_url:
-            type: string
-            format: uri
-          versions_url:
-            type: string
-            format: uri
-    Label:
-      type: object
-      description: Represents a label, company, recording studio, etc.
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-          readOnly: true
-        uri:
-          type: string
-          format: uri
-          readOnly: true
-        releases_url:
-          type: string
-          format: uri
-        profile:
-          type: string
-          nullable: true
-        contact_info:
-          type: string
-          nullable: true
-        parent_label:
-          $ref: '#/components/schemas/LabelSummary'
-          nullable: true
-        sublabels:
-          type: array
-          items:
-            $ref: '#/components/schemas/LabelSummary'
-        urls:
-          type: array
-          items:
-            type: string
-            format: uri
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        data_quality:
-          type: string
-    Artist:
-      type: object
-      description: Represents a person or group in the Discogs database.
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-        realname:
-          type: string
-          nullable: true
-        resource_url:
-          type: string
-          format: uri
-          readOnly: true
-        uri:
-          type: string
-          format: uri
-          readOnly: true
-        releases_url:
-          type: string
-          format: uri
-        profile:
-          type: string
-          nullable: true
-        urls:
-          type: array
-          items:
-            type: string
-            format: uri
-        namevariations:
-          type: array
-          items:
-            type: string
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistSummary'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        data_quality:
-          type: string
-    Pagination:
-      type: object
-      description: Details for paginated results.
-      properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    ReleaseFormat:
-      type: object
-      properties:
-        name:
-          type: string
-        qty:
-          type: string
-        text:
-          type: string
-          nullable: true
-        descriptions:
-          type: array
-          items:
-            type: string
-    UserReleaseRating:
-      type: object
-      description: A user's own rating for a release.
-      properties:
-        username:
-          type: string
-          example: jsmith
-        release:
-          type: integer
-          example: 249504
-        rating:
-          type: integer
-          minimum: 0
-          maximum: 5
-          example: 5
     LabelRelease:
       type: object
       properties:
@@ -993,47 +956,21 @@ components:
           type: string
         year:
           type: integer
-    Image:
+    Track:
       type: object
       properties:
-        type:
+        position:
           type: string
-          enum:
-          - primary
-          - secondary
-        uri:
+        type_:
           type: string
-          format: uri
-        resource_url:
+        title:
           type: string
-          format: uri
-        uri150:
+        duration:
           type: string
-          format: uri
-        width:
-          type: integer
-        height:
-          type: integer
-    SearchResultMaster:
-      allOf:
-      - $ref: '#/components/schemas/SearchResultRelease'
-      - type: object
-        properties:
-          type:
-            enum:
-            - master
-          main_release:
-            type: integer
-    UserSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
+        extraartists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
     ArtistRelease:
       type: object
       properties:
@@ -1068,136 +1005,20 @@ components:
         status:
           type: string
           nullable: true
-    Track:
+    Video:
       type: object
       properties:
-        position:
+        uri:
           type: string
-        type_:
-          type: string
-        title:
-          type: string
+          format: uri
         duration:
-          type: string
-        extraartists:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistSummary'
-    ReleaseVersion:
-      type: object
-      properties:
-        id:
           type: integer
-        resource_url:
-          type: string
-          format: uri
-        status:
-          type: string
-        thumb:
-          type: string
-          format: uri
-        format:
-          type: string
-        country:
-          type: string
-          nullable: true
         title:
           type: string
-        label:
+        description:
           type: string
-        released:
-          type: string
-        major_formats:
-          type: array
-          items:
-            type: string
-        catno:
-          type: string
-          nullable: true
-        stats:
-          type: object
-          properties:
-            community:
-              type: object
-              properties:
-                in_collection:
-                  type: integer
-                in_wantlist:
-                  type: integer
-    ArtistSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        anv:
-          type: string
-          nullable: true
-        join:
-          type: string
-          nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-    ReleaseRating:
-      type: object
-      description: Aggregate community rating for a release.
-      properties:
-        release_id:
-          type: integer
-          example: 249504
-        rating:
-          type: object
-          properties:
-            count:
-              type: integer
-            average:
-              type: number
-    SearchResultArtist:
-      allOf:
-      - $ref: '#/components/schemas/SearchResultRelease'
-      - type: object
-        properties:
-          type:
-            enum:
-            - artist
-    Community:
-      type: object
-      properties:
-        have:
-          type: integer
-        want:
-          type: integer
-        rating:
-          type: object
-          properties:
-            count:
-              type: integer
-            average:
-              type: number
-              format: float
-        submitter:
-          $ref: '#/components/schemas/UserSummary'
-        contributors:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserSummary'
-        data_quality:
-          type: string
-        status:
-          type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
+        embed:
+          type: boolean
     SearchResultRelease:
       type: object
       properties:
@@ -1246,6 +1067,16 @@ components:
           type: array
           items:
             type: string
+    SearchResultMaster:
+      allOf:
+      - $ref: '#/components/schemas/SearchResultRelease'
+      - type: object
+        properties:
+          type:
+            enum:
+            - master
+          main_release:
+            type: integer
     LabelSummary:
       type: object
       properties:
@@ -1262,6 +1093,175 @@ components:
         entity_type:
           type: string
           nullable: true
+    Artist:
+      type: object
+      description: Represents a person or group in the Discogs database.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        realname:
+          type: string
+          nullable: true
+        resource_url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          format: uri
+          readOnly: true
+        releases_url:
+          type: string
+          format: uri
+        profile:
+          type: string
+          nullable: true
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        namevariations:
+          type: array
+          items:
+            type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        data_quality:
+          type: string
+    Currency:
+      type: string
+      enum:
+      - USD
+      - GBP
+      - EUR
+      - CAD
+      - AUD
+      - JPY
+      - CHF
+      - MXN
+      - BRL
+      - NZD
+      - SEK
+      - ZAR
+  parameters:
+    CountryFilter:
+      name: country
+      in: query
+      description: Filter by country.
+      schema:
+        type: string
+    MasterId:
+      name: master_id
+      in: path
+      required: true
+      description: The ID of the master release.
+      schema:
+        type: integer
+      example: 1000
+    ReleasedFilter:
+      name: released
+      in: query
+      description: Filter by release year.
+      schema:
+        type: string
+    ReleaseId:
+      name: release_id
+      in: path
+      required: true
+      description: The ID of the release.
+      schema:
+        type: integer
+      example: 249504
+    ArtistId:
+      name: artist_id
+      in: path
+      required: true
+      description: The ID of the artist.
+      schema:
+        type: integer
+      example: 108713
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    LabelId:
+      name: label_id
+      in: path
+      required: true
+      description: The ID of the label.
+      schema:
+        type: integer
+      example: 1
+    SortOrder:
+      name: sort_order
+      in: query
+      description: The order to sort the results.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    SortArtistReleases:
+      name: sort
+      in: query
+      description: The field to sort the results by.
+      schema:
+        type: string
+        enum:
+        - year
+        - title
+        - format
+        default: year
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    SortMasterVersions:
+      name: sort
+      in: query
+      description: The field to sort the results by.
+      schema:
+        type: string
+        enum:
+        - released
+        - title
+        - format
+        - label
+        - catno
+        - country
+        default: released
+    LabelFilter:
+      name: label
+      in: query
+      description: Filter by label.
+      schema:
+        type: string
+    FormatFilter:
+      name: format
+      in: query
+      description: Filter by format.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Unauthorized. Authentication information is missing or invalid.

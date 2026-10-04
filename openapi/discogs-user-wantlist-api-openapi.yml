@@ -135,7 +135,46 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: The number of items to return per page.
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 100
+    Page:
+      name: page
+      in: query
+      description: The page number to return.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    ReleaseId:
+      name: release_id
+      in: path
+      required: true
+      description: The ID of the release.
+      schema:
+        type: integer
+      example: 249504
+    Username:
+      name: username
+      in: path
+      required: true
+      description: The user's Discogs username.
+      schema:
+        type: string
+      example: rodneyfool
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     ReleaseFormat:
       type: object
       properties:
@@ -165,33 +204,6 @@ components:
           nullable: true
         basic_information:
           $ref: '#/components/schemas/ReleaseSummary'
-    ArtistSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        anv:
-          type: string
-          nullable: true
-        join:
-          type: string
-          nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     Pagination:
       type: object
       description: Details for paginated results.
@@ -223,6 +235,22 @@ components:
               type: string
               format: uri
               nullable: true
+    LabelSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        catno:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
     ReleaseSummary:
       type: object
       properties:
@@ -261,7 +289,7 @@ components:
           type: array
           items:
             type: string
-    LabelSummary:
+    ArtistSummary:
       type: object
       properties:
         id:
@@ -271,21 +299,19 @@ components:
         resource_url:
           type: string
           format: uri
-        catno:
+        anv:
           type: string
           nullable: true
-        entity_type:
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
           type: string
           nullable: true
   responses:
-    Unauthorized:
-      description: Unauthorized. Authentication information is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: You must authenticate to access this resource.
     NotFound:
       description: Not Found. The requested resource does not exist.
       content:
@@ -294,40 +320,14 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             message: Resource not found.
-  parameters:
-    PerPage:
-      name: per_page
-      in: query
-      description: The number of items to return per page.
-      schema:
-        type: integer
-        default: 50
-        minimum: 1
-        maximum: 100
-    ReleaseId:
-      name: release_id
-      in: path
-      required: true
-      description: The ID of the release.
-      schema:
-        type: integer
-      example: 249504
-    Page:
-      name: page
-      in: query
-      description: The page number to return.
-      schema:
-        type: integer
-        default: 1
-        minimum: 1
-    Username:
-      name: username
-      in: path
-      required: true
-      description: The user's Discogs username.
-      schema:
-        type: string
-      example: rodneyfool
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
   headers:
     Link:
       description: 'Contains URLs for pagination, compliant with RFC 5988. It provides `first`, `prev`, `next`, and `last` links where applicable.
