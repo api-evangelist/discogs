@@ -222,21 +222,44 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Contribution:
+    ReleaseSummary:
       type: object
-      description: A user's contribution to the Discogs database.
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        contributions:
+        id:
+          type: integer
+        title:
+          type: string
+        year:
+          type: integer
+        resource_url:
+          type: string
+          format: uri
+        thumb:
+          type: string
+          format: uri
+        cover_image:
+          type: string
+          format: uri
+        formats:
           type: array
           items:
-            $ref: '#/components/schemas/ReleaseSummary'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
+            $ref: '#/components/schemas/ReleaseFormat'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelSummary'
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistSummary'
+        genres:
+          type: array
+          items:
+            type: string
+        styles:
+          type: array
+          items:
+            type: string
     ReleaseFormat:
       type: object
       properties:
@@ -251,6 +274,149 @@ components:
           type: array
           items:
             type: string
+    Currency:
+      type: string
+      enum:
+      - USD
+      - GBP
+      - EUR
+      - CAD
+      - AUD
+      - JPY
+      - CHF
+      - MXN
+      - BRL
+      - NZD
+      - SEK
+      - ZAR
+    Pagination:
+      type: object
+      description: Details for paginated results.
+      properties:
+        page:
+          type: integer
+        pages:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: integer
+        urls:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              nullable: true
+            prev:
+              type: string
+              format: uri
+              nullable: true
+            next:
+              type: string
+              format: uri
+              nullable: true
+            last:
+              type: string
+              format: uri
+              nullable: true
+    Identity:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        consumer_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ArtistSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        resource_url:
+          type: string
+          format: uri
+        anv:
+          type: string
+          nullable: true
+        join:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        tracks:
+          type: string
+          nullable: true
+    ProfileUpdate:
+      type: object
+      description: Editable profile fields.
+      properties:
+        name:
+          type: string
+        home_page:
+          type: string
+        location:
+          type: string
+        profile:
+          type: string
+        curr_abbr:
+          type: string
+          enum:
+          - USD
+          - GBP
+          - EUR
+          - CAD
+          - AUD
+          - JPY
+          - CHF
+          - MXN
+          - BRL
+          - NZD
+          - SEK
+          - ZAR
+    Contribution:
+      type: object
+      description: A user's contribution to the Discogs database.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseSummary'
+    Submission:
+      type: object
+      description: A submission (release/artist/label edit) made by a user.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        submissions:
+          type: object
+          properties:
+            artists:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArtistSummary'
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelSummary'
+            releases:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReleaseSummary'
     Profile:
       type: object
       properties:
@@ -337,33 +503,6 @@ components:
         email:
           type: string
           format: email
-    Currency:
-      type: string
-      enum:
-      - USD
-      - GBP
-      - EUR
-      - CAD
-      - AUD
-      - JPY
-      - CHF
-      - MXN
-      - BRL
-      - NZD
-      - SEK
-      - ZAR
-    Identity:
-      type: object
-      properties:
-        id:
-          type: integer
-        username:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        consumer_name:
-          type: string
     LabelSummary:
       type: object
       properties:
@@ -380,162 +519,6 @@ components:
         entity_type:
           type: string
           nullable: true
-    Pagination:
-      type: object
-      description: Details for paginated results.
-      properties:
-        page:
-          type: integer
-        pages:
-          type: integer
-        per_page:
-          type: integer
-        items:
-          type: integer
-        urls:
-          type: object
-          properties:
-            first:
-              type: string
-              format: uri
-              nullable: true
-            prev:
-              type: string
-              format: uri
-              nullable: true
-            next:
-              type: string
-              format: uri
-              nullable: true
-            last:
-              type: string
-              format: uri
-              nullable: true
-    ReleaseSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        year:
-          type: integer
-        resource_url:
-          type: string
-          format: uri
-        thumb:
-          type: string
-          format: uri
-        cover_image:
-          type: string
-          format: uri
-        formats:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReleaseFormat'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/LabelSummary'
-        artists:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistSummary'
-        genres:
-          type: array
-          items:
-            type: string
-        styles:
-          type: array
-          items:
-            type: string
-    Submission:
-      type: object
-      description: A submission (release/artist/label edit) made by a user.
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        submissions:
-          type: object
-          properties:
-            artists:
-              type: array
-              items:
-                $ref: '#/components/schemas/ArtistSummary'
-            labels:
-              type: array
-              items:
-                $ref: '#/components/schemas/LabelSummary'
-            releases:
-              type: array
-              items:
-                $ref: '#/components/schemas/ReleaseSummary'
-    ProfileUpdate:
-      type: object
-      description: Editable profile fields.
-      properties:
-        name:
-          type: string
-        home_page:
-          type: string
-        location:
-          type: string
-        profile:
-          type: string
-        curr_abbr:
-          type: string
-          enum:
-          - USD
-          - GBP
-          - EUR
-          - CAD
-          - AUD
-          - JPY
-          - CHF
-          - MXN
-          - BRL
-          - NZD
-          - SEK
-          - ZAR
-    ArtistSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        resource_url:
-          type: string
-          format: uri
-        anv:
-          type: string
-          nullable: true
-        join:
-          type: string
-          nullable: true
-        role:
-          type: string
-          nullable: true
-        tracks:
-          type: string
-          nullable: true
-  responses:
-    NotFound:
-      description: Not Found. The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Resource not found.
-    Unauthorized:
-      description: Unauthorized. Authentication information is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: You must authenticate to access this resource.
   parameters:
     Username:
       name: username
@@ -545,6 +528,23 @@ components:
       schema:
         type: string
       example: rodneyfool
+  responses:
+    Unauthorized:
+      description: Unauthorized. Authentication information is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: You must authenticate to access this resource.
+    NotFound:
+      description: Not Found. The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Resource not found.
   securitySchemes:
     DiscogsToken:
       type: apiKey
