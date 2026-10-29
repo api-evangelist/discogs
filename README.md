@@ -1,4 +1,4 @@
-# Discogs (discogs)
+# Discogs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,198 +64,252 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Discogs is a community-built music database and marketplace for physical music releases (vinyl, CD, cassette, and more). The Discogs API gives developers programmatic
-read/write access to artists, releases, masters, labels, search, user collections and wantlists, marketplace listings, orders, and inventory management — using Discogs
-Auth tokens, key+secret credentials, or full OAuth 1.0a on behalf of other users.
+Discogs is a community-built music database and marketplace for physical music releases (vinyl, CD, cassette, and more). The Discogs API gives developers programmatic read/write access to artists, releases, masters, labels, search, user collections and wantlists, marketplace listings, orders, and inventory management — using Discogs Auth tokens, key+secret credentials, or full OAuth 1.0a on behalf of other users.
 
-**URL:** [Visit APIs.json URL](https://www.discogs.com/developers/)
+**Areas:** Music · Marketplace · Catalog · Community · Vinyl · Public APIs
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Discogs on APIs.io
 
-## Tags:
+Everything profiled for Discogs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/discogs/](https://apis.io/providers/discogs/)** — or go straight to one of the APIs or properties below.
 
- - Music
- - Marketplace
- - Catalog
- - Community
- - Vinyl
- - Public APIs
+### APIs (8)
 
-## Timestamps
+- [Discogs Database API](https://apis.io/apis/discogs/discogs-database-api/) — Access Discogs database: artists, releases, masters, labels, and search.
+- [Discogs Image API](https://apis.io/apis/discogs/discogs-image-api/) — Image asset retrieval (proxied via OAuth).
+- [Discogs Inventory Management API](https://apis.io/apis/discogs/discogs-inventory-management-api/) — Bulk inventory export and CSV upload management.
+- [Discogs Marketplace API](https://apis.io/apis/discogs/discogs-marketplace-api/) — Marketplace listings, orders, fees, price suggestions, and release stats.
+- [Discogs User Collection API](https://apis.io/apis/discogs/discogs-user-collection-api/) — Manage a user's record collection.
+- [Discogs User Identity API](https://apis.io/apis/discogs/discogs-user-identity-api/) — Authenticated user identity, profile, submissions, and contributions.
+- [Discogs User Lists API](https://apis.io/apis/discogs/discogs-user-lists-api/) — Browse and manage user-created lists of releases, artists, and labels.
+- [Discogs User Wantlist API](https://apis.io/apis/discogs/discogs-user-wantlist-api/) — Manage a user's wantlist.
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-29
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Discogs API
+#### GraphQL (1)
 
-RESTful API to the Discogs music catalog and marketplace. Covers the Database (artist, release, master, label, search), authenticated User surfaces
-(identity, profile, collection, wantlist, lists, contributions, submissions, ratings), Marketplace (inventory, orders, listings, fees, price suggestions,
-release stats), bulk Inventory Management (CSV export/upload), and OAuth-signed Image retrieval.
+GraphQL schemas.
 
-**Human URL:** [https://www.discogs.com/developers](https://www.discogs.com/developers)
+- [Moved to /providers/discogs/](https://apis.io/graphqls/discogs/discogs-graphql/)
 
-**Base URL:** `https://api.discogs.com`
+#### Agentic access (1)
 
-#### Tags:
+Which operations an agent can call, which act, and which need a human in the loop.
 
- - Database
- - Marketplace
- - User Identity
- - User Collection
- - User Wantlist
- - User Lists
- - Inventory Management
- - Image
+- [Discogs Agentic Access](https://apis.io/agentic-access/discogs/discogs-agentic-access/)
 
-#### Properties
+#### JSON Schema (55)
 
-- [Documentation](https://www.discogs.com/developers)
-- [APIReference](https://www.discogs.com/developers)
-- [Authentication](https://www.discogs.com/developers#page:authentication)
-- [TermsOfService](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use)
-- [OpenAPI](openapi/discogs-openapi-original.yml)
-- [Python SDK (Joalla Community Continuation)](https://github.com/joalla/discogs_client)
-- [Python SDK (Modern Reimplementation)](https://github.com/jmfontaine/discogs-sdk)
-- [Java SDK (Community)](https://github.com/andy-miles/discogs-java-client)
-- [Swift Service (Community)](https://github.com/rock-n-code/discogs-service)
-- [PHP SDK (Discogs Client - Deprecated Official)](https://github.com/discogs/discogs_client)
-- [Monthly XML Data Dumps](https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html)
-- [NaftikoCapability](capabilities/discogs-database.yaml)
-- [NaftikoCapability](capabilities/discogs-image.yaml)
-- [NaftikoCapability](capabilities/discogs-inventory-management.yaml)
-- [NaftikoCapability](capabilities/discogs-marketplace.yaml)
-- [NaftikoCapability](capabilities/discogs-user-collection.yaml)
-- [NaftikoCapability](capabilities/discogs-user-identity.yaml)
-- [NaftikoCapability](capabilities/discogs-user-lists.yaml)
-- [NaftikoCapability](capabilities/discogs-user-wantlist.yaml)
+The data models the API reads and writes.
 
-## Common Properties
+- [Artist](https://apis.io/schemas/discogs/discogs-artist/)
+- [ArtistRelease](https://apis.io/schemas/discogs/discogs-artist-release/)
+- [ArtistSummary](https://apis.io/schemas/discogs/discogs-artist-summary/)
+- [CollectionFolder](https://apis.io/schemas/discogs/discogs-collection-folder/)
+- [CollectionRelease](https://apis.io/schemas/discogs/discogs-collection-release/)
+- [Community](https://apis.io/schemas/discogs/discogs-community/)
+- [Contribution](https://apis.io/schemas/discogs/discogs-contribution/)
+- [Currency](https://apis.io/schemas/discogs/discogs-currency/)
+- [Fee](https://apis.io/schemas/discogs/discogs-fee/)
+- [Identifier](https://apis.io/schemas/discogs/discogs-identifier/)
+- [Identity](https://apis.io/schemas/discogs/discogs-identity/)
+- [Image](https://apis.io/schemas/discogs/discogs-image/)
+- [InventoryExport](https://apis.io/schemas/discogs/discogs-inventory-export/)
+- [InventoryExportsResponse](https://apis.io/schemas/discogs/discogs-inventory-exports-response/)
+- [InventoryUpload](https://apis.io/schemas/discogs/discogs-inventory-upload/)
+- [InventoryUploadsResponse](https://apis.io/schemas/discogs/discogs-inventory-uploads-response/)
+- [Label](https://apis.io/schemas/discogs/discogs-label/)
+- [LabelRelease](https://apis.io/schemas/discogs/discogs-label-release/)
+- [LabelSummary](https://apis.io/schemas/discogs/discogs-label-summary/)
+- [List](https://apis.io/schemas/discogs/discogs-list/)
+- [ListItem](https://apis.io/schemas/discogs/discogs-list-item/)
+- [Listing](https://apis.io/schemas/discogs/discogs-listing/)
+- [ListingNew](https://apis.io/schemas/discogs/discogs-listing-new/)
+- [ListingRelease](https://apis.io/schemas/discogs/discogs-listing-release/)
+- [ListingUpdate](https://apis.io/schemas/discogs/discogs-listing-update/)
+- …and 30 more published on APIs.io
+
+#### JSON Structure (55)
+
+Data models expressed in JSON Structure.
+
+- [Discogs Artist Release Structure](https://apis.io/json-structure/discogs/discogs-artist-release-structure/)
+- [Discogs Artist Structure](https://apis.io/json-structure/discogs/discogs-artist-structure/)
+- [Discogs Artist Summary Structure](https://apis.io/json-structure/discogs/discogs-artist-summary-structure/)
+- [Discogs Collection Folder Structure](https://apis.io/json-structure/discogs/discogs-collection-folder-structure/)
+- [Discogs Collection Release Structure](https://apis.io/json-structure/discogs/discogs-collection-release-structure/)
+- [Discogs Community Structure](https://apis.io/json-structure/discogs/discogs-community-structure/)
+- [Discogs Contribution Structure](https://apis.io/json-structure/discogs/discogs-contribution-structure/)
+- [Discogs Currency Structure](https://apis.io/json-structure/discogs/discogs-currency-structure/)
+- [Discogs Fee Structure](https://apis.io/json-structure/discogs/discogs-fee-structure/)
+- [Discogs Identifier Structure](https://apis.io/json-structure/discogs/discogs-identifier-structure/)
+- [Discogs Identity Structure](https://apis.io/json-structure/discogs/discogs-identity-structure/)
+- [Discogs Image Structure](https://apis.io/json-structure/discogs/discogs-image-structure/)
+- [Discogs Inventory Export Structure](https://apis.io/json-structure/discogs/discogs-inventory-export-structure/)
+- [Discogs Inventory Exports Response Structure](https://apis.io/json-structure/discogs/discogs-inventory-exports-response-structure/)
+- [Discogs Inventory Upload Structure](https://apis.io/json-structure/discogs/discogs-inventory-upload-structure/)
+- [Discogs Inventory Uploads Response Structure](https://apis.io/json-structure/discogs/discogs-inventory-uploads-response-structure/)
+- [Discogs Label Release Structure](https://apis.io/json-structure/discogs/discogs-label-release-structure/)
+- [Discogs Label Structure](https://apis.io/json-structure/discogs/discogs-label-structure/)
+- [Discogs Label Summary Structure](https://apis.io/json-structure/discogs/discogs-label-summary-structure/)
+- [Discogs List Item Structure](https://apis.io/json-structure/discogs/discogs-list-item-structure/)
+- [Discogs List Structure](https://apis.io/json-structure/discogs/discogs-list-structure/)
+- [Discogs Listing New Structure](https://apis.io/json-structure/discogs/discogs-listing-new-structure/)
+- [Discogs Listing Release Structure](https://apis.io/json-structure/discogs/discogs-listing-release-structure/)
+- [Discogs Listing Structure](https://apis.io/json-structure/discogs/discogs-listing-structure/)
+- [Discogs Listing Update Structure](https://apis.io/json-structure/discogs/discogs-listing-update-structure/)
+- …and 30 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Discogs Context](https://apis.io/jsonld/discogs/discogs-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Discogs Vocabulary](https://apis.io/vocabularies/discogs/discogs-vocabulary/)
+
+#### Examples (49)
+
+Example requests and responses.
+
+- [Discogs Artist Example](https://apis.io/examples/discogs/discogs-artist-example/)
+- [Discogs Artist Release Example](https://apis.io/examples/discogs/discogs-artist-release-example/)
+- [Discogs Artist Summary Example](https://apis.io/examples/discogs/discogs-artist-summary-example/)
+- [Discogs Collection Folder Example](https://apis.io/examples/discogs/discogs-collection-folder-example/)
+- [Discogs Collection Release Example](https://apis.io/examples/discogs/discogs-collection-release-example/)
+- [Discogs Community Example](https://apis.io/examples/discogs/discogs-community-example/)
+- [Discogs Contribution Example](https://apis.io/examples/discogs/discogs-contribution-example/)
+- [Discogs Fee Example](https://apis.io/examples/discogs/discogs-fee-example/)
+- [Discogs Identifier Example](https://apis.io/examples/discogs/discogs-identifier-example/)
+- [Discogs Identity Example](https://apis.io/examples/discogs/discogs-identity-example/)
+- [Discogs Image Example](https://apis.io/examples/discogs/discogs-image-example/)
+- [Discogs Inventory Export Example](https://apis.io/examples/discogs/discogs-inventory-export-example/)
+- [Discogs Inventory Exports Response Example](https://apis.io/examples/discogs/discogs-inventory-exports-response-example/)
+- [Discogs Inventory Upload Example](https://apis.io/examples/discogs/discogs-inventory-upload-example/)
+- [Discogs Inventory Uploads Response Example](https://apis.io/examples/discogs/discogs-inventory-uploads-response-example/)
+- [Discogs Label Example](https://apis.io/examples/discogs/discogs-label-example/)
+- [Discogs Label Release Example](https://apis.io/examples/discogs/discogs-label-release-example/)
+- [Discogs Label Summary Example](https://apis.io/examples/discogs/discogs-label-summary-example/)
+- [Discogs List Example](https://apis.io/examples/discogs/discogs-list-example/)
+- [Discogs List Item Example](https://apis.io/examples/discogs/discogs-list-item-example/)
+- [Discogs Listing Example](https://apis.io/examples/discogs/discogs-listing-example/)
+- [Discogs Listing New Example](https://apis.io/examples/discogs/discogs-listing-new-example/)
+- [Discogs Listing Release Example](https://apis.io/examples/discogs/discogs-listing-release-example/)
+- [Discogs Listing Update Example](https://apis.io/examples/discogs/discogs-listing-update-example/)
+- [Discogs Lists Response Example](https://apis.io/examples/discogs/discogs-lists-response-example/)
+- …and 24 more published on APIs.io
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Discogs Database API](https://apis.io/collections/discogs/open-discogs-database-api/)
+- [Discogs Database Image API](https://apis.io/collections/discogs/open-discogs-image-api/)
+- [Discogs Database Inventory Management API](https://apis.io/collections/discogs/open-discogs-inventory-management-api/)
+- [Discogs Database Marketplace API](https://apis.io/collections/discogs/open-discogs-marketplace-api/)
+- [Discogs Database User Collection API](https://apis.io/collections/discogs/open-discogs-user-collection-api/)
+- [Discogs Database User Identity API](https://apis.io/collections/discogs/open-discogs-user-identity-api/)
+- [Discogs Database User Lists API](https://apis.io/collections/discogs/open-discogs-user-lists-api/)
+- [Discogs Database User Wantlist API](https://apis.io/collections/discogs/open-discogs-user-wantlist-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Discogs — jsonschema rules](https://apis.io/rules/discogs/discogs-jsonschema-spectral-rules/)
+- [Discogs API Rules](https://apis.io/rules/discogs/discogs-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Discogs Authentication](https://apis.io/security/discogs/discogs-authentication/)
+- [Discogs Domain Security](https://apis.io/security/discogs/discogs-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Discogs Scopes](https://apis.io/scopes/discogs/discogs-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Discogs Plans Pricing](https://apis.io/plans/discogs/discogs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Discogs Rate Limits](https://apis.io/rate-limits/discogs/discogs-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.discogs.com)
 - [Documentation](https://www.discogs.com/developers)
-- [APIReference](https://www.discogs.com/developers)
-- [TermsOfService](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use)
-- [Authentication](https://www.discogs.com/developers#page:authentication)
+- [API reference](https://www.discogs.com/developers)
 - [Support](https://support.discogs.com)
-- [Forum](https://www.discogs.com/forum/topic/1082)
-- [Status](https://status.discogs.com)
 - [Blog](https://blog.discogs.com)
-- [Plans](plans/discogs-plans-pricing.yml)
-- [RateLimits](rate-limits/discogs-rate-limits.yml)
-- [GitHubOrganization](https://github.com/discogs)
-- [PublicAPIsListing](https://github.com/public-apis/public-apis)
-- [Monthly XML Data Dumps](https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html)
-- [MCP Server (cswkim)](https://github.com/cswkim/discogs-mcp-server)
-- [MCP Server (rianvdm OAuth)](https://github.com/rianvdm/discogs-mcp)
-- [MCP Server (pipeworx-io)](https://github.com/pipeworx-io/mcp-discogs)
-- [MCP Server (andylobban Self-hostable)](https://github.com/andylobban/discogs-mcp-server)
-- [MCP Server (leosakharoff)](https://github.com/leosakharoff/discogs-mcp)
-- [Vocabulary](vocabulary/discogs-vocabulary.yml)
-- [SpectralRuleset](rules/discogs-rules.yml)
-- [JSONLDContext](json-ld/discogs-context.jsonld)
+- [Terms of service](https://support.discogs.com/hc/articles/360009334593-API-Terms-of-Use)
+- [GitHub](https://github.com/discogs)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|------|
-| Database Search | Free-text search across releases, masters, artists, and labels with rich filters (year, country, format, label, genre, style, barcode, catno). |
-| Release Catalog | Detailed release records including tracks, formats, labels, artists, videos, identifiers, community stats, and marketplace stats. |
-| User Collection Management | Read and modify user record collections, organized into custom folders with notes and rating per copy. |
-| User Wantlist | Track wanted releases, with notes and ratings; add and remove releases programmatically. |
-| Marketplace Listings | List, update, and delete records for sale; query inventory by username; integrate with checkout flows via the Listing endpoints. |
-| Marketplace Orders | Inspect, update, and message on orders the authenticated seller has received. |
-| Price Suggestions | Get Discogs-calculated suggested marketplace prices by release and media condition. |
-| Bulk Inventory Management | CSV-driven bulk add, change, and delete of inventory listings via asynchronous upload jobs; full inventory export to CSV. |
-| OAuth 1.0a | Three-legged OAuth 1.0a flow for building third-party apps that act on behalf of other Discogs users. |
-| Monthly XML Data Dumps | Discogs publishes a monthly snapshot of the full database (artists, labels, masters, releases) as XML on S3 for bulk analysis. |
+**Kin Score 36.6** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 24.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 15.8 |
 
-| Name | Description |
-|------|------|
-| Music Discovery Apps | Build apps that surface release metadata, cover art, video links, community ratings, and label discographies. |
-| Vinyl Reseller Tools | Power inventory management, pricing, and order workflows for vinyl resellers selling on the Discogs Marketplace. |
-| Collection Trackers | Mobile and desktop apps that sync a collector's Discogs collection and wantlist offline. |
-| Catalog Enrichment | Enrich third-party music libraries (DJ tools, archive systems, streaming metadata) with Discogs identifiers, formats, and release dates. |
-| AI Music Agents | Power LLM-driven shopping, discovery, and collection-management agents via the Discogs MCP server ecosystem. |
-| Research and Analytics | Use the monthly XML data dumps for population-level analysis of pressing variants, label catalogs, and marketplace pricing. |
+**Agent readiness 30.8** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|------|
-| OAuth 1.0a | Standards-compliant OAuth 1.0a for delegated user authorization. |
-| CSV | Bulk inventory imports and exports use CSV files. |
-| Microcks | OpenAPI spec is annotated with x-microcks-operation extensions for mock-server compatibility. |
-| Model Context Protocol | Five plus community MCP servers expose Discogs surfaces (search, collection, wantlist, marketplace) as MCP tools for LLM agents. |
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
 
-## Solutions
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/discogs/](https://apis.io/providers/discogs/).
 
-| Name | Description |
-|------|------|
-| Marketplace Storefront Sync | Combine inventory upload, order management, and price suggestions to operate a multi-channel record store with Discogs as inventory of record. |
-| Collector Mobile Companion | Combine identity, collection, wantlist, and search to build a fully-featured mobile companion for record collectors. |
-| Catalog Resolution Service | Use search and release endpoints to resolve fuzzy track metadata into canonical Discogs IDs and master release versions. |
+## How this profile is made
 
-## Artifacts
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Machine-readable API specifications organized by format.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Discogs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### OpenAPI
+## Open an issue
 
-- [discogs-openapi-original.yml](openapi/discogs-openapi-original.yml)
-
-### JSON Schema (55 files)
-
-See [json-schema/](json-schema/) — 55 schema files extracted from the OpenAPI components.
-
-### JSON Structure (55 files)
-
-See [json-structure/](json-structure/) — 55 JSON Structure files (json-structure.org meta).
-
-### JSON-LD Contexts
-
-- [discogs-context.jsonld](json-ld/discogs-context.jsonld)
-
-### Examples (55 files)
-
-See [examples/](examples/) — 55 representative example payloads.
-
-## Capabilities
-
-Self-contained Naftiko capability files (one per OpenAPI tag) with inline REST and MCP adapters.
-
-| Capability | Consumed Operations | MCP Tools | File |
-|------------|---------------------|-----------|------|
-| Discogs API — Database | 12 | 12 | [discogs-database.yaml](capabilities/discogs-database.yaml) |
-| Discogs API — Image | 1 | 1 | [discogs-image.yaml](capabilities/discogs-image.yaml) |
-| Discogs API — Inventory Management | 9 | 9 | [discogs-inventory-management.yaml](capabilities/discogs-inventory-management.yaml) |
-| Discogs API — Marketplace | 14 | 14 | [discogs-marketplace.yaml](capabilities/discogs-marketplace.yaml) |
-| Discogs API — User Collection | 4 | 4 | [discogs-user-collection.yaml](capabilities/discogs-user-collection.yaml) |
-| Discogs API — User Identity | 5 | 5 | [discogs-user-identity.yaml](capabilities/discogs-user-identity.yaml) |
-| Discogs API — User Lists | 2 | 2 | [discogs-user-lists.yaml](capabilities/discogs-user-lists.yaml) |
-| Discogs API — User Wantlist | 3 | 3 | [discogs-user-wantlist.yaml](capabilities/discogs-user-wantlist.yaml) |
-
-## Vocabulary
-
-- [discogs-vocabulary.yml](vocabulary/discogs-vocabulary.yml) — Unified taxonomy mapping operational (OpenAPI) and capability (Naftiko) dimensions.
-
-## Rules
-
-- [discogs-rules.yml](rules/discogs-rules.yml) — 35 Spectral rules enforcing Discogs API conventions.
-
-## Plans & Pricing
-
-- [discogs-plans-pricing.yml](plans/discogs-plans-pricing.yml)
-
-## Rate Limits
-
-- [discogs-rate-limits.yml](rate-limits/discogs-rate-limits.yml)
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/discogs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
